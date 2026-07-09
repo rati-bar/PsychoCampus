@@ -1,66 +1,47 @@
-# PsychoCampus — Wireframes
+# PsychoCampus — Interactive Prototype
 
-Low-fidelity, clickable wireframes for the **PsychoCampus** platform (client: შპს ფინა2 / ი/მ ანნა ზედგინიძე), based on the technical task and commercial proposal documents.
-
-The wireframes deliberately stay **low-fidelity**: the goal is to lock down *structure, navigation and business logic* before visual design. Grayscale boxes, placeholder text bars (`▬`) and media placeholders (`▨`) stand in for real content; yellow ✎ notes explain the logic behind each screen.
-
-## How to view
-
-Open **`index.html`** in any browser — it is the hub linking every screen. No build step, no internet connection, no dependencies.
+Hi-fidelity, **clickable** prototype of the PsychoCampus platform (client: შპს ფინა2 / ი/მ ანნა ზედგინიძე), built as **3 self-contained HTML files** — one per interface. No build step, no internet, no dependencies: open any file directly in a browser.
 
 ```
 wireframes/
-├── index.html              # gallery / navigation hub — start here
-├── assets/
-│   ├── wireframe.css       # self-contained wireframe design system
-│   └── shell.js            # injects the left nav rail + Desktop/Mobile toggle
-└── pages/                  # one HTML file per screen
+├── index.html        # landing — pick an interface
+├── public.html       # 1️⃣ public website (visitors & registered users)
+├── consultant.html   # 2️⃣ consultant workspace
+└── admin.html        # 3️⃣ admin panel
 ```
 
-Each screen has:
-- a **left navigation rail** to jump between all 18 screens;
-- a **🖥 Desktop / 📱 Mobile** toggle (top-right) to preview responsive layout;
-- inline **✎ notes** describing the underlying logic.
+Each file is a small single-page app: real navigation, tabs, modals, a working booking calendar, filters, and form feedback — styled with a calm, professional palette ("მშვიდი, პროფესიული სტილი") matching the proposal.
 
-## Screens (18)
+## 1️⃣ public.html — Public website
+Client-side routed views, all in one file:
+- **Home** — hero, service hub, featured videos, live-chat widget
+- **About / Services** — company info + the two directions (video, consultation) and extra services
+- **Video library** — grid with free preview vs 🔒 subscription-locked full video; single-video paywall page
+- **Consultation booking** — 4-step flow (calendar → contact → payment → confirmation) with a working month calendar, slot capacity, live summary
+- **Auth** — login / registration modal (personal number, name, email = unique ID, phone); logging in reveals the **user profile** (bookings with reschedule/cancel, subscription, payments & invoices, personal data)
+- **Contact / Legal** — form + map; terms, privacy, cookie & refund tabs
+- **GEO / ENG** language toggle, responsive mobile menu, chat panel
 
-### Public site
-| Screen | Covers |
-| --- | --- |
-| Home | Slider, company intro, services hub, featured videos, live-chat widget |
-| About | History, goals, team, media |
-| Services | Two directions (paid video + consultation) + general services list |
-| Video catalog | Grid, filters, preview vs 🔒 locked (subscription) |
-| Video + paywall | Player with paywall overlay, subscription CTA, access logic |
-| Consultation booking | Unified "incognito" calendar, slot capacity by active-consultant count |
-| Booking confirm | Contact/registration step, payment summary, success state |
-| Auth | Register (personal number, name, email = unique ID, phone), login, in-payment registration |
-| Contact | Feedback form, contact info, map |
-| Legal | Terms, privacy, cookie policy + consent banner |
+## 2️⃣ consultant.html — Consultant workspace
+Login → dashboard with sidebar navigation:
+- **My bookings** — stat tiles + assigned-only booking list, booking-detail modal (incognito model: sees only own bookings)
+- **My schedule** — working hours + weekly grid
+- **Availability** — active/inactive toggle (synced to the top bar), force-majeure explanation, time-off request
+- **Profile**
 
-### User & Operator
-| Screen | Covers |
-| --- | --- |
-| User profile | Bookings (reschedule/cancel), subscription, payments & invoices |
-| Consultant dashboard | Only own assigned bookings, personal schedule, availability |
+## 3️⃣ admin.html — Admin panel
+Login → full management panel:
+- **Overview** — KPIs, revenue bar chart, source donut, recent orders, live status
+- **Orders & payments** — filters, table, order-detail modal, Excel export, refund action
+- **Bookings & consultants** — consultant table with working **force-majeure toggle** (reassign logic), time management (global / per-operator / manual), buffer, unified load calendar
+- **Content & SEO** — tabs for videos / services / pages / SEO; content editor with bilingual toggle + SEO panel (auto-generate, OG banner); sitemap, JSON-LD, Meta Pixel, GA4 switches
+- **Users** — searchable table + user detail modal (personal data, linked payments)
+- **Roles & permissions** — interactive permission matrix + admin users (site admins; operators have their own panel)
+- **Chat / operators** — queue, operator status
+- **Settings** — general, languages, payment/pricing, cancellation & refund policy
 
-### Admin panel
-| Screen | Covers |
-| --- | --- |
-| Overview | KPIs, revenue trend, status widgets, Excel export |
-| Orders & payments | Filterable table, order detail, payment status, Excel export |
-| Bookings & consultants | Consultant list, force-majeure toggle, global/individual/manual time management, buffer, unified load calendar |
-| Content & SEO | CRUD for videos/services/pages, bilingual editor, SEO title/description (+auto-generate), OG banner, sitemap, structured data, Meta Pixel/GA4 |
-| Users | Registered users with personal/contact data, linked payments |
-| Roles & permissions | Permission matrix for site admins (operators have their own panel) |
+## Try it
+- **public.html** → click through the nav; open the booking flow and pick a day + time slot; click "რეგისტრაცია" then log in to reveal the profile; toggle GEO/ENG.
+- **consultant.html / admin.html** → click "შესვლა" on the login screen; use the sidebar; toggle a consultant's force-majeure; edit the permission matrix.
 
-## Key logic reflected
-
-- **Incognito consultation model** — users never pick a specific consultant; a single calendar shows availability computed as `bookings < active consultants` per slot; bookings auto-distribute round-robin to free consultants.
-- **Time management** — three modes: global auto-generation, per-operator schedules, manual. Configurable slot length + mandatory buffer between meetings.
-- **Force majeure** — one-click deactivate a consultant → auto-reassign → reschedule link → refund / manual resolution.
-- **Paid video** — public preview; full video and monthly subscription behind registration + bank payment; access auto-toggles on payment status.
-- **Payments** — bank integration; profile/access auto-activated on a positive transaction; refunds automatic where the bank allows, otherwise a manual payout request.
-- **Bilingual (GEO/ENG), Responsive, SEO** (sitemap.xml, Open Graph, JSON-LD, Meta Pixel, GA4).
-
-> This is a first draft ("პირველადი ზოგადი მონახაზი") and is expected to change as requirements are refined.
+> Prototype content is representative placeholder data. Layout, flows and logic reflect the technical task and commercial proposal; details are expected to be refined.

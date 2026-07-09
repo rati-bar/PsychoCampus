@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PsychoCampus — ადმინ პანელი</title>
+<style>
+:root{
+  --bg:#f6f5f1;--surface:#fff;--surface-2:#f0efe9;--ink:#1f2b33;--muted:#5d6b74;--faint:#8b98a0;
+  --primary:#2f8f83;--primary-d:#256f66;--primary-soft:#e4f1ef;--accent:#7b6fd0;--accent-soft:#ece9f8;
+  --line:#e6e2da;--line-2:#efece6;--ok:#2f8f5b;--ok-soft:#e3f2e9;--warn:#b7791f;--warn-soft:#f8efdb;--danger:#c0554e;--danger-soft:#f7e6e4;
+  --radius:14px;--shadow:0 1px 2px rgba(31,43,51,.06),0 8px 24px rgba(31,43,51,.06);--shadow-lg:0 12px 40px rgba(31,43,51,.14);
+  --sans:"Noto Sans Georgian",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14.5px;line-height:1.55}
+h1,h2,h3,h4{margin:0;line-height:1.2}h1{font-size:25px}h2{font-size:20px}h3{font-size:16.5px}h4{font-size:14px}
+a{cursor:pointer;text-decoration:none;color:inherit}
+.muted{color:var(--muted)}.faint{color:var(--faint)}.center{text-align:center}.strong{font-weight:700}
+.row{display:flex;gap:12px;align-items:center}.between{justify-content:space-between}.wrapf{flex-wrap:wrap}.spacer{flex:1}
+.grid{display:grid;gap:18px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.mt1{margin-top:8px}.mt2{margin-top:16px}.mt3{margin-top:24px}.mb1{margin-bottom:8px}.mb2{margin-bottom:16px}.mb3{margin-bottom:24px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.danger{background:var(--danger-soft);color:var(--danger)}
+.pill.acc{background:var(--accent-soft);color:var(--accent)}.pill.pri{background:var(--primary-soft);color:var(--primary-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:9px 15px;font-size:13.8px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap}
+.btn:hover{border-color:#d3cdc2}.btn.pri{background:var(--primary);border-color:var(--primary);color:#fff}.btn.pri:hover{background:var(--primary-d)}
+.btn.sm{padding:6px 10px;font-size:12.5px;border-radius:8px}.btn.block{width:100%}.btn.danger{color:var(--danger);border-color:#e6c6c2}.btn.ghost{background:transparent;border:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.pad{padding:20px}
+label.f{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.inp,select.inp,textarea.inp{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;font-size:14px;font-family:inherit;color:var(--ink)}
+.inp:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}textarea.inp{min-height:90px;resize:vertical}.field{margin-bottom:14px}
+table.tb{width:100%;border-collapse:collapse;font-size:13.8px}
+table.tb th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);font-weight:700;padding:10px 12px;border-bottom:1px solid var(--line)}
+table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)}table.tb tbody tr:last-child{border-bottom:0}table.tb tbody tr:hover{background:var(--surface-2)}
+.stat{padding:16px 18px}.stat .k{font-size:12.5px;color:var(--muted)}.stat .v{font-size:26px;font-weight:800;margin-top:3px}.stat .d{font-size:12px}
+.switch{position:relative;width:44px;height:25px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);cursor:pointer;transition:.2s;flex:none}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:19px;height:19px;border-radius:999px;background:#fff;box-shadow:var(--shadow);transition:.2s}
+.switch.on{background:var(--ok)}.switch.on::after{left:21px}
+.tabs{display:inline-flex;gap:6px;background:var(--surface-2);padding:4px;border-radius:11px;flex-wrap:wrap}
+.tabs button{border:0;background:transparent;padding:8px 14px;border-radius:8px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--muted);font-size:13.5px}
+.tabs button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+/* app layout */
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.side{background:#20302f;color:#c9d5d2;padding:0 0 20px;position:sticky;top:0;height:100vh;overflow:auto}
+.side .brand{padding:20px;font-weight:800;font-size:17px;color:#fff;display:flex;align-items:center;gap:9px;border-bottom:1px solid #33403f}
+.side .brand .dot{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--primary),var(--accent))}
+.side .grp{padding:16px 12px 4px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7c8a87}
+.side a{display:flex;align-items:center;gap:10px;padding:9px 14px;margin:2px 8px;border-radius:9px;color:#c9d5d2;font-weight:600;font-size:13.8px}
+.side a:hover{background:#2b3b3a;color:#fff}.side a.on{background:var(--primary);color:#fff}
+.main{min-width:0;display:flex;flex-direction:column}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:13px 26px;display:flex;align-items:center;gap:14px}
+.content{padding:24px}
+.view{display:none}.view.on{display:block;animation:fade .2s}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.overlay{position:fixed;inset:0;background:rgba(20,30,34,.5);backdrop-filter:blur(3px);z-index:60;display:none;align-items:center;justify-content:center;padding:20px}
+.overlay.on{display:flex}
+.modal{background:var(--surface);border-radius:16px;max-width:520px;width:100%;box-shadow:var(--shadow-lg);overflow:hidden;max-height:90vh;overflow-y:auto}
+.modal .head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--surface)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:11px;z-index:80;font-weight:600;font-size:14px;opacity:0;transition:.3s;box-shadow:var(--shadow-lg)}
+.toast.on{transform:translateX(-50%) translateY(0);opacity:1}
+.proto{position:fixed;left:0;bottom:0;z-index:70;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-top-right-radius:8px}
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(160deg,#eef5f3,#f6f5f1)}
+/* chart */
+.bars{display:flex;align-items:flex-end;gap:10px;height:170px;padding-top:10px}
+.bars .bar{flex:1;background:linear-gradient(var(--primary),var(--primary-soft));border-radius:7px 7px 0 0;position:relative;min-height:8px}
+.bars .bar span{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:11px;color:var(--faint)}
+.donut{width:150px;height:150px;border-radius:999px;background:conic-gradient(var(--primary) 0 62%,var(--accent) 62% 100%);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.donut .hole{width:92px;height:92px;border-radius:999px;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal .dow{text-align:center;font-size:11px;color:var(--faint);font-weight:700}
+.cal .day{aspect-ratio:1.15;border:1px solid var(--line-2);border-radius:9px;padding:5px 6px;font-size:12px;background:var(--surface)}
+.cal .day.off{background:var(--surface-2);color:var(--faint)}
+.cal .day .num{color:var(--muted);font-weight:700}
+.cal .day .b{margin-top:4px;font-size:10px;padding:1px 5px;border-radius:5px;display:inline-block}
+.matrix td{text-align:center}.matrix td:first-child{text-align:left;font-weight:600}
+.chk{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:12px;background:var(--surface)}
+.chk.on{background:var(--primary);border-color:var(--primary)}
+@media(max-width:860px){.app{grid-template-columns:1fr}.side{position:fixed;left:-260px;transition:.2s;z-index:50;width:250px}.side.open{left:0}.g4,.g3,.g2{grid-template-columns:1fr}.burger{display:inline-flex!important}}
+.burger{display:none}
+.split2{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+@media(max-width:900px){.split2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+  <div class="card pad" style="max-width:380px;width:100%">
+    <div class="row mb3" style="gap:9px"><span style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--accent));display:inline-block"></span><b style="font-size:18px">PsychoCampus</b></div>
+    <h2>ადმინ პანელი</h2><p class="muted mt1 mb3" style="font-size:13.5px">მართვის სივრცე</p>
+    <div class="field"><label class="f">ელფოსტა</label><input class="inp" value="admin@psychocampus.ge"></div>
+    <div class="field"><label class="f">პაროლი</label><input class="inp" type="password" value="••••••••"></div>
+    <button class="btn pri block" id="loginBtn">შესვლა</button>
+  </div>
+</div>
+
+<div class="app" id="app" style="display:none">
+  <aside class="side" id="side">
+    <div class="brand"><span class="dot"></span> PsychoCampus</div>
+    <div class="grp">მართვა</div>
+    <a class="on" data-v="dash">📊 მიმოხილვა</a>
+    <a data-v="orders">🛒 შეკვეთები & გადახდები</a>
+    <a data-v="bookings">📅 ჯავშნები & კონსულტანტები</a>
+    <a data-v="content">🎬 კონტენტი & SEO</a>
+    <a data-v="users">👥 მომხმარებლები</a>
+    <a data-v="roles">🔐 როლები & ნებართვები</a>
+    <a data-v="chat">💬 ჩატი / ოპერატორები</a>
+    <a data-v="settings">⚙ პარამეტრები</a>
+    <div class="grp">სხვა</div>
+    <a id="logout">↩ გასვლა</a>
+  </aside>
+
+  <div class="main">
+    <div class="top">
+      <button class="btn ghost burger" id="burger" style="font-size:20px">☰</button>
+      <h3 id="pageTitle">მიმოხილვა</h3>
+      <span class="spacer"></span>
+      <button class="btn sm" data-toast="მონაცემები ექსპორტირდა Excel-ში ✓">📤 Excel</button>
+      <div class="row" style="gap:8px"><span style="width:34px;height:34px;border-radius:999px;background:var(--surface-2);display:flex;align-items:center;justify-content:center">👤</span><b style="font-size:13.5px">ადმინი</b></div>
+    </div>
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <section class="view on" id="v-dash">
+        <div class="grid g4 mb3">
+          <div class="card stat"><div class="k">შემოსავალი (თვე)</div><div class="v">₾ 14,320</div><div class="d pill ok" style="margin-top:6px">▲ 12%</div></div>
+          <div class="card stat"><div class="k">აქტიური გამოწერა</div><div class="v">248</div><div class="d faint">ვიდეო</div></div>
+          <div class="card stat"><div class="k">ჯავშანი (კვირა)</div><div class="v">63</div><div class="d faint">კონსულტაცია</div></div>
+          <div class="card stat"><div class="k">ახალი მომხმ. (თვე)</div><div class="v">112</div><div class="d pill ok" style="margin-top:6px">▲ 8%</div></div>
+        </div>
+        <div class="split2 mb3">
+          <div class="card pad"><div class="row between mb2"><b>შემოსავალი — ბოლო 7 თვე</b><span class="pill pri">₾</span></div><div class="bars" id="bars"></div><div style="height:14px"></div></div>
+          <div class="card pad"><b>შემოსავლის წყარო</b><div class="donut mt2"><div class="hole"><b>₾14.3k</b><span class="faint" style="font-size:11px">სულ</span></div></div>
+            <div class="mt3"><div class="row between"><span class="row" style="gap:7px"><span style="width:11px;height:11px;border-radius:3px;background:var(--primary)"></span>კონსულტაცია</span><b>62%</b></div>
+            <div class="row between mt1"><span class="row" style="gap:7px"><span style="width:11px;height:11px;border-radius:3px;background:var(--accent)"></span>ვიდეო გამოწერა</span><b>38%</b></div></div></div>
+        </div>
+        <div class="split2">
+          <div class="card"><div class="pad" style="padding-bottom:0"><b>ბოლო შეკვეთები</b></div><div class="pad">
+            <table class="tb"><thead><tr><th>#</th><th>მომხმარებელი</th><th>ტიპი</th><th>თანხა</th><th>სტატუსი</th></tr></thead><tbody>
+              <tr><td>10234</td><td>გ. მაისურაძე</td><td>ვიდეო</td><td>₾ 29</td><td><span class="pill ok">გადახდილი</span></td></tr>
+              <tr><td>10240</td><td>ნ. კვარაცხელია</td><td>კონსულტაცია</td><td>₾ 60</td><td><span class="pill warn">მოლოდინში</span></td></tr>
+              <tr><td>10251</td><td>დ. ბერიძე</td><td>კონსულტაცია</td><td>₾ 60</td><td><span class="pill ok">გადახდილი</span></td></tr>
+            </tbody></table></div></div>
+          <div class="card pad"><b>მიმდინარე მდგომარეობა</b>
+            <div class="row between mt2"><span class="muted">აქტიური კონსულტანტი</span><b>3 / 4</b></div>
+            <div class="row between mt1"><span class="muted">ფორსმაჟორი (დღეს)</span><span class="pill warn">1</span></div>
+            <div class="row between mt1"><span class="muted">დაბრუნების მოთხოვნა</span><span class="pill danger">2</span></div>
+            <div class="row between mt1"><span class="muted">ჩატი — მოლოდინში</span><span class="pill acc">5</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ORDERS -->
+      <section class="view" id="v-orders">
+        <div class="card pad mb3"><div class="row wrapf" style="gap:10px">
+          <input class="inp" style="max-width:250px" placeholder="🔍 ძებნა (#, სახელი, ელფოსტა)">
+          <select class="inp" style="width:150px"><option>ტიპი: ყველა</option><option>ვიდეო</option><option>კონსულტაცია</option></select>
+          <select class="inp" style="width:160px"><option>სტატუსი: ყველა</option><option>გადახდილი</option><option>მოლოდინში</option><option>დაბრუნებული</option></select>
+          <select class="inp" style="width:140px"><option>ბოლო 30 დღე</option><option>ეს თვე</option></select>
+          <span class="spacer"></span><button class="btn pri" data-toast="ფილტრი გამოყენებულია">ფილტრი</button>
+        </div></div>
+        <div class="card"><div class="pad">
+          <table class="tb"><thead><tr><th>#</th><th>თარიღი</th><th>მომხმარებელი</th><th>ტიპი</th><th>თანხა</th><th>სტატუსი</th><th></th></tr></thead><tbody>
+            <tr><td>10234</td><td>01 ივლ</td><td>გ. მაისურაძე</td><td><span class="pill">ვიდეო</span></td><td>₾ 29</td><td><span class="pill ok">გადახდილი</span></td><td><button class="btn sm" data-order="10234">👁</button></td></tr>
+            <tr><td>10240</td><td>01 ივლ</td><td>ნ. კვარაცხელია</td><td><span class="pill">კონსულტაცია</span></td><td>₾ 60</td><td><span class="pill warn">მოლოდინში</span></td><td><button class="btn sm" data-order="10240">👁</button></td></tr>
+            <tr><td>10251</td><td>30 ივნ</td><td>დ. ბერიძე</td><td><span class="pill">კონსულტაცია</span></td><td>₾ 60</td><td><span class="pill ok">გადახდილი</span></td><td><button class="btn sm" data-order="10251">👁</button></td></tr>
+            <tr><td>09980</td><td>15 ივნ</td><td>ს. ლომიძე</td><td><span class="pill">კონსულტაცია</span></td><td>₾ 60</td><td><span class="pill danger">დაბრუნებული</span></td><td><button class="btn sm" data-order="09980">👁</button></td></tr>
+          </tbody></table>
+          <div class="row between mt2"><span class="faint" style="font-size:12.5px">ნაჩვენებია 1–4 / 312</span><div class="row" style="gap:6px"><button class="btn sm">‹</button><button class="btn sm pri">1</button><button class="btn sm">2</button><button class="btn sm">›</button></div></div>
+        </div></div>
+      </section>
+
+      <!-- BOOKINGS & CONSULTANTS -->
+      <section class="view" id="v-bookings">
+        <div class="card mb3"><div class="pad" style="padding-bottom:0"><div class="row between"><b>კონსულტანტები</b><button class="btn sm pri" data-toast="ახალი კონსულტანტის ფორმა">+ ახალი</button></div></div>
+          <div class="pad"><table class="tb"><thead><tr><th>კონსულტანტი</th><th>სამუშაო საათები</th><th>დღეს</th><th>სტატუსი</th><th>ფორსმაჟორი</th></tr></thead><tbody id="consBody"></tbody></table></div>
+          <div class="pad" style="padding-top:0"><div class="card pad" style="background:var(--warn-soft);border-color:#e8d5a8;box-shadow:none"><b style="color:var(--warn)">⚠ ფორსმაჟორის ლოგიკა</b><p class="muted mt1" style="margin:0;font-size:13px">გამორთვისას → ავტომ. გადანაწილება სხვა თავისუფალ კონსულტანტზე → თუ არა, მომხმარებელს ეგზავნება დროის შესაცვლელი ბმული → თუ არცერთი, თანხის დაბრუნება ან ადმინის ინდივიდუალური გადაწყვეტა.</p></div></div>
+        </div>
+        <div class="grid g2 mb3" style="align-items:start">
+          <div class="card pad"><h3 class="mb2">დროის მართვა</h3>
+            <div class="field"><label class="f">დღეები</label><input class="inp" value="ორშაბათი – პარასკევი"></div>
+            <div class="grid g2"><div class="field"><label class="f">დაწყება</label><input class="inp" value="10:00"></div><div class="field"><label class="f">დასრულება</label><input class="inp" value="18:00"></div></div>
+            <div class="grid g2"><div class="field"><label class="f">სლოტი</label><input class="inp" value="30 წთ"></div><div class="field"><label class="f">ბუფერი</label><input class="inp" value="15 წთ"></div></div>
+            <button class="btn pri block" data-toast="სლოტები დაგენერირდა ✓">ავტომ. გენერაცია</button>
+          </div>
+          <div class="card pad"><h3 class="mb2">გენერაციის რეჟიმი</h3>
+            <label class="row mb2" style="gap:9px;font-size:13.8px"><input type="radio" name="mode" checked> ავტომატური (გლობალური სამუშაო დრო)</label>
+            <label class="row mb2" style="gap:9px;font-size:13.8px"><input type="radio" name="mode"> ინდივიდუალური გრაფიკი თითო ოპერატორზე</label>
+            <label class="row" style="gap:9px;font-size:13.8px"><input type="radio" name="mode"> ხელით შედგენა (დღე / ოპერატორი)</label>
+            <p class="faint mt2" style="font-size:12.5px">ხელით რეჟიმი — კვირის ან თვის ჭრილში, საჭიროებისამებრ.</p>
+          </div>
+        </div>
+        <div class="card pad"><div class="row between mb2"><b>ერთიანი ჯავშნების კალენდარი</b><span class="faint" style="font-size:12px">წერტილი = დატვირთვა</span></div>
+          <div class="cal mb1"><div class="dow">ორ</div><div class="dow">სამ</div><div class="dow">ოთ</div><div class="dow">ხუ</div><div class="dow">პა</div><div class="dow">შა</div><div class="dow">კვ</div></div>
+          <div class="cal" id="adminCal"></div>
+        </div>
+      </section>
+
+      <!-- CONTENT & SEO -->
+      <section class="view" id="v-content">
+        <div class="row between wrapf mb3"><div class="tabs" id="cTabs"><button class="on" data-ct="videos">ვიდეოები</button><button data-ct="services">სერვისები</button><button data-ct="pages">გვერდები</button><button data-ct="seo">SEO</button></div><span class="pill acc">🌐 ქარ / ENG</span></div>
+
+        <div class="cpanel on" id="cp-videos">
+          <div class="card mb3"><div class="pad" style="padding-bottom:0"><div class="row between"><b>ვიდეოები</b><button class="btn sm pri" data-toast="ვიდეოს დამატების ფორმა">+ ვიდეო</button></div></div>
+            <div class="pad"><table class="tb"><thead><tr><th>სათაური</th><th>კატეგორია</th><th>წვდომა</th><th>სტატუსი</th><th></th></tr></thead><tbody>
+              <tr><td>შფოთვის მართვა</td><td>შფოთვა</td><td><span class="pill warn">🔒 გამოწერა</span></td><td><span class="pill ok">გამოქვეყნებული</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
+              <tr><td>ჯანსაღი ურთიერთობები</td><td>ურთიერთობები</td><td><span class="pill">👁 preview</span></td><td><span class="pill">დრაფტი</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
+            </tbody></table></div></div>
+          <div class="split2" id="editor" style="display:none">
+            <div class="card pad"><div class="row between mb2"><h3>ჩანაწერის რედაქტირება</h3><div class="tabs"><button class="on">ქარ</button><button>ENG</button></div></div>
+              <div class="field"><label class="f">სათაური</label><input class="inp" value="შფოთვის მართვა"></div>
+              <div class="field"><label class="f">მოკლე აღწერა</label><textarea class="inp" style="min-height:60px">პრაქტიკული ტექნიკები შფოთვასთან გასამკლავებლად.</textarea></div>
+              <div class="field"><label class="f">სრული ტექსტი</label><div class="inp faint" style="min-height:100px">B  I  U  ¶  🔗  🖼  —  rich text editor</div></div>
+              <div class="grid g2"><div class="field"><label class="f">მთავარი ფოტო</label><div class="inp faint center" style="padding:22px">↑ ატვირთვა</div></div><div class="field"><label class="f">ვიდეო ფაილი</label><div class="inp faint center" style="padding:22px">↑ ატვირთვა</div></div></div>
+              <div class="row"><button class="btn" data-toast="დრაფტი შენახულია">დრაფტი</button><button class="btn pri" data-toast="გამოქვეყნდა ✓">გამოქვეყნება</button></div>
+            </div>
+            <div class="card pad"><h3 class="mb2">SEO</h3>
+              <div class="field"><label class="f">SEO Title</label><input class="inp" placeholder="ავტომ. თუ ცარიელია"></div>
+              <div class="field"><label class="f">SEO Description</label><textarea class="inp" style="min-height:60px" placeholder="ავტომ. თუ ცარიელია"></textarea></div>
+              <label class="row" style="gap:8px;font-size:13px;color:var(--muted)"><input type="checkbox" checked> ცარიელის შემთხვევაში — ავტომ. გენერაცია</label>
+              <div class="field mt2"><label class="f">OG / გაზიარების ბანერი</label><div class="inp faint center" style="padding:18px">↑ ბანერი (default: მთავარი ფოტო)</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="cpanel" id="cp-services" style="display:none"><div class="card pad"><div class="row between mb2"><b>სერვისები</b><button class="btn sm pri" data-toast="სერვისის დამატება">+ სერვისი</button></div>
+          <table class="tb"><thead><tr><th>დასახელება</th><th>ტიპი</th><th>სტატუსი</th><th></th></tr></thead><tbody>
+            <tr><td>ინდივიდუალური თერაპია</td><td>კონსულტაცია</td><td><span class="pill ok">აქტიური</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger">🗑</button></td></tr>
+            <tr><td>წყვილების კონსულტაცია</td><td>კონსულტაცია</td><td><span class="pill ok">აქტიური</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger">🗑</button></td></tr>
+          </tbody></table></div></div>
+        <div class="cpanel" id="cp-pages" style="display:none"><div class="card pad"><b>საინფორმაციო გვერდები</b>
+          <table class="tb mt2"><thead><tr><th>გვერდი</th><th>URL</th><th>სტატუსი</th><th></th></tr></thead><tbody>
+            <tr><td>ჩვენ შესახებ</td><td>/about</td><td><span class="pill ok">გამოქვეყნებული</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
+            <tr><td>წესები & პირობები</td><td>/legal/terms</td><td><span class="pill ok">გამოქვეყნებული</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
+            <tr><td>კონფიდენციალურობა</td><td>/legal/privacy</td><td><span class="pill ok">გამოქვეყნებული</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
+          </tbody></table></div></div>
+        <div class="cpanel" id="cp-seo" style="display:none"><div class="grid g2" style="align-items:start">
+          <div class="card pad"><h3 class="mb2">გლობალური SEO & ინტეგრაციები</h3>
+            <div class="row between"><span class="muted">Sitemap.xml</span><span class="pill ok">ავტ. გენერაცია</span></div>
+            <div class="row between mt2"><span class="muted">Open Graph tags</span><span class="switch on"></span></div>
+            <div class="row between mt2"><span class="muted">Structured data (JSON-LD)</span><span class="switch on"></span></div>
+            <div class="row between mt2"><span class="muted">Meta Pixel</span><span class="switch on"></span></div>
+            <div class="row between mt2"><span class="muted">Google Analytics 4</span><span class="switch on"></span></div>
+          </div>
+          <div class="card pad"><h3 class="mb2">SEO ავტ. გენერაცია</h3><p class="muted" style="font-size:13.5px">ცარიელი SEO ველების შემთხვევაში სისტემა ავტომატურად აგენერირებს title/description-ს კონტენტიდან. მენიუს პუნქტებზე ბანერი აიღება ინფოს მთავარი ფოტოდან.</p>
+            <div class="field mt2"><label class="f">GA4 Measurement ID</label><input class="inp" value="G-XXXXXXXXXX"></div>
+            <div class="field"><label class="f">Meta Pixel ID</label><input class="inp" value="XXXXXXXXXXXXXXX"></div>
+            <button class="btn pri" data-toast="შენახულია ✓">შენახვა</button>
+          </div>
+        </div></div>
+      </section>
+
+      <!-- USERS -->
+      <section class="view" id="v-users">
+        <div class="card pad mb3"><div class="row wrapf" style="gap:10px">
+          <input class="inp" style="max-width:260px" placeholder="🔍 სახელი / ელფოსტა / პ.ნ">
+          <select class="inp" style="width:170px"><option>გამოწერა: ყველა</option><option>აქტიური</option><option>არ აქვს</option></select>
+          <span class="spacer"></span><button class="btn" data-toast="ექსპორტი Excel-ში ✓">📤 Excel</button>
+        </div></div>
+        <div class="card"><div class="pad"><table class="tb"><thead><tr><th>სახელი, გვარი</th><th>ელფოსტა (ID)</th><th>ტელეფონი</th><th>გამოწერა</th><th>გადახდები</th><th></th></tr></thead><tbody>
+          <tr><td>გ. მაისურაძე</td><td>g.m@…</td><td>+995 5XX</td><td><span class="pill ok">აქტიური</span></td><td>4 · ₾ 178</td><td><button class="btn sm" data-user="გ. მაისურაძე">👁</button></td></tr>
+          <tr><td>ნ. კვარაცხელია</td><td>n.k@…</td><td>+995 5XX</td><td><span class="pill">არ აქვს</span></td><td>1 · ₾ 60</td><td><button class="btn sm" data-user="ნ. კვარაცხელია">👁</button></td></tr>
+          <tr><td>დ. ბერიძე</td><td>d.b@…</td><td>+995 5XX</td><td><span class="pill ok">აქტიური</span></td><td>2 · ₾ 89</td><td><button class="btn sm" data-user="დ. ბერიძე">👁</button></td></tr>
+        </tbody></table></div></div>
+      </section>
+
+      <!-- ROLES -->
+      <section class="view" id="v-roles">
+        <div class="split2">
+          <div class="card pad"><div class="row between mb2"><h3>ნებართვების მატრიცა</h3><select class="inp" style="width:190px"><option>კონტენტ მენეჯერი</option><option>ფინანსი</option><option>სუპერ ადმინი</option></select></div>
+            <table class="tb matrix"><thead><tr><th>მოდული</th><th>ნახვა</th><th>დამატება</th><th>რედაქტ.</th><th>წაშლა</th></tr></thead><tbody id="matrixBody"></tbody></table>
+            <div class="row between mt2"><span class="faint" style="font-size:12px">დააჭირე უჯრას გადასართავად</span><button class="btn pri" data-toast="ნებართვები შენახულია ✓">შენახვა</button></div>
+          </div>
+          <div class="card pad"><b>როლები</b>
+            <div class="mt2" style="display:flex;flex-direction:column;gap:8px">
+              <div class="row between"><span class="pill acc">სუპერ ადმინი</span><span class="faint">∞</span></div>
+              <div class="row between"><span class="pill">კონტენტ მენეჯერი</span><span class="faint">2</span></div>
+              <div class="row between"><span class="pill">ფინანსი</span><span class="faint">1</span></div>
+            </div>
+            <button class="btn block mt3" data-toast="ახალი როლის ფორმა">+ ახალი როლი</button>
+            <p class="faint mt3" style="font-size:12.5px">ეს ეხება საიტის ადმინებს. კონსულტანტებს ცალკე პანელი აქვთ.</p>
+          </div>
+        </div>
+        <div class="card mt3"><div class="pad" style="padding-bottom:0"><div class="row between"><b>ადმინ მომხმარებლები</b><button class="btn sm" data-toast="მოწვევა">+ მოწვევა</button></div></div>
+          <div class="pad"><table class="tb"><thead><tr><th>სახელი</th><th>ელფოსტა</th><th>როლი</th><th>სტატუსი</th><th></th></tr></thead><tbody>
+            <tr><td>ადმინი 1</td><td>a1@…</td><td><span class="pill acc">სუპერ ადმინი</span></td><td><span class="pill ok">აქტიური</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
+            <tr><td>ადმინი 2</td><td>a2@…</td><td><span class="pill">კონტენტ მენეჯერი</span></td><td><span class="pill ok">აქტიური</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
+          </tbody></table></div></div>
+      </section>
+
+      <!-- CHAT / OPERATORS -->
+      <section class="view" id="v-chat">
+        <div class="grid g4 mb3">
+          <div class="card stat"><div class="k">მოლოდინში</div><div class="v">5</div><div class="d faint">ჩატი</div></div>
+          <div class="card stat"><div class="k">აქტიური საუბარი</div><div class="v">3</div><div class="d faint">ახლა</div></div>
+          <div class="card stat"><div class="k">ონლაინ ოპერატორი</div><div class="v">2 / 3</div><div class="d faint"></div></div>
+          <div class="card stat"><div class="k">საშ. პასუხის დრო</div><div class="v" style="font-size:20px">1.4წთ</div><div class="d faint"></div></div>
+        </div>
+        <div class="split2">
+          <div class="card pad"><b>მოლოდინის რიგი</b>
+            <table class="tb mt2"><thead><tr><th>მომხმარებელი</th><th>თემა</th><th>ლოდინი</th><th></th></tr></thead><tbody>
+              <tr><td>სტუმარი #4821</td><td>გამოწერა</td><td>0:45</td><td><button class="btn sm pri" data-toast="საუბარი დაიწყო">პასუხი</button></td></tr>
+              <tr><td>სტუმარი #4822</td><td>ჯავშანი</td><td>1:12</td><td><button class="btn sm pri" data-toast="საუბარი დაიწყო">პასუხი</button></td></tr>
+              <tr><td>გ. მაისურაძე</td><td>გადახდა</td><td>2:03</td><td><button class="btn sm pri" data-toast="საუბარი დაიწყო">პასუხი</button></td></tr>
+            </tbody></table></div>
+          <div class="card pad"><b>ოპერატორები</b>
+            <div class="mt2" style="display:flex;flex-direction:column;gap:10px">
+              <div class="row between"><span>ოპერატორი 1</span><span class="pill ok">🟢 ონლაინ</span></div>
+              <div class="row between"><span>ოპერატორი 2</span><span class="pill ok">🟢 ონლაინ</span></div>
+              <div class="row between"><span>ოპერატორი 3</span><span class="pill">⚪ ოფლაინ</span></div>
+            </div>
+            <div class="card pad mt3" style="background:var(--accent-soft);border-color:#d8d2f0;box-shadow:none"><span style="font-size:12.5px;color:var(--accent)">ჩაშენებული ჩატი მრავალი ოპერატორის მხარდაჭერით (შიდა ან გარე სერვისი).</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="view" id="v-settings">
+        <div class="grid g2" style="align-items:start">
+          <div class="card pad"><h3 class="mb2">ზოგადი</h3>
+            <div class="field"><label class="f">საიტის სახელი</label><input class="inp" value="PsychoCampus"></div>
+            <div class="field"><label class="f">ენები</label><div class="row"><span class="pill acc">ქართული (ნაგულისხმევი)</span><span class="pill">English</span></div></div>
+            <div class="field"><label class="f">საკონტაქტო ელფოსტა</label><input class="inp" value="info@psychocampus.ge"></div>
+            <button class="btn pri" data-toast="შენახულია ✓">შენახვა</button>
+          </div>
+          <div class="card pad"><h3 class="mb2">გადახდა & ფასები</h3>
+            <div class="field"><label class="f">ბანკის ინტეგრაცია</label><div class="row between"><span class="muted">Payment gateway</span><span class="pill ok">დაკავშირებული</span></div></div>
+            <div class="grid g2"><div class="field"><label class="f">კონსულტაცია (₾)</label><input class="inp" value="60"></div><div class="field"><label class="f">ვიდეო გამოწერა (₾/თვე)</label><input class="inp" value="29"></div></div>
+            <div class="field"><label class="f">გაუქმების ვადა (სთ)</label><input class="inp" value="24"></div>
+            <div class="field"><label class="f">დაბრუნების პოლიტიკა</label><select class="inp"><option>სრული დაბრუნება (ვადაში)</option><option>ნაწილობრივი</option><option>ადმინის გადაწყვეტით</option></select></div>
+            <button class="btn pri" data-toast="შენახულია ✓">შენახვა</button>
+          </div>
+        </div>
+        <div class="card pad mt3" style="background:var(--accent-soft);border-color:#d8d2f0"><span style="font-size:13px;color:var(--accent)">ℹ ფასდაკლება რეგიონის მიხედვით — მომხმარებლის პირადი ნომრით. ავტომ. დაბრუნება დამოკიდებულია ბანკის მხარდაჭერაზე.</span></div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="overlay" id="orderModal"><div class="modal"><div class="head"><b>შეკვეთა <span id="oNum"></span></b><button class="btn ghost sm" data-close>✕</button></div>
+  <div class="pad">
+    <div class="row between mb2"><span class="pill ok">გადახდილი</span><a class="pill pri">ინვოისი PDF ↓</a></div>
+    <div class="row between"><span class="muted">მომხმარებელი</span><b>გ. მაისურაძე</b></div>
+    <div class="row between mt1"><span class="muted">ელფოსტა / ტელ</span><span>g.m@… · +995 5XX</span></div>
+    <div class="row between mt1"><span class="muted">პირადი ნომერი</span><span>0100XXXXXXX</span></div>
+    <div class="row between mt1"><span class="muted">გადახდა</span><span>₾ 60 · ბანკი</span></div>
+    <div class="row between mt1"><span class="muted">Transaction ID</span><span>TXN-88213</span></div>
+    <div class="card pad mt2" style="background:var(--surface-2);box-shadow:none;font-size:13px" class="muted">გადახდა და მომხმარებელი დაკავშირებულია. ბანკიდან დადებით პასუხზე პროფილი/წვდომა ავტომ. აქტიურდა.</div>
+    <div class="row between mt2"><button class="btn danger" data-toast="დაბრუნების მოთხოვნა შეიქმნა">თანხის დაბრუნება</button><button class="btn pri" data-close>დახურვა</button></div>
+  </div>
+</div></div>
+
+<!-- USER MODAL -->
+<div class="overlay" id="userModal"><div class="modal"><div class="head"><b id="uName">მომხმარებელი</b><button class="btn ghost sm" data-close>✕</button></div>
+  <div class="pad">
+    <div class="grid g2 mb2"><div><div class="faint" style="font-size:12px">ელფოსტა</div><b>g.m@example.com</b></div><div><div class="faint" style="font-size:12px">ტელეფონი</div><b>+995 5XX XX</b></div>
+      <div><div class="faint" style="font-size:12px">პირადი ნომერი</div><b>0100XXXXXXX</b></div><div><div class="faint" style="font-size:12px">რეგისტრაცია</div><b>01 ივნ 2026</b></div></div>
+    <h4 class="mt2 mb1">გადახდები & ჯავშნები</h4>
+    <table class="tb"><thead><tr><th>#</th><th>ტიპი</th><th>თანხა</th><th>სტატუსი</th></tr></thead><tbody>
+      <tr><td>10234</td><td>ვიდეო</td><td>₾ 29</td><td><span class="pill ok">გადახდილი</span></td></tr>
+      <tr><td>10101</td><td>კონსულტაცია</td><td>₾ 60</td><td><span class="pill ok">გადახდილი</span></td></tr>
+    </tbody></table>
+  </div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+<a class="proto" href="index.html">◐ Prototype — ადმინი · ყველა ეკრანი</a>
+
+<script>
+const TITLES={dash:"მიმოხილვა",orders:"შეკვეთები & გადახდები",bookings:"ჯავშნები & კონსულტანტები",content:"კონტენტი & SEO",users:"მომხმარებლები",roles:"როლები & ნებართვები",chat:"ჩატი / ოპერატორები",settings:"პარამეტრები"};
+function go(v){
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
+  document.querySelectorAll('.side a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
+  document.getElementById('pageTitle').textContent=TITLES[v]||'';
+  document.getElementById('side').classList.remove('open');window.scrollTo(0,0);
+}
+document.querySelectorAll('.side a[data-v]').forEach(a=>a.onclick=()=>go(a.dataset.v));
+document.getElementById('loginBtn').onclick=()=>{document.getElementById('login').style.display='none';document.getElementById('app').style.display='grid';};
+document.getElementById('logout').onclick=()=>{document.getElementById('app').style.display='none';document.getElementById('login').style.display='flex';};
+document.getElementById('burger').onclick=()=>document.getElementById('side').classList.toggle('open');
+
+let tT;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),2200);}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-toast]');if(t)toast(t.dataset.toast);});
+
+/* dashboard chart */
+document.getElementById('bars').innerHTML=[52,61,48,73,66,84,92].map((h,i)=>'<div class="bar" style="height:'+h+'%"><span>'+["იან","თებ","მარ","აპრ","მაი","ივნ","ივლ"][i]+'</span></div>').join('');
+
+/* consultants table + force majeure toggle */
+const CONS=[["კონსულტანტი ა","11:00 – 18:00",4,true],["კონსულტანტი ბ","09:00 – 14:00",3,true],["კონსულტანტი გ","14:00 – 19:00",2,true],["კონსულტანტი დ","10:00 – 16:00",0,false]];
+function renderCons(){
+  document.getElementById('consBody').innerHTML=CONS.map((c,i)=>
+    '<tr><td>'+c[0]+'</td><td>'+c[1]+'</td><td>'+c[2]+'</td><td>'+(c[3]?'<span class="pill ok">🟢 აქტიური</span>':'<span class="pill warn">⏸ არააქტიური</span>')+
+    '</td><td><button class="btn sm '+(c[3]?'danger':'')+'" data-fm="'+i+'">'+(c[3]?'⏸ გამორთვა':'▶ ჩართვა')+'</button></td></tr>').join('');
+}
+renderCons();
+document.addEventListener('click',e=>{const b=e.target.closest('[data-fm]');if(!b)return;const i=+b.dataset.fm;CONS[i][3]=!CONS[i][3];renderCons();toast(CONS[i][3]?CONS[i][0]+' — ჩართულია':CONS[i][0]+' — ფორსმაჟორი: ჯავშნები გადანაწილდა');});
+
+/* admin calendar */
+(function(){let h='';for(let i=1;i<=31;i++){const wd=(i+2)%7;const off=(wd===5||wd===6||i<8);let b='';
+  if(!off){const load=(i*3)%9;const cls=load>6?'danger':(load>3?'warn':'ok');b='<span class="pill '+cls+' b">'+load+' ჯავშ.</span>';}
+  h+='<div class="day'+(off?' off':'')+'"><span class="num">'+i+'</span>'+(off?'':'<div>'+b+'</div>')+'</div>';}
+  document.getElementById('adminCal').innerHTML=h;})();
+
+/* content tabs + editor */
+document.getElementById('cTabs').addEventListener('click',e=>{const b=e.target.closest('[data-ct]');if(!b)return;
+  document.querySelectorAll('#cTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  ['videos','services','pages','seo'].forEach(k=>document.getElementById('cp-'+k).style.display=(k===b.dataset.ct?'block':'none'));});
+document.addEventListener('click',e=>{if(e.target.closest('[data-edit]')){const ed=document.getElementById('editor');if(ed){ed.style.display='grid';ed.scrollIntoView({behavior:'smooth',block:'center'});}}});
+
+/* roles matrix */
+const MODS=[["კონტენტი & SEO",1,1,1,1],["ვიდეო კონტენტი",1,1,1,0],["შეკვეთები & გადახდები",1,0,0,0],["ჯავშნები & კონსულტანტები",1,0,1,0],["მომხმარებლები",1,0,0,0],["როლები & ნებართვები",0,0,0,0],["ჩატი / ოპერატორები",1,0,1,0]];
+function renderMatrix(){document.getElementById('matrixBody').innerHTML=MODS.map((m,r)=>'<tr><td>'+m[0]+'</td>'+[1,2,3,4].map(c=>'<td><span class="chk'+(m[c]?' on':'')+'" data-cell="'+r+'-'+c+'">'+(m[c]?'✓':'')+'</span></td>').join('')+'</tr>').join('');}
+renderMatrix();
+document.addEventListener('click',e=>{const c=e.target.closest('[data-cell]');if(!c)return;const[r,col]=c.dataset.cell.split('-').map(Number);MODS[r][col]=MODS[r][col]?0:1;renderMatrix();});
+
+/* modals */
+document.addEventListener('click',e=>{
+  const o=e.target.closest('[data-order]');if(o){document.getElementById('oNum').textContent='#'+o.dataset.order;document.getElementById('orderModal').classList.add('on');}
+  const u=e.target.closest('[data-user]');if(u){document.getElementById('uName').textContent=u.dataset.user;document.getElementById('userModal').classList.add('on');}
+  if(e.target.closest('[data-close]')||e.target.classList.contains('overlay')){document.querySelectorAll('.overlay').forEach(x=>x.classList.remove('on'));}
+});
+</script>
+</body>
+</html>
