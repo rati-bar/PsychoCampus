@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auth · PsychoCampus Wireframes</title>
+<link rel="stylesheet" href="../assets/wireframe.css">
+</head>
+<body>
+<main id="wf-content">
+  <div class="wf">
+    <div class="site-head">
+      <span class="logo">◐ PsychoCampus</span>
+      <nav><a>მთავარი</a><a>ჩვენ შესახებ</a><a>სერვისები</a><a>ვიდეო</a><a>კონსულტაცია</a><a>კონტაქტი</a></nav>
+      <span class="spacer"></span>
+      <span class="wf-tag">🌐 GEO / ENG</span>
+    </div>
+
+    <div class="wf-section">
+      <div class="wf-grid g-2" style="align-items:start;max-width:900px;margin:0 auto">
+        <!-- Register -->
+        <div class="wf-card">
+          <div class="wf-row between mb-1">
+            <h2 class="mb-0">რეგისტრაცია</h2>
+            <span class="wf-tag wf-tag--accent">ახალი მომხმარებელი</span>
+          </div>
+          <div class="wf-field"><label>სახელი *</label><div class="wf-input">—</div></div>
+          <div class="wf-field"><label>გვარი *</label><div class="wf-input">—</div></div>
+          <div class="wf-field"><label>პირადი ნომერი *</label><div class="wf-input">—</div></div>
+          <div class="wf-field"><label>ელფოსტა * <span class="faint">(მთავარი იდენტიფიკატორი, უნიკალური)</span></label><div class="wf-input">—</div></div>
+          <div class="wf-field"><label>ტელეფონი *</label><div class="wf-input">—</div></div>
+          <div class="wf-field"><label>პაროლი *</label><div class="wf-input">••••••••</div></div>
+          <label class="wf-row small muted" style="gap:8px"><input type="checkbox"> ვეთანხმები წესებსა და პოლიტიკას</label>
+          <button class="wf-btn wf-btn-primary wf-btn-block mt-2">რეგისტრაცია</button>
+        </div>
+
+        <!-- Login -->
+        <div class="wf-stack">
+          <div class="wf-card">
+            <h2>შესვლა</h2>
+            <div class="wf-field"><label>ელფოსტა</label><div class="wf-input">—</div></div>
+            <div class="wf-field"><label>პაროლი</label><div class="wf-input">••••••••</div></div>
+            <div class="wf-row between">
+              <label class="small muted"><input type="checkbox"> დამახსოვრება</label>
+              <a class="small" style="color:var(--wf-accent)">პაროლი დაგავიწყდა?</a>
+            </div>
+            <button class="wf-btn wf-btn-primary wf-btn-block mt-2">შესვლა</button>
+          </div>
+          <div class="wf-card wf-card--flat">
+            <div class="small strong mb-1">რეგისტრაცია გადახდის პროცესში</div>
+            <p class="small muted" style="margin:0">გადახდის ღილაკზე დაჭერისას სისტემა ჯერ ამუშავებს რეგისტრაციას (საფეხურად), შემდეგ უშვებს ბანკის გადახდის ბმულზე — მომხმარებელი შუა პროცესში უკან სარეგისტრაციოზე არ ბრუნდება.</p>
+          </div>
+        </div>
+      </div>
+      <div class="wf-note" style="max-width:900px;margin:16px auto 0"><b>Account activation:</b> ბანკის დადებითი ტრანზაქციის პასუხზე პროფილი ავტომატურად აქტიურდება და იხსნება წვდომა ფასიან კონტენტზე.</div>
+    </div>
+
+    <div class="site-foot">© PsychoCampus · წესები & პირობები · კონფიდენციალურობა</div>
+  </div>
+</main>
+<script>window.WF={id:"auth",title:"რეგისტრაცია / Auth",section:"Public"}</script>
+<script src="../assets/shell.js"></script>
+</body>
+</html>

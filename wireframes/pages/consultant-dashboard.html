@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultant dashboard · PsychoCampus Wireframes</title>
+<link rel="stylesheet" href="../assets/wireframe.css">
+</head>
+<body>
+<main id="wf-content">
+  <div class="wf">
+    <div class="site-head">
+      <span class="logo">◐ PsychoCampus · <span class="faint">Consultant</span></span>
+      <span class="spacer"></span>
+      <span class="wf-tag wf-tag--ok">🟢 აქტიური</span>
+      <span class="wf-row" style="gap:8px"><span class="wf-img wf-avatar"><span></span></span><span class="small strong">კონსულტანტი ▾</span></span>
+    </div>
+
+    <div class="panel">
+      <nav class="panel__nav">
+        <h4>Dashboard</h4>
+        <a class="is-active">📋 ჩემი ჯავშნები</a>
+        <a>📆 ჩემი გრაფიკი</a>
+        <a>🟢 ხელმისაწვდომობა</a>
+        <a>👤 პროფილი</a>
+        <a class="muted">↩ გასვლა</a>
+      </nav>
+
+      <div class="panel__body">
+        <div class="wf-row between wrap mb-2">
+          <h2 class="mb-0">ჩემი ჯავშნები</h2>
+          <div class="wf-row" style="gap:8px">
+            <span class="wf-select" style="width:150px">დღეს ▾</span>
+            <button class="wf-btn wf-btn-sm">📆 კალენდარი</button>
+          </div>
+        </div>
+
+        <div class="wf-grid g-4 mb-2">
+          <div class="wf-card wf-stat"><div class="k">დღეს</div><div class="v">4</div><div class="d muted">ჯავშანი</div></div>
+          <div class="wf-card wf-stat"><div class="k">მომდევნო</div><div class="v">10:30</div><div class="d muted">30 წთ</div></div>
+          <div class="wf-card wf-stat"><div class="k">კვირაში</div><div class="v">17</div><div class="d muted">ჯავშანი</div></div>
+          <div class="wf-card wf-stat"><div class="k">დასრულებული</div><div class="v">2</div><div class="d muted">დღეს</div></div>
+        </div>
+
+        <!-- Assigned bookings list -->
+        <div class="wf-card mb-2">
+          <table class="wf-table">
+            <thead><tr><th>დრო</th><th>კოდი</th><th>მომხმარებელი</th><th>საკონტაქტო</th><th>სტატუსი</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="strong">10:30</td><td>#BK-10234</td><td>გ. მ.</td><td>+995 5XX · e‑mail</td><td><span class="wf-tag wf-tag--accent">მომდევნო</span></td><td><button class="wf-btn wf-btn-sm">დეტალები</button></td></tr>
+              <tr><td class="strong">11:15</td><td>#BK-10240</td><td>ნ. კ.</td><td>+995 5XX · e‑mail</td><td><span class="wf-tag">დაგეგმილი</span></td><td><button class="wf-btn wf-btn-sm">დეტალები</button></td></tr>
+              <tr><td class="strong">14:00</td><td>#BK-10251</td><td>დ. ბ.</td><td>+995 5XX · e‑mail</td><td><span class="wf-tag">დაგეგმილი</span></td><td><button class="wf-btn wf-btn-sm">დეტალები</button></td></tr>
+              <tr><td class="muted">09:30</td><td>#BK-10228</td><td>ს. ლ.</td><td>+995 5XX · e‑mail</td><td><span class="wf-tag wf-tag--ok">დასრულებული</span></td><td><button class="wf-btn wf-btn-sm">ჩანაწერი</button></td></tr>
+            </tbody>
+          </table>
+          <div class="wf-note">კონსულტანტი ხედავს <b>მხოლოდ მასზე მინიჭებულ</b> ჯავშნებს (ავტომატური რიგგარეშე განაწილება). სხვისი ჯავშნები და მთლიანი კალენდარი ხილვადი არ არის — „ინკოგნიტო“ პრინციპი.</div>
+        </div>
+
+        <div class="wf-grid g-2">
+          <div class="wf-card">
+            <h3>ჩემი სამუშაო გრაფიკი</h3>
+            <div class="wf-row between mt-1"><span class="small muted">სამუშაო საათები</span><span class="small strong">11:00 – 18:00</span></div>
+            <div class="wf-row between mt-1"><span class="small muted">სლოტი</span><span class="small">30 წთ + 15 წთ ბუფერი</span></div>
+            <div class="wf-row between mt-1"><span class="small muted">დღეები</span><span class="small">ორშ – პარ</span></div>
+            <p class="small faint mt-1">გრაფიკს ადგენს ადმინი; ინდივიდუალურ ხელმისაწვდომობას ვხედავ აქ.</p>
+          </div>
+          <div class="wf-card wf-card--flat">
+            <h3>ხელმისაწვდომობა</h3>
+            <p class="small muted">ფორსმაჟორის დროს ადმინი ერთ ღილაკზე „არააქტიურ“ რეჟიმზე გადამრთავს; ჯავშნები ავტომატურად გადანაწილდება სხვა კონსულტანტზე.</p>
+            <div class="wf-row" style="gap:8px"><span class="wf-tag wf-tag--ok">🟢 აქტიური</span><span class="wf-tag">⏸ არააქტიური</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>window.WF={id:"consultant",title:"კონსულტანტის Dashboard",section:"Operator"}</script>
+<script src="../assets/shell.js"></script>
+</body>
+</html>

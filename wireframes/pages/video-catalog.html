@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video catalog · PsychoCampus Wireframes</title>
+<link rel="stylesheet" href="../assets/wireframe.css">
+</head>
+<body>
+<main id="wf-content">
+  <div class="wf">
+    <div class="site-head">
+      <span class="logo">◐ PsychoCampus</span>
+      <nav><a>მთავარი</a><a>ჩვენ შესახებ</a><a>სერვისები</a><a class="strong">ვიდეო</a><a>კონსულტაცია</a><a>კონტაქტი</a></nav>
+      <span class="spacer"></span>
+      <span class="wf-tag">🌐 GEO / ENG</span>
+      <button class="wf-btn wf-btn-sm">შესვლა</button>
+      <button class="wf-btn wf-btn-sm wf-btn-primary">რეგისტრაცია</button>
+    </div>
+
+    <div class="wf-section">
+      <div class="wf-row between wrap">
+        <div>
+          <h1 class="mb-0">ვიდეო კონტენტი</h1>
+          <p class="muted small mt-0">ყველასთვის ხილვადია სათაური, აღწერა და მოკლე ფრაგმენტი. სრული ვიდეო — გამოწერის შემდეგ.</p>
+        </div>
+        <div class="wf-card wf-card--flat" style="min-width:230px">
+          <div class="small muted">გამოწერის სტატუსი</div>
+          <div class="wf-row between mt-1"><span class="wf-tag wf-tag--warn">არააქტიური</span><button class="wf-btn wf-btn-sm wf-btn-primary">გამოწერა →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="wf-section">
+      <div class="wf-row wrap">
+        <input class="wf-input" style="max-width:280px" placeholder="🔍 ძებნა">
+        <span class="wf-select" style="max-width:170px">კატეგორია ▾</span>
+        <span class="wf-select" style="max-width:150px">დახარისხება ▾</span>
+        <span class="spacer"></span>
+        <span class="wf-tag">24 ვიდეო</span>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="wf-section">
+      <div class="wf-grid g-3" id="grid"></div>
+      <div class="wf-row" style="justify-content:center;margin-top:18px;gap:6px">
+        <button class="wf-btn wf-btn-sm">‹</button>
+        <button class="wf-btn wf-btn-sm wf-btn-primary">1</button>
+        <button class="wf-btn wf-btn-sm">2</button>
+        <button class="wf-btn wf-btn-sm">3</button>
+        <button class="wf-btn wf-btn-sm">›</button>
+      </div>
+      <div class="wf-note">თითო ბარათზე Lock (🔒) ბეჯი აჩვენებს, რომ სრული ვიდეო საჭიროებს გამოწერას. Preview ღილაკი უშვებს მოკლე ფრაგმენტს ყველასთვის.</div>
+    </div>
+
+    <div class="site-foot">© PsychoCampus · წესები & პირობები · კონფიდენციალურობა</div>
+  </div>
+  <div class="chat-fab" title="ონლაინ ჩატი">💬</div>
+</main>
+<script>window.WF={id:"video-catalog",title:"ვიდეო კატალოგი / Videos",section:"Public"}</script>
+<script src="../assets/shell.js"></script>
+<script>
+  // build 9 video cards after shell renders
+  document.addEventListener("DOMContentLoaded", function(){});
+  var grid = null;
+  var t = setInterval(function(){
+    grid = document.getElementById("grid");
+    if(!grid) return; clearInterval(t);
+    var card = '<div class="wf-card"><div class="wf-img" style="min-height:120px"><span>▶ preview</span>'
+      + '<span style="position:absolute;top:8px;right:8px;z-index:2" class="wf-tag wf-tag--warn">🔒</span>'
+      + '<span style="position:absolute;bottom:8px;right:8px;z-index:2" class="wf-tag">04:12</span></div>'
+      + '<h4 class="mt-1">ვიდეოს სათაური</h4>'
+      + '<div class="wf-lines"><i class="w-100"></i><i class="w-70"></i></div>'
+      + '<div class="wf-row between mt-1"><button class="wf-btn wf-btn-sm">▶ Preview</button>'
+      + '<button class="wf-btn wf-btn-sm wf-btn-primary">სრული →</button></div></div>';
+    grid.innerHTML = new Array(9).fill(card).join("");
+  }, 30);
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin overview · PsychoCampus Wireframes</title>
+<link rel="stylesheet" href="../assets/wireframe.css">
+</head>
+<body>
+<main id="wf-content">
+  <div class="wf">
+    <div class="site-head">
+      <span class="logo">◐ PsychoCampus · <span class="faint">Admin</span></span>
+      <span class="spacer"></span>
+      <span class="wf-tag">🌐 GEO / ENG</span>
+      <span class="wf-tag wf-tag--accent">ადმინისტრატორი</span>
+      <span class="wf-img wf-avatar"><span></span></span>
+    </div>
+
+    <div class="panel">
+      <nav class="panel__nav">
+        <h4>Admin</h4>
+        <a class="is-active">📊 მიმოხილვა</a>
+        <a>🛒 შეკვეთები & გადახდები</a>
+        <a>📅 ჯავშნები & კონსულტანტები</a>
+        <a>🎬 კონტენტი & SEO</a>
+        <a>👥 მომხმარებლები</a>
+        <a>🔐 როლები & ნებართვები</a>
+        <a>💬 ჩატი / ოპერატორები</a>
+        <a>⚙ პარამეტრები</a>
+      </nav>
+
+      <div class="panel__body">
+        <h2 class="mb-2">მიმოხილვა</h2>
+        <div class="wf-grid g-4 mb-2">
+          <div class="wf-card wf-stat"><div class="k">შემოსავალი (თვე)</div><div class="v">₾ XX,XXX</div><div class="d wf-tag wf-tag--ok" style="margin-top:6px">▲ 12%</div></div>
+          <div class="wf-card wf-stat"><div class="k">აქტიური გამოწერები</div><div class="v">XXX</div><div class="d muted">ვიდეო კონტენტი</div></div>
+          <div class="wf-card wf-stat"><div class="k">ჯავშნები (კვირა)</div><div class="v">XX</div><div class="d muted">კონსულტაცია</div></div>
+          <div class="wf-card wf-stat"><div class="k">ახალი მომხმ. (თვე)</div><div class="v">XXX</div><div class="d muted">რეგისტრაცია</div></div>
+        </div>
+
+        <div class="wf-grid g-2 mb-2">
+          <div class="wf-card">
+            <h3>შემოსავალი — ტრენდი</h3>
+            <div class="wf-img" style="min-height:170px"><span>📈 chart placeholder</span></div>
+          </div>
+          <div class="wf-card">
+            <h3>წყაროები</h3>
+            <div class="wf-img" style="min-height:170px"><span>🍩 ვიდეო vs კონსულტაცია</span></div>
+          </div>
+        </div>
+
+        <div class="wf-grid g-2">
+          <div class="wf-card">
+            <div class="wf-row between mb-1"><h3 class="mb-0">ბოლო შეკვეთები</h3><a class="small" style="color:var(--wf-accent)">ყველა →</a></div>
+            <table class="wf-table">
+              <thead><tr><th>#</th><th>მომხმარებელი</th><th>თანხა</th><th>სტატუსი</th></tr></thead>
+              <tbody>
+                <tr><td>10234</td><td>გ. მ.</td><td>₾ XX</td><td><span class="wf-tag wf-tag--ok">გადახდილი</span></td></tr>
+                <tr><td>10240</td><td>ნ. კ.</td><td>₾ XX</td><td><span class="wf-tag wf-tag--warn">მოლოდინში</span></td></tr>
+                <tr><td>10251</td><td>დ. ბ.</td><td>₾ XX</td><td><span class="wf-tag wf-tag--ok">გადახდილი</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="wf-card">
+            <div class="wf-row between mb-1"><h3 class="mb-0">მდგომარეობა</h3></div>
+            <div class="wf-row between mt-1"><span class="small muted">აქტიური კონსულტანტები</span><span class="strong">3 / 4</span></div>
+            <div class="wf-row between mt-1"><span class="small muted">ფორსმაჟორი (დღეს)</span><span class="wf-tag wf-tag--warn">1</span></div>
+            <div class="wf-row between mt-1"><span class="small muted">დაბრუნების მოთხოვნა</span><span class="wf-tag wf-tag--danger">2</span></div>
+            <div class="wf-row between mt-1"><span class="small muted">ჩატი — მოლოდინში</span><span class="wf-tag">5</span></div>
+            <button class="wf-btn wf-btn-primary wf-btn-block mt-2">📤 ექსპორტი Excel-ში</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>window.WF={id:"admin-dash",title:"მიმოხილვა / Overview",section:"Admin"}</script>
+<script src="../assets/shell.js"></script>
+</body>
+</html>

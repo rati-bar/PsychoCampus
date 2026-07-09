@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin orders · PsychoCampus Wireframes</title>
+<link rel="stylesheet" href="../assets/wireframe.css">
+</head>
+<body>
+<main id="wf-content">
+  <div class="wf">
+    <div class="site-head">
+      <span class="logo">◐ PsychoCampus · <span class="faint">Admin</span></span>
+      <span class="spacer"></span>
+      <span class="wf-tag wf-tag--accent">ადმინისტრატორი</span>
+      <span class="wf-img wf-avatar"><span></span></span>
+    </div>
+
+    <div class="panel">
+      <nav class="panel__nav">
+        <h4>Admin</h4>
+        <a>📊 მიმოხილვა</a>
+        <a class="is-active">🛒 შეკვეთები & გადახდები</a>
+        <a>📅 ჯავშნები & კონსულტანტები</a>
+        <a>🎬 კონტენტი & SEO</a>
+        <a>👥 მომხმარებლები</a>
+        <a>🔐 როლები & ნებართვები</a>
+        <a>💬 ჩატი / ოპერატორები</a>
+        <a>⚙ პარამეტრები</a>
+      </nav>
+
+      <div class="panel__body">
+        <div class="wf-row between wrap mb-2">
+          <h2 class="mb-0">შეკვეთები & გადახდები</h2>
+          <div class="wf-row" style="gap:8px">
+            <button class="wf-btn wf-btn-sm">📤 ექსპორტი Excel-ში</button>
+            <button class="wf-btn wf-btn-sm">🖨 ინვოისები</button>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="wf-card wf-card--flat mb-2">
+          <div class="wf-row wrap" style="gap:10px">
+            <input class="wf-input" style="max-width:240px" placeholder="🔍 ძებნა (#, სახელი, ელფოსტა)">
+            <span class="wf-select" style="width:150px">ტიპი: ყველა ▾</span>
+            <span class="wf-select" style="width:160px">სტატუსი: ყველა ▾</span>
+            <span class="wf-select" style="width:150px">პერიოდი ▾</span>
+            <span class="spacer"></span>
+            <button class="wf-btn wf-btn-sm wf-btn-primary">ფილტრი</button>
+          </div>
+        </div>
+
+        <div class="wf-card">
+          <table class="wf-table">
+            <thead><tr><th>#</th><th>თარიღი</th><th>მომხმარებელი</th><th>ტიპი</th><th>თანხა</th><th>გადახდის სტატუსი</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>10234</td><td>01 ივლ</td><td>გ. მაისურაძე</td><td><span class="wf-tag">ვიდეო გამოწერა</span></td><td>₾ XX</td><td><span class="wf-tag wf-tag--ok">გადახდილი</span></td><td><button class="wf-btn wf-btn-sm">👁</button></td></tr>
+              <tr><td>10240</td><td>01 ივლ</td><td>ნ. კვარაცხელია</td><td><span class="wf-tag">კონსულტაცია</span></td><td>₾ XX</td><td><span class="wf-tag wf-tag--warn">მოლოდინში</span></td><td><button class="wf-btn wf-btn-sm">👁</button></td></tr>
+              <tr><td>10251</td><td>30 ივნ</td><td>დ. ბერიძე</td><td><span class="wf-tag">კონსულტაცია</span></td><td>₾ XX</td><td><span class="wf-tag wf-tag--ok">გადახდილი</span></td><td><button class="wf-btn wf-btn-sm">👁</button></td></tr>
+              <tr><td>09980</td><td>15 ივნ</td><td>ს. ლომიძე</td><td><span class="wf-tag">კონსულტაცია</span></td><td>₾ XX</td><td><span class="wf-tag wf-tag--danger">დაბრუნებული</span></td><td><button class="wf-btn wf-btn-sm">👁</button></td></tr>
+            </tbody>
+          </table>
+          <div class="wf-row between mt-2">
+            <span class="small muted">ნაჩვენებია 1–4 / XXX</span>
+            <div class="wf-row" style="gap:6px"><button class="wf-btn wf-btn-sm">‹</button><button class="wf-btn wf-btn-sm wf-btn-primary">1</button><button class="wf-btn wf-btn-sm">2</button><button class="wf-btn wf-btn-sm">›</button></div>
+          </div>
+        </div>
+
+        <!-- Order detail drawer -->
+        <div class="wf-card mt-2">
+          <div class="wf-row between mb-1"><h3 class="mb-0">შეკვეთის დეტალები · #10234</h3><span class="wf-tag wf-tag--ok">გადახდილი</span></div>
+          <div class="wf-grid g-3">
+            <div><div class="small muted">მომხმარებელი</div><div class="small strong">გ. მაისურაძე</div><div class="small muted mt-1">e-mail · +995 5XX · პ/ნ</div></div>
+            <div><div class="small muted">გადახდა</div><div class="small strong">₾ XX · ბანკი</div><div class="small muted mt-1">Transaction ID · 01 ივლ</div></div>
+            <div><div class="small muted">ინვოისი</div><button class="wf-btn wf-btn-sm mt-1">PDF ↓</button></div>
+          </div>
+          <div class="wf-note">გადახდა და მომხმარებელი ერთმანეთს უკავშირდება. ბანკიდან დადებით პასუხზე პროფილი/წვდომა ავტომატურად აქტიურდება. დაბრუნება: ავტომ. (თუ ბანკი უშვებს) ან უკუგადარიცხვის მოთხოვნა.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>window.WF={id:"admin-orders",title:"შეკვეთები & გადახდები",section:"Admin"}</script>
+<script src="../assets/shell.js"></script>
+</body>
+</html>

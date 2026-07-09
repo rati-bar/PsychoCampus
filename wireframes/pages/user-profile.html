@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User profile · PsychoCampus Wireframes</title>
+<link rel="stylesheet" href="../assets/wireframe.css">
+</head>
+<body>
+<main id="wf-content">
+  <div class="wf">
+    <div class="site-head">
+      <span class="logo">◐ PsychoCampus</span>
+      <nav><a>მთავარი</a><a>ვიდეო</a><a>კონსულტაცია</a></nav>
+      <span class="spacer"></span>
+      <span class="wf-tag">🌐 GEO / ENG</span>
+      <span class="wf-row" style="gap:8px"><span class="wf-img wf-avatar"><span></span></span><span class="small strong">გიორგი მ. ▾</span></span>
+    </div>
+
+    <div class="panel">
+      <!-- Profile sub-nav -->
+      <nav class="panel__nav">
+        <h4>ჩემი პროფილი</h4>
+        <a class="is-active">🏠 მიმოხილვა</a>
+        <a>📅 ჩემი ჯავშნები</a>
+        <a>🎬 გამოწერა & ვიდეო</a>
+        <a>🧾 გადახდები & ინვოისები</a>
+        <a>👤 პირადი მონაცემები</a>
+        <a>🔒 უსაფრთხოება</a>
+        <a class="muted">↩ გასვლა</a>
+      </nav>
+
+      <div class="panel__body">
+        <div class="wf-row between wrap mb-2">
+          <h2 class="mb-0">მიმოხილვა</h2>
+          <span class="wf-tag wf-tag--ok">გამოწერა აქტიურია · განახლდება 01 აგვ</span>
+        </div>
+
+        <!-- Stat tiles -->
+        <div class="wf-grid g-3 mb-2">
+          <div class="wf-card wf-stat"><div class="k">მომავალი ჯავშანი</div><div class="v">1</div><div class="d muted">09 ივლ · 10:30</div></div>
+          <div class="wf-card wf-stat"><div class="k">ვიდეო წვდომა</div><div class="v">✓</div><div class="d muted">აქტიური გამოწერა</div></div>
+          <div class="wf-card wf-stat"><div class="k">გადახდები (სულ)</div><div class="v">₾ XXX</div><div class="d muted">4 ტრანზაქცია</div></div>
+        </div>
+
+        <!-- Bookings -->
+        <div class="wf-card mb-2">
+          <div class="wf-row between mb-1"><h3 class="mb-0">ჩემი ჯავშნები</h3><a class="small" style="color:var(--wf-accent)">ყველა →</a></div>
+          <table class="wf-table">
+            <thead><tr><th>კოდი</th><th>თარიღი / დრო</th><th>სტატუსი</th><th>მოქმედება</th></tr></thead>
+            <tbody>
+              <tr><td>#BK-10234</td><td>09 ივლ · 10:30</td><td><span class="wf-tag wf-tag--accent">დაგეგმილი</span></td>
+                <td><button class="wf-btn wf-btn-sm">დროის შეცვლა</button> <button class="wf-btn wf-btn-sm wf-btn-danger">გაუქმება</button></td></tr>
+              <tr><td>#BK-10101</td><td>28 ივნ · 14:00</td><td><span class="wf-tag wf-tag--ok">დასრულებული</span></td>
+                <td><button class="wf-btn wf-btn-sm">ინვოისი ↓</button></td></tr>
+              <tr><td>#BK-09980</td><td>15 ივნ · 11:30</td><td><span class="wf-tag wf-tag--danger">გაუქმებული</span></td>
+                <td class="small muted">დაბრუნება მუშავდება</td></tr>
+            </tbody>
+          </table>
+          <div class="wf-note"><b>დროის შეცვლა:</b> მომხმარებელი პროფილიდან ირჩევს ალტერნატიულ თავისუფალ სლოტს. <b>გაუქმება:</b> დაშვებულია დაჯავშნილ დრომდე [X სთ]-ით ადრე; თანხის დაბრუნება — სრული/ნაწილობრივი (დასაზუსტებელი წესით).</div>
+        </div>
+
+        <!-- Payments / invoices -->
+        <div class="wf-card">
+          <h3>გადახდები & ინვოისები</h3>
+          <table class="wf-table">
+            <thead><tr><th>თარიღი</th><th>აღწერა</th><th>თანხა</th><th>სტატუსი</th><th>ინვოისი</th></tr></thead>
+            <tbody>
+              <tr><td>01 ივლ</td><td>ვიდეო გამოწერა (თვე)</td><td>₾ XX</td><td><span class="wf-tag wf-tag--ok">გადახდილი</span></td><td>PDF ↓</td></tr>
+              <tr><td>28 ივნ</td><td>კონსულტაცია #BK-10101</td><td>₾ XX</td><td><span class="wf-tag wf-tag--ok">გადახდილი</span></td><td>PDF ↓</td></tr>
+              <tr><td>15 ივნ</td><td>კონსულტაცია #BK-09980</td><td>₾ XX</td><td><span class="wf-tag wf-tag--warn">დაბრუნება</span></td><td>PDF ↓</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>window.WF={id:"user-profile",title:"პროფილი & შეკვეთები",section:"User"}</script>
+<script src="../assets/shell.js"></script>
+</body>
+</html>

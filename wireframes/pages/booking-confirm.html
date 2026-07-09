@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Booking confirm · PsychoCampus Wireframes</title>
+<link rel="stylesheet" href="../assets/wireframe.css">
+</head>
+<body>
+<main id="wf-content">
+  <div class="wf">
+    <div class="site-head">
+      <span class="logo">◐ PsychoCampus</span>
+      <nav><a>მთავარი</a><a>ჩვენ შესახებ</a><a>სერვისები</a><a>ვიდეო</a><a class="strong">კონსულტაცია</a><a>კონტაქტი</a></nav>
+      <span class="spacer"></span>
+      <span class="wf-tag">🌐 GEO / ENG</span>
+    </div>
+
+    <div class="wf-section">
+      <div class="wf-row wrap" style="gap:8px">
+        <span class="wf-tag wf-tag--ok">✓ 1 · თარიღი & დრო</span><span class="faint">→</span>
+        <span class="wf-tag wf-tag--accent">2 · საკონტაქტო ინფო</span><span class="faint">→</span>
+        <span class="wf-tag">3 · გადახდა</span><span class="faint">→</span>
+        <span class="wf-tag">4 · დადასტურება</span>
+      </div>
+    </div>
+
+    <div class="wf-section">
+      <div class="wf-grid" style="grid-template-columns:1fr 340px;align-items:start">
+        <!-- Contact / registration step -->
+        <div>
+          <span class="wf-label">საკონტაქტო ინფორმაცია</span>
+          <div class="wf-grid g-2">
+            <div class="wf-field"><label>სახელი *</label><div class="wf-input">—</div></div>
+            <div class="wf-field"><label>გვარი *</label><div class="wf-input">—</div></div>
+            <div class="wf-field"><label>პირადი ნომერი *</label><div class="wf-input">— (ფასდაკლება რეგიონის მიხედვით)</div></div>
+            <div class="wf-field"><label>ელფოსტა * (მთავარი იდენტიფიკატორი)</label><div class="wf-input">—</div></div>
+            <div class="wf-field"><label>ტელეფონი *</label><div class="wf-input">—</div></div>
+            <div class="wf-field"><label>დამატებითი ველი (optional)</label><div class="wf-input">—</div></div>
+          </div>
+          <label class="wf-row small muted" style="gap:8px"><input type="checkbox"> ვეთანხმები წესებსა და კონფიდენციალურობის პოლიტიკას</label>
+          <div class="wf-note">გადახდის ღილაკზე დაჭერისას ჯერ სრულდება რეგისტრაცია, შემდეგ იხსნება ბანკის გადახდის ბმული — მომხმარებელი შუა პროცესში უკან არ ბრუნდება.</div>
+          <div class="wf-row between mt-2">
+            <button class="wf-btn">← უკან</button>
+            <button class="wf-btn wf-btn-primary">გადახდაზე გადასვლა →</button>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="wf-stack">
+          <div class="wf-card">
+            <h4>ჯავშნის შეჯამება</h4>
+            <div class="wf-row between mt-1"><span class="small muted">სერვისი</span><span class="small">კონსულტაცია</span></div>
+            <div class="wf-row between mt-1"><span class="small muted">თარიღი</span><span class="small strong">09 ივლ · 10:30</span></div>
+            <div class="wf-row between mt-1"><span class="small muted">ხანგრძლივობა</span><span class="small">30 წთ</span></div>
+            <hr style="border:0;border-top:1px dashed var(--wf-line-2);margin:10px 0">
+            <div class="wf-row between"><span class="small muted">ჯამი</span><span class="strong" style="font-size:18px">₾ XX</span></div>
+          </div>
+          <div class="wf-card wf-card--flat small muted">
+            🔒 გადახდა მუშავდება ბანკის დაცული გვერდით. დადებით ტრანზაქციაზე ჯავშანი ავტომატურად დასტურდება.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation (state 4) -->
+    <div class="wf-section">
+      <span class="wf-label">Step 4 — დადასტურების ეკრანი (state)</span>
+      <div class="wf-card center" style="max-width:520px;margin:0 auto">
+        <div style="font-size:40px">✅</div>
+        <h2 class="mt-1">ჯავშანი დადასტურდა</h2>
+        <p class="muted small">დასტური გამოგზავნილია ელფოსტაზე. ჯავშანი ჩანს თქვენს პროფილში.</p>
+        <div class="wf-card wf-card--flat mt-2" style="text-align:left">
+          <div class="wf-row between"><span class="small muted">კოდი</span><span class="small strong">#BK-10234</span></div>
+          <div class="wf-row between mt-1"><span class="small muted">დრო</span><span class="small">09 ივლ · 10:30</span></div>
+          <div class="wf-row between mt-1"><span class="small muted">ინვოისი</span><span class="small">PDF ↓</span></div>
+        </div>
+        <div class="wf-row" style="justify-content:center;margin-top:14px">
+          <button class="wf-btn">მთავარზე</button>
+          <button class="wf-btn wf-btn-primary">ჩემი პროფილი →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-foot">© PsychoCampus · წესები & პირობები · კონფიდენციალურობა</div>
+  </div>
+</main>
+<script>window.WF={id:"booking-confirm",title:"ჯავშნის დადასტურება",section:"Public"}</script>
+<script src="../assets/shell.js"></script>
+</body>
+</html>
