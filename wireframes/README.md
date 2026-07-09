@@ -3,12 +3,14 @@
 Hi-fidelity, **clickable** prototype of the PsychoCampus platform (client: შპს ფინა2 / ი/მ ანნა ზედგინიძე), built as **3 self-contained HTML files** — one per interface. No build step, no internet, no dependencies: open any file directly in a browser.
 
 ```
+index.html            # front page — pick an interface (start here)
 wireframes/
-├── index.html        # landing — pick an interface
 ├── public.html       # 1️⃣ public website (visitors & registered users)
 ├── consultant.html   # 2️⃣ consultant workspace
 └── admin.html        # 3️⃣ admin panel
 ```
+
+**Start at the root `index.html`** — it's the single front page linking to all three profiles.
 
 Each file is a small single-page app: real navigation, tabs, modals, a working booking calendar, filters, and form feedback — styled with a calm, professional palette ("მშვიდი, პროფესიული სტილი") matching the proposal.
 
