@@ -305,7 +305,7 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
       <div><h1>ვიდეო ბიბლიოთეკა</h1><p class="muted mt1">უფასო ფრაგმენტი ყველასთვის · სრული წვდომა გამოწერით</p></div>
       <div class="card pad" style="min-width:230px">
         <div class="faint" style="font-size:13px">გამოწერის სტატუსი</div>
-        <div class="row between mt1"><span class="pill warn" id="subState">არააქტიური</span><button class="btn sm pri" data-auth="register">გამოწერა</button></div>
+        <div class="row between mt1"><span class="pill warn" id="subState">არააქტიური</span><button class="btn sm pri" data-go="subscribe">გამოწერა</button></div>
       </div>
     </div>
     <div class="card pad mb2" style="background:linear-gradient(160deg,#e4f1ef,#fff);border-color:#bfe0db">
@@ -314,7 +314,7 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
           <b style="font-size:16px">ერთი გამოწერა — წვდომა ყველა ვიდეოზე</b>
           <p class="muted" style="margin:4px 0 0;font-size:13.5px">ცალკეული ვიდეო არ იყიდება. აქტიური გამოწერით იხსნება მთელი ბიბლიოთეკა და ყოველთვიური ახალი ვიდეოები.</p>
         </div>
-        <div class="row" style="gap:12px"><b style="font-size:22px;white-space:nowrap">₾ 29 <span class="muted" style="font-size:13px;font-weight:400">/ თვე</span></b><button class="btn pri" data-auth="register">გამოწერა</button></div>
+        <div class="row" style="gap:12px"><b style="font-size:22px;white-space:nowrap">₾ 29 <span class="muted" style="font-size:13px;font-weight:400">/ თვე</span></b><button class="btn pri" data-go="subscribe">გამოწერა</button></div>
       </div>
     </div>
     <div class="row wrapf mb2" style="gap:10px">
@@ -352,13 +352,75 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
           <ul class="muted" style="padding-left:18px;margin:12px 0">
             <li>წვდომა <b>მთელ ბიბლიოთეკაზე</b></li><li>ახალი ვიდეოები ყოველთვე</li><li>წვდომა აქტიურია სანამ გამოწერაა</li>
           </ul>
-          <button class="btn pri block" data-auth="register">რეგისტრაცია & გამოწერა</button>
+          <button class="btn pri block" data-go="subscribe">რეგისტრაცია & გამოწერა</button>
           <p class="faint center mt1" style="font-size:12px">ცალკეული ვიდეო არ იყიდება · წვდომა ავტომ. აქტიურდება გადახდის შემდეგ</p>
         </div>
       </div>
     </div>
     <h3 class="mt3 mb2">მსგავსი ვიდეოები</h3>
     <div class="grid g4" id="relVideos"></div>
+  </div>
+</section>
+
+<!-- ============ SUBSCRIBE (video monthly subscription checkout) ============ -->
+<section class="view" id="v-subscribe">
+  <div class="wrap sec">
+    <div class="center mb3"><span class="pill pri">ვიდეო გამოწერა</span><h1 class="mt2">გამოიწერე მთელი ბიბლიოთეკა</h1>
+      <p class="muted mt1" style="max-width:620px;margin-left:auto;margin-right:auto">ერთი ყოველთვიური გამოწერა — წვდომა ყველა ვიდეოზე. ცალკეული ვიდეო არ იყიდება.</p></div>
+    <div class="steps" id="subSteps">
+      <div class="step active"><span class="n">1</span><span class="lbl">გეგმა & ანგარიში</span></div>
+      <div class="step"><span class="n">2</span><span class="lbl">გადახდა</span></div>
+      <div class="step"><span class="n">3</span><span class="lbl">დასტური</span></div>
+    </div>
+
+    <!-- step 1 -->
+    <div class="sstep on" id="ss1">
+      <div class="grid split" style="grid-template-columns:1fr 340px;gap:28px;align-items:start">
+        <div class="card pad">
+          <h3 class="mb2">ანგარიშის შექმნა</h3>
+          <div class="grid g2"><div class="field"><label class="f">სახელი *</label><input class="inp"></div><div class="field"><label class="f">გვარი *</label><input class="inp"></div></div>
+          <div class="grid g2"><div class="field"><label class="f">პირადი ნომერი *</label><input class="inp"></div><div class="field"><label class="f">ტელეფონი *</label><input class="inp"></div></div>
+          <div class="field"><label class="f">ელფოსტა * (მთავარი იდენტიფიკატორი)</label><input class="inp" type="email"></div>
+          <div class="field"><label class="f">პაროლი *</label><input class="inp" type="password" value="••••••••"></div>
+          <label class="row" style="gap:8px;font-size:13.5px;color:var(--muted)"><input type="checkbox"> ვეთანხმები წესებსა და კონფიდენციალურობის პოლიტიკას</label>
+          <div class="card pad mt2" style="background:var(--surface-2);box-shadow:none"><span class="small muted">უკვე დარეგისტრირებული ხარ? <a style="color:var(--primary-d);font-weight:700" data-auth="login">შესვლა</a></span></div>
+          <div class="row between mt3"><button class="btn" data-go="videos">← უკან</button><button class="btn pri" data-sstep="2">გადახდაზე გადასვლა →</button></div>
+        </div>
+        <div class="card pad" id="subSum1"></div>
+      </div>
+    </div>
+
+    <!-- step 2 -->
+    <div class="sstep" id="ss2" style="display:none">
+      <div class="grid split" style="grid-template-columns:1fr 340px;gap:28px;align-items:start">
+        <div class="card pad">
+          <h3 class="mb2">გადახდა</h3>
+          <div class="row wrapf mb2" style="gap:10px"><span class="pill pri">💳 ბარათით</span><span class="pill">🏦 ბანკის აპლიკაცია</span></div>
+          <div class="field"><label class="f">ბარათის ნომერი</label><input class="inp" placeholder="0000 0000 0000 0000"></div>
+          <div class="grid g2"><div class="field"><label class="f">ვადა</label><input class="inp" placeholder="MM/YY"></div><div class="field"><label class="f">CVC</label><input class="inp" placeholder="123"></div></div>
+          <div class="card pad" style="background:var(--primary-soft);border-color:#bfe0db;box-shadow:none"><span class="small" style="color:var(--primary-d)">🔁 ყოველთვიური განმეორებადი გადახდა. გამოწერა ავტომ. განახლდება ყოველ თვე — გაუქმება ნებისმიერ დროს პროფილიდან.</span></div>
+          <div class="row between mt3"><button class="btn" data-sstep="1">← უკან</button><button class="btn pri" data-sstep="3">₾ 29 გამოწერა</button></div>
+        </div>
+        <div class="card pad" id="subSum2"></div>
+      </div>
+    </div>
+
+    <!-- step 3 -->
+    <div class="sstep" id="ss3" style="display:none">
+      <div class="card pad center" style="max-width:520px;margin:0 auto">
+        <div style="font-size:52px">✅</div>
+        <h2 class="mt1">გამოწერა გააქტიურდა</h2>
+        <p class="muted">წვდომა ყველა ვიდეოზე გახსნილია. მადლობა!</p>
+        <div class="card pad mt2" style="text-align:left;background:var(--surface-2);box-shadow:none">
+          <div class="row between"><span class="muted">გეგმა</span><b>ვიდეო გამოწერა · ₾ 29 / თვე</b></div>
+          <div class="row between mt1"><span class="muted">სტატუსი</span><span class="pill ok">აქტიური</span></div>
+          <div class="row between mt1"><span class="muted">შემდეგი გადახდა</span><b>01 აგვისტო 2026</b></div>
+          <div class="row between mt1"><span class="muted">ინვოისი</span><a class="pill pri">PDF ↓</a></div>
+        </div>
+        <p class="faint mt2" style="font-size:12px">წვდომა აქტიურია სანამ გამოწერაა. გადახდის შეწყვეტისას წვდომა ავტომატურად იხურება.</p>
+        <div class="row mt3" style="justify-content:center"><button class="btn pri" data-go="videos">ბიბლიოთეკაზე გადასვლა →</button><button class="btn" data-auth="profile">ჩემი პროფილი</button></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -524,7 +586,11 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
       </div>
     </div>
     <div class="ptab" id="pt1" style="display:none">
-      <div class="card pad"><h3>ვიდეო გამოწერა</h3><div class="row between mt2"><div><b>₾ 29 / თვე</b><div class="faint">შემდეგი გადახდა · 01 აგვ 2026</div></div><button class="btn danger">გამოწერის გაუქმება</button></div></div>
+      <div class="card pad">
+        <div class="row between"><h3>ვიდეო გამოწერა</h3><span class="pill ok">აქტიური</span></div>
+        <div class="row between mt2"><div><b>₾ 29 / თვე</b><div class="faint">შემდეგი გადახდა · 01 აგვ 2026</div></div><button class="btn danger">გამოწერის გაუქმება</button></div>
+        <div class="card pad mt2" style="background:var(--surface-2);box-shadow:none"><span class="small muted">✓ წვდომა ყველა ვიდეოზე გახსნილია. წვდომა აქტიურია სანამ გამოწერაა — გადახდის შეწყვეტისას ავტომატურად იხურება.</span></div>
+      </div>
     </div>
     <div class="ptab" id="pt2" style="display:none">
       <div class="card pad"><table class="tb">
@@ -613,7 +679,7 @@ document.getElementById('lang').addEventListener('click',function(e){
 });
 
 /* ============ router ============ */
-const views=['home','about','services','videos','video','booking','contact','legal','profile'];
+const views=['home','about','services','videos','video','subscribe','booking','contact','legal','profile'];
 function go(name){
   views.forEach(v=>document.getElementById('v-'+v).classList.toggle('on',v===name));
   document.querySelectorAll('.menu a,.mobile-menu a').forEach(a=>a.classList.toggle('on',a.dataset.go===name));
@@ -692,6 +758,23 @@ function bstep(n){
 document.getElementById('toStep2').onclick=()=>bstep(2);
 document.addEventListener('click',e=>{const b=e.target.closest('[data-bstep]');if(b)bstep(+b.dataset.bstep);});
 renderCal();renderSlots();updateSummary();
+
+/* ============ subscription checkout ============ */
+(function(){
+  const sum='<b>გამოწერის შეჯამება</b>'+
+    '<div class="row between mt2"><span class="muted">გეგმა</span><span>ვიდეო გამოწერა</span></div>'+
+    '<div class="row between mt1"><span class="muted">პერიოდი</span><span>ყოველთვიური</span></div>'+
+    '<div class="row between mt1"><span class="muted">წვდომა</span><span>ყველა ვიდეო</span></div>'+
+    '<hr style="border:0;border-top:1px dashed var(--line);margin:12px 0"><div class="row between"><span class="muted">ჯამი / თვე</span><b style="font-size:18px">₾ 29</b></div>';
+  document.getElementById('subSum1').innerHTML=sum;document.getElementById('subSum2').innerHTML=sum;
+})();
+function sstep(n){
+  [1,2,3].forEach(i=>document.getElementById('ss'+i).style.display=(i===n?'block':'none'));
+  document.querySelectorAll('#subSteps .step').forEach((s,i)=>{s.classList.toggle('active',i===n-1);s.classList.toggle('done',i<n-1);});
+  if(n===3)setLoggedIn();
+  window.scrollTo({top:200,behavior:'smooth'});
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-sstep]');if(b)sstep(+b.dataset.sstep);});
 
 /* ============ tabs (profile, legal, auth) ============ */
 document.getElementById('profTabs').addEventListener('click',e=>{const b=e.target.closest('[data-ptab]');if(!b)return;

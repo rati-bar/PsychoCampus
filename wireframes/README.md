@@ -19,6 +19,7 @@ Client-side routed views, all in one file:
 - **Home** — hero, service hub, featured videos, live-chat widget
 - **About / Services** — company info + the two directions (video, consultation) and extra services
 - **Video library** — grid with free preview vs 🔒 subscription-locked full video; single-video paywall page
+- **Video subscription checkout** — 3-step monthly-subscription flow (plan & account → bank/card payment → confirmation) that activates access to the whole library; access auto-closes when payment stops
 - **Consultation booking** — 4-step flow (calendar → contact → payment → confirmation) with a working month calendar, slot capacity, live summary
 - **Auth** — login / registration modal (personal number, name, email = unique ID, phone); logging in reveals the **user profile** (bookings with reschedule/cancel, subscription, payments & invoices, personal data)
 - **Contact / Legal** — form + map; terms, privacy, cookie & refund tabs
