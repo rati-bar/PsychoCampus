@@ -103,7 +103,6 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
     <a data-v="bookings">📅 ჯავშნები & კონსულტანტები</a>
     <a data-v="content">🎬 კონტენტი & SEO</a>
     <a data-v="users">👥 მომხმარებლები</a>
-    <a data-v="roles">🔐 როლები & ნებართვები</a>
     <a data-v="chat">💬 ჩატი / ოპერატორები</a>
     <a data-v="settings">⚙ პარამეტრები</a>
     <div class="grp">სხვა</div>
@@ -263,30 +262,6 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
         </tbody></table></div></div>
       </section>
 
-      <!-- ROLES -->
-      <section class="view" id="v-roles">
-        <div class="split2">
-          <div class="card pad"><div class="row between mb2"><h3>ნებართვების მატრიცა</h3><select class="inp" style="width:190px"><option>კონტენტ მენეჯერი</option><option>ფინანსი</option><option>სუპერ ადმინი</option></select></div>
-            <table class="tb matrix"><thead><tr><th>მოდული</th><th>ნახვა</th><th>დამატება</th><th>რედაქტ.</th><th>წაშლა</th></tr></thead><tbody id="matrixBody"></tbody></table>
-            <div class="row between mt2"><span class="faint" style="font-size:12px">დააჭირე უჯრას გადასართავად</span><button class="btn pri" data-toast="ნებართვები შენახულია ✓">შენახვა</button></div>
-          </div>
-          <div class="card pad"><b>როლები</b>
-            <div class="mt2" style="display:flex;flex-direction:column;gap:8px">
-              <div class="row between"><span class="pill acc">სუპერ ადმინი</span><span class="faint">∞</span></div>
-              <div class="row between"><span class="pill">კონტენტ მენეჯერი</span><span class="faint">2</span></div>
-              <div class="row between"><span class="pill">ფინანსი</span><span class="faint">1</span></div>
-            </div>
-            <button class="btn block mt3" data-toast="ახალი როლის ფორმა">+ ახალი როლი</button>
-            <p class="faint mt3" style="font-size:12.5px">ეს ეხება საიტის ადმინებს. კონსულტანტებს ცალკე პანელი აქვთ.</p>
-          </div>
-        </div>
-        <div class="card mt3"><div class="pad" style="padding-bottom:0"><div class="row between"><b>ადმინ მომხმარებლები</b><button class="btn sm" data-toast="მოწვევა">+ მოწვევა</button></div></div>
-          <div class="pad"><table class="tb"><thead><tr><th>სახელი</th><th>ელფოსტა</th><th>როლი</th><th>სტატუსი</th><th></th></tr></thead><tbody>
-            <tr><td>ადმინი 1</td><td>a1@…</td><td><span class="pill acc">სუპერ ადმინი</span></td><td><span class="pill ok">აქტიური</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
-            <tr><td>ადმინი 2</td><td>a2@…</td><td><span class="pill">კონტენტ მენეჯერი</span></td><td><span class="pill ok">აქტიური</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
-          </tbody></table></div></div>
-      </section>
-
       <!-- CHAT / OPERATORS -->
       <section class="view" id="v-chat">
         <div class="grid g4 mb3">
@@ -368,7 +343,7 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
 <a class="proto" href="../index.html">◐ Prototype — მთავარ გვერდზე დაბრუნება</a>
 
 <script>
-const TITLES={dash:"მიმოხილვა",orders:"შეკვეთები & გადახდები",bookings:"ჯავშნები & კონსულტანტები",content:"კონტენტი & SEO",users:"მომხმარებლები",roles:"როლები & ნებართვები",chat:"ჩატი / ოპერატორები",settings:"პარამეტრები"};
+const TITLES={dash:"მიმოხილვა",orders:"შეკვეთები & გადახდები",bookings:"ჯავშნები & კონსულტანტები",content:"კონტენტი & SEO",users:"მომხმარებლები",chat:"ჩატი / ოპერატორები",settings:"პარამეტრები"};
 function go(v){
   document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
   document.querySelectorAll('.side a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
@@ -407,12 +382,6 @@ document.getElementById('cTabs').addEventListener('click',e=>{const b=e.target.c
   document.querySelectorAll('#cTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
   ['videos','services','pages','seo'].forEach(k=>document.getElementById('cp-'+k).style.display=(k===b.dataset.ct?'block':'none'));});
 document.addEventListener('click',e=>{if(e.target.closest('[data-edit]')){const ed=document.getElementById('editor');if(ed){ed.style.display='grid';ed.scrollIntoView({behavior:'smooth',block:'center'});}}});
-
-/* roles matrix */
-const MODS=[["კონტენტი & SEO",1,1,1,1],["ვიდეო კონტენტი",1,1,1,0],["შეკვეთები & გადახდები",1,0,0,0],["ჯავშნები & კონსულტანტები",1,0,1,0],["მომხმარებლები",1,0,0,0],["როლები & ნებართვები",0,0,0,0],["ჩატი / ოპერატორები",1,0,1,0]];
-function renderMatrix(){document.getElementById('matrixBody').innerHTML=MODS.map((m,r)=>'<tr><td>'+m[0]+'</td>'+[1,2,3,4].map(c=>'<td><span class="chk'+(m[c]?' on':'')+'" data-cell="'+r+'-'+c+'">'+(m[c]?'✓':'')+'</span></td>').join('')+'</tr>').join('');}
-renderMatrix();
-document.addEventListener('click',e=>{const c=e.target.closest('[data-cell]');if(!c)return;const[r,col]=c.dataset.cell.split('-').map(Number);MODS[r][col]=MODS[r][col]?0:1;renderMatrix();});
 
 /* modals */
 document.addEventListener('click',e=>{

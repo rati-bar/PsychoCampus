@@ -38,7 +38,6 @@ Login → full management panel:
 - **Bookings & consultants** — consultant table with working **force-majeure toggle** (reassign logic), time management (global / per-operator / manual), buffer, unified load calendar
 - **Content & SEO** — tabs for videos / services / pages / SEO; content editor with bilingual toggle + SEO panel (auto-generate, OG banner); sitemap, JSON-LD, Meta Pixel, GA4 switches
 - **Users** — searchable table + user detail modal (personal data, linked payments)
-- **Roles & permissions** — interactive permission matrix + admin users (site admins; operators have their own panel)
 - **Chat / operators** — queue, operator status
 - **Settings** — general, languages, payment/pricing, cancellation & refund policy
 
