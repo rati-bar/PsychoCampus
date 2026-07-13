@@ -5,16 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PsychoCampus — საჯარო საიტი</title>
 <style>
-/* ============ Design tokens — calm, professional ============ */
 :root{
-  --bg:#f6f5f1; --surface:#ffffff; --surface-2:#f0efe9;
-  --ink:#1f2b33; --muted:#5d6b74; --faint:#8b98a0;
-  --primary:#2f8f83; --primary-d:#256f66; --primary-soft:#e4f1ef;
-  --accent:#7b6fd0; --accent-soft:#ece9f8;
-  --line:#e6e2da; --line-2:#efece6;
-  --ok:#2f8f5b; --ok-soft:#e3f2e9; --warn:#b7791f; --warn-soft:#f8efdb; --danger:#c0554e; --danger-soft:#f7e6e4;
-  --radius:14px; --radius-sm:10px; --shadow:0 1px 2px rgba(31,43,51,.06),0 8px 24px rgba(31,43,51,.06);
-  --shadow-lg:0 12px 40px rgba(31,43,51,.14);
+  --bg:#f6f5f1;--surface:#fff;--surface-2:#f0efe9;--ink:#1f2b33;--muted:#5d6b74;--faint:#8b98a0;
+  --primary:#2f8f83;--primary-d:#256f66;--primary-soft:#e4f1ef;--accent:#7b6fd0;--accent-soft:#ece9f8;
+  --line:#e6e2da;--line-2:#efece6;--ok:#2f8f5b;--ok-soft:#e3f2e9;--warn:#b7791f;--warn-soft:#f8efdb;--danger:#c0554e;--danger-soft:#f7e6e4;
+  --gold:#b7902c;--gold-soft:#f6eecb;
+  --radius:14px;--radius-sm:10px;--shadow:0 1px 2px rgba(31,43,51,.06),0 8px 24px rgba(31,43,51,.06);--shadow-lg:0 12px 40px rgba(31,43,51,.14);
   --sans:"Noto Sans Georgian",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box}
@@ -22,114 +18,72 @@ html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)
 a{color:inherit;text-decoration:none;cursor:pointer}
 img{max-width:100%}
 h1,h2,h3,h4{margin:0;line-height:1.2}
-h1{font-size:clamp(28px,4vw,44px);letter-spacing:-.02em}
-h2{font-size:clamp(22px,3vw,30px);letter-spacing:-.01em}
-h3{font-size:19px}
-.muted{color:var(--muted)} .faint{color:var(--faint)} .center{text-align:center}
-.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
-.sec{padding:64px 0}
-.grid{display:grid;gap:24px}
-.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
-.row{display:flex;gap:12px;align-items:center} .between{justify-content:space-between} .wrapf{flex-wrap:wrap}
+h1{font-size:clamp(28px,4vw,44px);letter-spacing:-.02em}h2{font-size:clamp(22px,3vw,30px);letter-spacing:-.01em}h3{font-size:19px}
+.muted{color:var(--muted)}.faint{color:var(--faint)}.center{text-align:center}.strong{font-weight:700}
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}.sec{padding:60px 0}
+.grid{display:grid;gap:24px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.row{display:flex;gap:12px;align-items:center}.between{justify-content:space-between}.wrapf{flex-wrap:wrap}.spacer{flex:1}
 .mt1{margin-top:8px}.mt2{margin-top:16px}.mt3{margin-top:26px}.mb1{margin-bottom:8px}.mb2{margin-bottom:16px}.mb3{margin-bottom:26px}
+.small{font-size:12.5px}
 .pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
-.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)}
-.pill.danger{background:var(--danger-soft);color:var(--danger)} .pill.acc{background:var(--accent-soft);color:var(--accent)}
-.pill.pri{background:var(--primary-soft);color:var(--primary-d)}
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--surface);
-  color:var(--ink);border-radius:11px;padding:11px 20px;font-size:14.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap}
-.btn:hover{border-color:#d3cdc2;transform:translateY(-1px)}
-.btn.pri{background:var(--primary);border-color:var(--primary);color:#fff}
-.btn.pri:hover{background:var(--primary-d)}
-.btn.ghost{background:transparent;border-color:transparent}
-.btn.block{width:100%}
-.btn.sm{padding:7px 13px;font-size:13px;border-radius:9px}
-.btn.lg{padding:14px 26px;font-size:16px}
-.btn.danger{color:var(--danger);border-color:#e6c6c2}
-/* cards */
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-.card.pad{padding:22px}
-.hoverable{transition:.18s} .hoverable:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#dcd6ca}
-/* inputs */
+.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.danger{background:var(--danger-soft);color:var(--danger)}
+.pill.acc{background:var(--accent-soft);color:var(--accent)}.pill.pri{background:var(--primary-soft);color:var(--primary-d)}.pill.gold{background:var(--gold-soft);color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:11px;padding:11px 20px;font-size:14.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap}
+.btn:hover{border-color:#d3cdc2;transform:translateY(-1px)}.btn.pri{background:var(--primary);border-color:var(--primary);color:#fff}.btn.pri:hover{background:var(--primary-d)}
+.btn.ghost{background:transparent;border-color:transparent}.btn.block{width:100%}.btn.sm{padding:7px 13px;font-size:13px;border-radius:9px}.btn.lg{padding:14px 26px;font-size:16px}.btn.danger{color:var(--danger);border-color:#e6c6c2}
 label.f{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
 .inp,textarea.inp,select.inp{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:11px;padding:12px 13px;font-size:14.5px;font-family:inherit;color:var(--ink)}
-.inp:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
-textarea.inp{min-height:110px;resize:vertical}
-.field{margin-bottom:16px}
-/* header */
-header.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:22px;height:66px}
+.inp:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}textarea.inp{min-height:100px;resize:vertical}.field{margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.card.pad{padding:22px}
+.hoverable{transition:.18s}.hoverable:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#dcd6ca}
+.card--flat{background:var(--surface-2);box-shadow:none}
+header.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:20px;height:66px}
 .logo{font-weight:800;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
 .logo .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--accent));display:inline-block}
-.menu{display:flex;gap:6px}
-.menu a{padding:8px 12px;border-radius:9px;font-weight:600;font-size:14.5px;color:var(--muted)}
-.menu a:hover{background:var(--surface-2);color:var(--ink)}
-.menu a.on{color:var(--primary-d);background:var(--primary-soft)}
-.spacer{flex:1}
+.menu{display:flex;gap:4px}.menu a{padding:8px 11px;border-radius:9px;font-weight:600;font-size:14px;color:var(--muted)}
+.menu a:hover{background:var(--surface-2);color:var(--ink)}.menu a.on{color:var(--primary-d);background:var(--primary-soft)}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:12.5px;font-weight:700}
-.lang button{border:0;background:transparent;padding:6px 11px;cursor:pointer;color:var(--faint);font-family:inherit}
-.lang button.on{background:var(--ink);color:#fff}
+.lang button{border:0;background:transparent;padding:6px 11px;cursor:pointer;color:var(--faint);font-family:inherit}.lang button.on{background:var(--ink);color:#fff}
 .burger{display:none;font-size:22px;background:none;border:0;cursor:pointer}
-/* views */
-.view{display:none} .view.on{display:block;animation:fade .25s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-/* hero */
+.view{display:none}.view.on{display:block;animation:fade .25s ease}@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .hero{background:linear-gradient(160deg,#eef5f3,#f6f5f1 60%);border-bottom:1px solid var(--line)}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:70px 0}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:66px 0}
 .hero .lede{font-size:18px;color:var(--muted);margin-top:16px;max-width:520px}
-.hero-art{aspect-ratio:4/3;border-radius:20px;background:
-  radial-gradient(circle at 30% 30%,var(--primary-soft),transparent 60%),
-  radial-gradient(circle at 75% 70%,var(--accent-soft),transparent 55%),var(--surface);
-  border:1px solid var(--line);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;color:var(--faint);position:relative;overflow:hidden}
+.hero-art{aspect-ratio:4/3;border-radius:20px;background:radial-gradient(circle at 30% 30%,var(--primary-soft),transparent 60%),radial-gradient(circle at 75% 70%,var(--accent-soft),transparent 55%),var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;color:var(--faint);position:relative;overflow:hidden}
 .hero-art .glass{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px}
-/* media / thumbs */
 .thumb{aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#e9eef0,#eceae3);display:flex;align-items:center;justify-content:center;color:var(--faint);position:relative;overflow:hidden;font-size:30px}
-.thumb .lock{position:absolute;top:10px;right:10px;background:rgba(31,43,51,.72);color:#fff;border-radius:8px;padding:3px 8px;font-size:12px;font-weight:600}
-.thumb .dur{position:absolute;bottom:10px;right:10px;background:rgba(31,43,51,.72);color:#fff;border-radius:6px;padding:2px 7px;font-size:11.5px}
+.thumb .badge{position:absolute;top:10px;right:10px;background:rgba(31,43,51,.78);color:#fff;border-radius:8px;padding:3px 9px;font-size:12px;font-weight:700}
+.thumb .lvl{position:absolute;bottom:10px;left:10px;background:rgba(255,255,255,.9);color:var(--ink);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600}
 .thumb .play{width:52px;height:52px;border-radius:999px;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;color:var(--primary-d);font-size:20px}
-/* footer */
 footer{background:#20302f;color:#cdd8d5;padding:52px 0 26px;margin-top:20px}
-footer a{color:#cdd8d5;font-size:14px;display:block;padding:4px 0;opacity:.85}
-footer a:hover{opacity:1}
-footer h4{color:#fff;font-size:14px;margin-bottom:10px;letter-spacing:.02em}
-/* stepper */
+footer a{color:#cdd8d5;font-size:14px;display:block;padding:4px 0;opacity:.85}footer a:hover{opacity:1}
+footer h4{color:#fff;font-size:14px;margin-bottom:10px}
 .steps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
 .step{display:flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:13.5px;font-weight:600;color:var(--faint)}
 .step .n{width:22px;height:22px;border-radius:999px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:12px}
-.step.active{border-color:var(--primary);color:var(--primary-d);background:var(--primary-soft)}
-.step.active .n{background:var(--primary);color:#fff}
-.step.done{color:var(--ok)} .step.done .n{background:var(--ok);color:#fff}
-/* calendar */
+.step.active{border-color:var(--primary);color:var(--primary-d);background:var(--primary-soft)}.step.active .n{background:var(--primary);color:#fff}
+.step.done{color:var(--ok)}.step.done .n{background:var(--ok);color:#fff}
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
 .cal .dow{text-align:center;font-size:11.5px;color:var(--faint);font-weight:700;padding:4px 0}
-.cal .day{aspect-ratio:1;border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13.5px;cursor:pointer;background:var(--surface);transition:.12s;position:relative}
+.cal .day{aspect-ratio:1;border:1px solid var(--line);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13.5px;cursor:pointer;background:var(--surface);transition:.12s}
 .cal .day:hover:not(.off){border-color:var(--primary);background:var(--primary-soft)}
 .cal .day.off{background:var(--surface-2);color:var(--faint);cursor:not-allowed}
 .cal .day.sel{background:var(--primary);color:#fff;border-color:var(--primary)}
-.cal .day .load{width:5px;height:5px;border-radius:999px;background:var(--primary);margin-top:3px}
-.cal .day.sel .load{background:#fff}
+.cal .day .load{width:5px;height:5px;border-radius:999px;background:var(--primary);margin-top:3px}.cal .day.sel .load{background:#fff}
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .slot{border:1px solid var(--line);border-radius:10px;padding:10px 6px;text-align:center;font-size:13.5px;font-weight:600;cursor:pointer;background:var(--surface);transition:.12s}
 .slot small{display:block;font-weight:500;color:var(--faint);font-size:11px;margin-top:2px}
-.slot:hover:not(.full){border-color:var(--primary)}
-.slot.full{background:var(--surface-2);color:var(--faint);cursor:not-allowed}
-.slot.sel{background:var(--primary);color:#fff;border-color:var(--primary)} .slot.sel small{color:#dceeeb}
-/* table */
-table.tb{width:100%;border-collapse:collapse;font-size:14px}
-table.tb th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);font-weight:700;padding:11px 12px;border-bottom:1px solid var(--line)}
-table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}
-table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:var(--surface-2)}
-/* modal */
+.slot:hover:not(.full){border-color:var(--primary)}.slot.full{background:var(--surface-2);color:var(--faint);cursor:not-allowed}
+.slot.sel{background:var(--primary);color:#fff;border-color:var(--primary)}.slot.sel small{color:#dceeeb}
 .overlay{position:fixed;inset:0;background:rgba(20,30,34,.5);backdrop-filter:blur(3px);z-index:60;display:none;align-items:center;justify-content:center;padding:20px}
 .overlay.on{display:flex;animation:fade .2s}
-.modal{background:var(--surface);border-radius:18px;max-width:440px;width:100%;box-shadow:var(--shadow-lg);overflow:hidden}
+.modal{background:var(--surface);border-radius:18px;max-width:440px;width:100%;box-shadow:var(--shadow-lg);overflow:hidden;max-height:92vh;overflow-y:auto}
 .modal .head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
 .modal .body{padding:22px}
-.tabs{display:flex;gap:6px;background:var(--surface-2);padding:4px;border-radius:11px}
-.tabs button{flex:1;border:0;background:transparent;padding:9px;border-radius:8px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--muted)}
+.tabs{display:flex;gap:6px;background:var(--surface-2);padding:4px;border-radius:11px;flex-wrap:wrap}
+.tabs button{flex:1;border:0;background:transparent;padding:9px;border-radius:8px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--muted);white-space:nowrap}
 .tabs button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
-/* chat */
 .fab{position:fixed;right:24px;bottom:24px;z-index:50;width:60px;height:60px;border-radius:999px;background:var(--primary);color:#fff;border:0;font-size:24px;cursor:pointer;box-shadow:var(--shadow-lg)}
 .chat{position:fixed;right:24px;bottom:96px;z-index:50;width:340px;max-width:calc(100vw - 40px);background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);display:none;overflow:hidden}
 .chat.on{display:block;animation:fade .2s}
@@ -138,122 +92,125 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
 .bubble{padding:9px 13px;border-radius:14px;font-size:13.5px;max-width:80%}
 .bubble.in{background:var(--surface-2);align-self:flex-start;border-bottom-left-radius:4px}
 .bubble.out{background:var(--primary-soft);color:var(--primary-d);align-self:flex-end;border-bottom-right-radius:4px}
-/* toast */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:12px;z-index:80;font-weight:600;font-size:14px;opacity:0;transition:.3s;box-shadow:var(--shadow-lg)}
 .toast.on{transform:translateX(-50%) translateY(0);opacity:1}
-/* prototype ribbon */
-.proto{position:fixed;left:0;bottom:0;z-index:70;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-top-right-radius:8px;letter-spacing:.03em}
-/* responsive */
+.proto{position:fixed;left:0;bottom:0;z-index:70;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-top-right-radius:8px}
+/* progress */
+.prog{height:7px;background:var(--surface-2);border-radius:4px;overflow:hidden}.prog>i{display:block;height:100%;background:var(--primary);border-radius:4px}
+/* curriculum */
+.sect{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:12px}
+.sect>.h{background:var(--surface-2);padding:12px 15px;font-weight:700;display:flex;justify-content:space-between;font-size:14px}
+.lesson{display:flex;align-items:center;gap:10px;padding:11px 15px;border-top:1px solid var(--line-2);font-size:14px}
+.lesson .ic{width:24px;height:24px;border-radius:6px;background:var(--primary-soft);color:var(--primary-d);display:flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+.lesson.quiz .ic{background:var(--accent-soft);color:var(--accent)}
+.lesson .free{margin-left:auto;font-size:11.5px}
+/* packages */
+.pkg{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow);overflow:hidden}
+.pkg .top{padding:22px}.pkg.feat{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-soft),var(--shadow-lg)}
+.pkg .price{font-size:32px;font-weight:800}.pkg ul{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:9px}
+.pkg li{font-size:13.8px;color:var(--muted);display:flex;gap:8px}.pkg li b{color:var(--ink)}
+.pkg .foot{margin-top:auto;padding:0 22px 22px}
+/* certificate */
+.cert{border:1px solid var(--gold);border-radius:14px;background:linear-gradient(160deg,var(--gold-soft),#fff);padding:18px;position:relative}
+.cert .seal{position:absolute;top:14px;right:16px;font-size:26px}
+/* messages */
+.msg{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line-2)}
+.msg .av{width:40px;height:40px;border-radius:999px;background:var(--primary-soft);color:var(--primary-d);display:flex;align-items:center;justify-content:center;flex:none}
+.msg.unread{background:var(--primary-soft);border-radius:10px;padding:14px;border:0}
+/* social */
+.soc{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:11px;padding:11px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.soc:hover{background:var(--surface-2)}.soc .g{color:#4285F4;font-weight:800}.soc .f{color:#1877F2;font-weight:800}
+.divider{display:flex;align-items:center;gap:12px;color:var(--faint);font-size:12.5px;margin:14px 0}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
 @media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr;padding:44px 0}
-  .g4{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:1fr}
-  .menu,.lang{display:none} .burger{display:block}
-  .split{grid-template-columns:1fr!important}
-  .steps .lbl{display:none}
+  .hero-grid{grid-template-columns:1fr;padding:44px 0}.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}
+  .menu,.lang{display:none}.burger{display:block}.split{grid-template-columns:1fr!important}.steps .lbl{display:none}
 }
-.mobile-menu{display:none;padding:10px 22px 18px;border-top:1px solid var(--line)}
-.mobile-menu.on{display:block}
-.mobile-menu a{display:block;padding:11px 8px;font-weight:600;color:var(--muted);border-radius:8px}
-.mobile-menu a.on{color:var(--primary-d);background:var(--primary-soft)}
+.mobile-menu{display:none;padding:10px 22px 18px;border-top:1px solid var(--line)}.mobile-menu.on{display:block}
+.mobile-menu a{display:block;padding:11px 8px;font-weight:600;color:var(--muted);border-radius:8px}.mobile-menu a.on{color:var(--primary-d);background:var(--primary-soft)}
 </style>
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
 <header class="top">
   <div class="wrap nav">
     <a class="logo" data-go="home"><span class="dot"></span> PsychoCampus</a>
     <nav class="menu">
-      <a data-go="home"   data-i="nav.home">მთავარი</a>
-      <a data-go="about"  data-i="nav.about">ჩვენ შესახებ</a>
-      <a data-go="services" data-i="nav.services">სერვისები</a>
-      <a data-go="videos" data-i="nav.videos">ვიდეო</a>
-      <a data-go="booking" data-i="nav.booking">კონსულტაცია</a>
-      <a data-go="contact" data-i="nav.contact">კონტაქტი</a>
+      <a data-go="home"     data-i="nav.home">მთავარი</a>
+      <a data-go="about"    data-i="nav.about">ჩვენ შესახებ</a>
+      <a data-go="courses"  data-i="nav.courses">ფსიქო განათლება</a>
+      <a data-go="booking"  data-i="nav.booking">ფსიქო კონსულტაცია</a>
+      <a data-go="packages" data-i="nav.packages">პაკეტები</a>
+      <a data-go="contact"  data-i="nav.contact">კონტაქტი</a>
     </nav>
     <span class="spacer"></span>
-    <div class="lang" id="lang">
-      <button data-lang="ka" class="on">ქარ</button><button data-lang="en">ENG</button>
-    </div>
+    <div class="lang" id="lang"><button data-lang="ka" class="on">ქარ</button><button data-lang="en">ENG</button></div>
     <div id="authArea" class="row">
-      <button class="btn sm ghost" data-auth="login" data-i="nav.login">შესვლა</button>
-      <button class="btn sm pri" data-auth="register" data-i="nav.register">რეგისტრაცია</button>
+      <button class="btn sm ghost" data-auth="login">შესვლა</button>
+      <button class="btn sm pri" data-auth="register">რეგისტრაცია</button>
     </div>
     <button class="burger" id="burger">☰</button>
   </div>
   <div class="mobile-menu" id="mmenu">
-    <a data-go="home">მთავარი</a><a data-go="about">ჩვენ შესახებ</a><a data-go="services">სერვისები</a>
-    <a data-go="videos">ვიდეო</a><a data-go="booking">კონსულტაცია</a><a data-go="contact">კონტაქტი</a>
+    <a data-go="home">მთავარი</a><a data-go="about">ჩვენ შესახებ</a><a data-go="courses">ფსიქო განათლება</a>
+    <a data-go="booking">ფსიქო კონსულტაცია</a><a data-go="packages">პაკეტები</a><a data-go="contact">კონტაქტი</a>
     <div class="row mt1"><button class="btn sm block" data-auth="login">შესვლა</button><button class="btn sm pri block" data-auth="register">რეგისტრაცია</button></div>
   </div>
 </header>
 
 <main id="app">
 
-<!-- ============ HOME ============ -->
+<!-- HOME -->
 <section class="view on" id="v-home">
-  <div class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="pill pri" data-i="home.badge">ფსიქოლოგიური მხარდაჭერის პლატფორმა</span>
-        <h1 class="mt2" data-i="home.h1">სივრცე შენი ფსიქიკური სიმშვიდისთვის</h1>
-        <p class="lede" data-i="home.lede">პროფესიონალი კონსულტანტების ონლაინ კონსულტაციები და ვიდეო კონტენტი — მარტივად, კონფიდენციალურად, შენთვის მოსახერხებელ დროს.</p>
-        <div class="row mt3 wrapf">
-          <button class="btn pri lg" data-go="booking" data-i="home.cta1">კონსულტაციის დაჯავშნა</button>
-          <button class="btn lg" data-go="videos" data-i="home.cta2">ვიდეო კონტენტი</button>
-        </div>
-        <div class="row mt3 wrapf" style="gap:24px;color:var(--muted);font-size:13.5px">
-          <span>✓ კონფიდენციალური</span><span>✓ სერტიფიცირებული სპეციალისტები</span><span>✓ 24/7 წვდომა</span>
-        </div>
+  <div class="hero"><div class="wrap hero-grid">
+    <div>
+      <span class="pill pri">ფსიქოლოგიური მხარდაჭერის პლატფორმა</span>
+      <h1 class="mt2">სივრცე შენი ფსიქიკური სიმშვიდისთვის</h1>
+      <p class="lede">ფსიქო განათლების ონლაინ კურსები და ინდივიდუალური ფსიქო კონსულტაცია — მოსახერხებელ დროს, კონფიდენციალურად.</p>
+      <div class="row mt3 wrapf">
+        <button class="btn pri lg" data-go="courses">ფსიქო განათლება</button>
+        <button class="btn lg" data-go="booking">ფსიქო კონსულტაცია</button>
       </div>
-      <div class="hero-art">
-        <div class="glass" style="top:22px;left:22px;width:150px">
-          <div class="pill pri">🗓 ჯავშანი დადასტურდა</div><div class="faint" style="font-size:12px;margin-top:8px">ხვალ · 10:30</div>
-        </div>
-        <div class="glass" style="bottom:26px;right:22px;width:170px">
-          <div class="row between"><b style="font-size:13px">ვიდეო კურსი</b><span class="pill ok">აქტიური</span></div>
-          <div style="height:6px;background:var(--surface-2);border-radius:3px;margin-top:8px"><div style="width:60%;height:6px;background:var(--primary);border-radius:3px"></div></div>
-        </div>
-        <span style="font-size:56px">🧠</span>
-      </div>
+      <div class="row mt3 wrapf" style="gap:24px;color:var(--muted);font-size:13.5px"><span>✓ სერტიფიკატი</span><span>✓ სერტიფიცირებული სპეციალისტები</span><span>✓ პაკეტები & ფასდაკლება</span></div>
     </div>
-  </div>
+    <div class="hero-art">
+      <div class="glass" style="top:22px;left:22px;width:160px"><div class="pill gold">🎓 სერტიფიკატი</div><div class="faint" style="font-size:12px;margin-top:8px">კურსი დასრულებულია</div></div>
+      <div class="glass" style="bottom:26px;right:22px;width:170px"><div class="row between"><b style="font-size:13px">ფსიქო კონსულტაცია</b><span class="pill ok">დაჯავშნილი</span></div><div class="faint" style="font-size:12px;margin-top:6px">ხვალ · 10:30</div></div>
+      <span style="font-size:56px">🧠</span>
+    </div>
+  </div></div>
 
   <div class="wrap sec">
-    <div class="center mb3"><h2 data-i="home.serv">როგორ დაგეხმარებით</h2><p class="muted mt1">აირჩიე შენთვის შესაფერისი ფორმატი</p></div>
+    <div class="center mb3"><h2>ორი მიმართულება</h2><p class="muted mt1">აირჩიე შენთვის შესაფერისი ფორმატი</p></div>
     <div class="grid g2">
+      <div class="card pad hoverable" data-go="courses">
+        <div class="row between"><h3>🎓 ფსიქო განათლება</h3><span class="pill pri">კურსები</span></div>
+        <p class="muted mt1">ონლაინ ვიდეო კურსები (Udemy-ის ფორმატში) — რამდენიმე ნაწილიანი, შუალედური ქვიზებით. თითოეული კურსი იყიდება ცალკე; დასრულებისას გენერირდება სერტიფიკატი.</p>
+        <div class="row mt2 wrapf"><span class="pill">ცალკეული ყიდვა</span><span class="pill gold">🎓 სერტიფიკატი</span></div>
+        <div class="btn pri mt3">კურსების ნახვა →</div>
+      </div>
       <div class="card pad hoverable" data-go="booking">
-        <div class="row between"><h3>🗓 ონლაინ კონსულტაცია</h3><span class="pill acc">1:1</span></div>
-        <p class="muted mt1">დაჯავშნე შეხვედრა ჩვენს სპეციალისტთან ერთიანი კალენდრიდან. კონკრეტული სპეციალისტის არჩევა საჭირო არ არის — სისტემა თავად შეურჩევს თავისუფალ კონსულტანტს.</p>
-        <div class="row mt2"><span class="pill">30 წთ სესია</span><span class="pill">დაცული გადახდა</span></div>
+        <div class="row between"><h3>🗓 ფსიქო კონსულტაცია</h3><span class="pill acc">1:1</span></div>
+        <p class="muted mt1">ინდივიდუალური ონლაინ სესია სპეციალისტთან. ერთიანი კალენდარი, თავისუფალი დროის სწრაფი არჩევა და ავტომატური დადასტურება.</p>
+        <div class="row mt2 wrapf"><span class="pill">30 წთ სესია</span><span class="pill">დაცული გადახდა</span></div>
         <div class="btn pri mt3">დაჯავშნა →</div>
       </div>
-      <div class="card pad hoverable" data-go="videos">
-        <div class="row between"><h3>🎬 ვიდეო კონტენტი</h3><span class="pill pri">გამოწერა</span></div>
-        <p class="muted mt1">ბიბლიოთეკა თვითდახმარების ვიდეოებით. უფასო ფრაგმენტები ყველასთვის; ერთი ყოველთვიური გამოწერა ხსნის ყველა ვიდეოს (ცალკე არ იყიდება).</p>
-        <div class="row mt2"><span class="pill">ახალი ვიდეოები</span><span class="pill">მუდმივი წვდომა</span></div>
-        <div class="btn pri mt3">კატალოგი →</div>
-      </div>
     </div>
   </div>
 
-  <div style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-    <div class="wrap sec">
-      <div class="row between mb3 wrapf"><h2 data-i="home.featured">გამორჩეული ვიდეოები</h2><button class="btn" data-go="videos">ყველა ვიდეო →</button></div>
-      <div class="grid g4" id="homeVideos"></div>
-    </div>
-  </div>
+  <!-- packages teaser -->
+  <div style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap sec">
+    <div class="row between wrapf mb3"><div><h2>პაკეტები</h2><p class="muted mt1">ფასდაკლება ან სრულიად უფასო წვდომა</p></div><button class="btn" data-go="packages">ყველა პაკეტი →</button></div>
+    <div class="grid g3" id="homePkgs"></div>
+  </div></div>
 
   <div class="wrap sec">
-    <div class="grid g3 center">
-      <div><div style="font-size:34px;font-weight:800;color:var(--primary-d)">3</div><div class="muted">აქტიური კონსულტანტი</div></div>
-      <div><div style="font-size:34px;font-weight:800;color:var(--primary-d)">40+</div><div class="muted">ვიდეო გაკვეთილი</div></div>
-      <div><div style="font-size:34px;font-weight:800;color:var(--primary-d)">2</div><div class="muted">ენა (ქარ / ENG)</div></div>
-    </div>
+    <div class="row between mb3 wrapf"><h2>ფსიქო განათლება — კურსები</h2><button class="btn" data-go="courses">ყველა კურსი →</button></div>
+    <div class="grid g4" id="homeCourses"></div>
   </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
+<!-- ABOUT -->
 <section class="view" id="v-about">
   <div class="wrap sec">
     <span class="pill pri">ჩვენ შესახებ</span>
@@ -262,8 +219,8 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
       <div class="thumb" style="aspect-ratio:4/3;font-size:52px">🌿</div>
       <div>
         <h3>ისტორია და მიზნები</h3>
-        <p class="muted mt1">PsychoCampus დაარსდა იმ რწმენით, რომ ხარისხიანი ფსიქოლოგიური დახმარება ყველასთვის ხელმისაწვდომი უნდა იყოს. ჩვენ ვაერთიანებთ სერტიფიცირებულ სპეციალისტებსა და თანამედროვე ტექნოლოგიებს.</p>
-        <p class="muted mt2">ჩვენი გუნდი მუშაობს „ერთიანი რესურსის“ პრინციპით — შენ იღებ პროფესიონალურ დახმარებას სწრაფად, კონკრეტული სპეციალისტის ხანგრძლივი მოლოდინის გარეშე.</p>
+        <p class="muted mt1">PsychoCampus აერთიანებს სერტიფიცირებულ სპეციალისტებსა და თანამედროვე ტექნოლოგიებს, რათა ხარისხიანი ფსიქოლოგიური დახმარება ყველასთვის ხელმისაწვდომი გახდეს.</p>
+        <p class="muted mt2">ჩვენი კონსულტაცია მუშაობს „ერთიანი რესურსის" პრინციპით — პროფესიონალურ დახმარებას იღებ სწრაფად, კონკრეტული სპეციალისტის ხანგრძლივი მოლოდინის გარეშე.</p>
         <div class="row mt3 wrapf"><span class="pill ok">✓ კონფიდენციალურობა</span><span class="pill ok">✓ ეთიკის კოდექსი</span><span class="pill ok">✓ სერტიფიცირება</span></div>
       </div>
     </div>
@@ -275,180 +232,181 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
-<section class="view" id="v-services">
-  <div class="wrap sec">
-    <div class="center mb3"><span class="pill pri">სერვისები</span><h1 class="mt2">ორი მიმართულება</h1></div>
-    <div class="grid g2">
-      <div class="card pad">
-        <div class="thumb mb2" style="font-size:40px">🎬</div>
-        <h2>ფასიანი ვიდეო კონტენტი</h2>
-        <p class="muted mt1">ვიდეო ბიბლიოთეკა — სათაური, აღწერა და მოკლე ფრაგმენტი ხილვადია ყველასთვის. ერთი ყოველთვიური გამოწერით იხსნება ყველა ვიდეო (ცალკეული ვიდეო არ იყიდება). წვდომა აქტიურია სანამ გამოწერაა.</p>
-        <button class="btn pri mt3" data-go="videos">კატალოგის ნახვა</button>
-      </div>
-      <div class="card pad">
-        <div class="thumb mb2" style="font-size:40px">🗓</div>
-        <h2>ონლაინ კონსულტაცია</h2>
-        <p class="muted mt1">ინდივიდუალური სესია სპეციალისტთან. ერთიანი კალენდარი, თავისუფალი დროის სწრაფი არჩევა და ავტომატური დადასტურება გადახდის შემდეგ.</p>
-        <button class="btn pri mt3" data-go="booking">დროის დაჯავშნა</button>
-      </div>
-    </div>
-    <h3 class="mt3 mb2">დამატებითი მიმართულებები</h3>
-    <div class="grid g3" id="servList"></div>
-  </div>
-</section>
-
-<!-- ============ VIDEOS (catalog) ============ -->
-<section class="view" id="v-videos">
+<!-- COURSES (ფსიქო განათლება) -->
+<section class="view" id="v-courses">
   <div class="wrap sec">
     <div class="row between wrapf mb3">
-      <div><h1>ვიდეო ბიბლიოთეკა</h1><p class="muted mt1">უფასო ფრაგმენტი ყველასთვის · სრული წვდომა გამოწერით</p></div>
-      <div class="card pad" style="min-width:230px">
-        <div class="faint" style="font-size:13px">გამოწერის სტატუსი</div>
-        <div class="row between mt1"><span class="pill warn" id="subState">არააქტიური</span><button class="btn sm pri" data-go="subscribe">გამოწერა</button></div>
-      </div>
+      <div><h1>ფსიქო განათლება</h1><p class="muted mt1">ონლაინ ვიდეო კურსები — რამდენიმე ნაწილიანი, ქვიზებით და სერტიფიკატით. თითოეული იყიდება ცალკე.</p></div>
     </div>
-    <div class="card pad mb2" style="background:linear-gradient(160deg,#e4f1ef,#fff);border-color:#bfe0db">
+    <div class="card pad mb2" style="background:linear-gradient(160deg,#f6eecb,#fff);border-color:#e6d99a">
       <div class="row between wrapf" style="gap:14px">
-        <div>
-          <b style="font-size:16px">ერთი გამოწერა — წვდომა ყველა ვიდეოზე</b>
-          <p class="muted" style="margin:4px 0 0;font-size:13.5px">ცალკეული ვიდეო არ იყიდება. აქტიური გამოწერით იხსნება მთელი ბიბლიოთეკა და ყოველთვიური ახალი ვიდეოები.</p>
-        </div>
-        <div class="row" style="gap:12px"><b style="font-size:22px;white-space:nowrap">₾ 29 <span class="muted" style="font-size:13px;font-weight:400">/ თვე</span></b><button class="btn pri" data-go="subscribe">გამოწერა</button></div>
+        <div><b style="font-size:16px">🎁 პაკეტით — ფასდაკლება ან უფასო წვდომა</b>
+          <p class="muted small" style="margin:4px 0 0">პაკეტი 1 და 2 გაძლევს ფასდაკლებას კურსებსა და კონსულტაციაზე; პაკეტი 3 — სრულიად უფასო.</p></div>
+        <button class="btn pri" data-go="packages">პაკეტების ნახვა →</button>
       </div>
     </div>
     <div class="row wrapf mb2" style="gap:10px">
-      <input class="inp" style="max-width:300px" placeholder="🔍 ძებნა ვიდეოებში">
+      <input class="inp" style="max-width:300px" placeholder="🔍 ძებნა კურსებში">
       <select class="inp" style="max-width:180px"><option>ყველა კატეგორია</option><option>შფოთვა</option><option>ურთიერთობები</option><option>თვითშეფასება</option></select>
-      <select class="inp" style="max-width:170px"><option>უახლესი</option><option>პოპულარული</option></select>
+      <select class="inp" style="max-width:170px"><option>უახლესი</option><option>პოპულარული</option><option>ფასი: დაბლიდან</option></select>
     </div>
-    <div class="grid g4" id="videoGrid"></div>
+    <div class="grid g4" id="courseGrid"></div>
   </div>
 </section>
 
-<!-- ============ VIDEO SINGLE (paywall) ============ -->
-<section class="view" id="v-video">
+<!-- COURSE DETAIL (Udemy-style) -->
+<section class="view" id="v-course">
   <div class="wrap sec">
-    <a class="pill mb2" data-go="videos">← ბიბლიოთეკაში დაბრუნება</a>
-    <div class="grid split" style="grid-template-columns:1fr 340px;gap:28px;align-items:start">
+    <a class="pill mb2" data-go="courses">← კურსებში დაბრუნება</a>
+    <div class="grid split" style="grid-template-columns:1fr 350px;gap:28px;align-items:start">
       <div>
-        <div class="thumb" style="aspect-ratio:16/9;font-size:20px" id="player">
-          <div class="center">
-            <div style="font-size:40px">🔒</div>
-            <div style="font-weight:700;color:var(--ink);margin-top:6px">სრული ვიდეო ხელმისაწვდომია გამოწერით</div>
-            <div class="faint" style="font-size:13px;margin-top:4px">უფასო ფრაგმენტი · 0:45</div>
-            <button class="btn pri mt2" id="previewBtn">▶ უფასო ფრაგმენტის ნახვა</button>
+        <div class="thumb" style="aspect-ratio:16/9;font-size:20px">
+          <div class="center" style="position:relative;z-index:2">
+            <div class="play" style="margin:0 auto">▶</div>
+            <div class="strong mt1" style="color:var(--ink)">უფასო პრევიუ — გაკვეთილი 1</div>
+            <div class="faint small">სრული კურსი — ყიდვის ან პაკეტის შემდეგ</div>
           </div>
         </div>
-        <h1 class="mt3" id="vTitle">ვიდეოს სათაური</h1>
-        <div class="row wrapf mt1"><span class="pill">კატეგორია</span><span class="pill">12:40</span><span class="pill warn">🔒 გამოწერა</span></div>
-        <h3 class="mt3">აღწერა</h3>
-        <p class="muted mt1">ამ ვიდეოში სპეციალისტი განიხილავს პრაქტიკულ ტექნიკებს. სრული ვერსია მოიცავს დეტალურ ახსნას, სავარჯიშოებსა და დამატებით მასალას, რომელიც ხელმისაწვდომია აქტიური გამოწერით.</p>
+        <h1 class="mt3" id="cTitle">კურსის სათაური</h1>
+        <div class="row wrapf mt1"><span class="pill">კატეგორია</span><span class="pill">⭐ 4.8 (126)</span><span class="pill">👥 540 სტუდენტი</span><span class="pill">🎓 სერტიფიკატი</span></div>
+
+        <div class="tabs mt3" style="max-width:420px" id="courseTabs"><button class="on" data-ctab="0">აღწერა</button><button data-ctab="1">სილაბუსი</button><button data-ctab="2">ქვიზები</button></div>
+
+        <div class="ctab on mt2" id="ct0">
+          <h3>რას ისწავლი</h3>
+          <p class="muted mt1">კურსი გაგაცნობს პრაქტიკულ ტექნიკებს. თითოეული ნაწილი მოიცავს ვიდეო გაკვეთილებს, სავარჯიშოებსა და შუალედურ ქვიზს ცოდნის შესამოწმებლად.</p>
+          <div class="grid g2 mt2">
+            <div class="row" style="gap:8px"><span class="pill ok">✓</span> 5 თემატური სექცია</div>
+            <div class="row" style="gap:8px"><span class="pill ok">✓</span> 18 ვიდეო გაკვეთილი</div>
+            <div class="row" style="gap:8px"><span class="pill ok">✓</span> 4 ინტერაქტიული ქვიზი</div>
+            <div class="row" style="gap:8px"><span class="pill ok">✓</span> დასრულებისას სერტიფიკატი</div>
+          </div>
+        </div>
+        <div class="ctab mt2" id="ct1" style="display:none">
+          <div class="sect">
+            <div class="h">სექცია 1 · შესავალი <span class="faint">3 გაკვეთილი</span></div>
+            <div class="lesson"><span class="ic">▶</span> გაკვეთილი 1 — რა არის...<span class="free pill ok">უფასო</span></div>
+            <div class="lesson"><span class="ic">▶</span> გაკვეთილი 2 — ძირითადი ცნებები<span class="free faint">🔒 08:20</span></div>
+            <div class="lesson quiz"><span class="ic">?</span> ქვიზი 1 — შესავალი <span class="free faint">5 კითხვა</span></div>
+          </div>
+          <div class="sect">
+            <div class="h">სექცია 2 · პრაქტიკული ტექნიკები <span class="faint">4 გაკვეთილი</span></div>
+            <div class="lesson"><span class="ic">▶</span> გაკვეთილი 3<span class="free faint">🔒 11:05</span></div>
+            <div class="lesson"><span class="ic">▶</span> გაკვეთილი 4<span class="free faint">🔒 09:40</span></div>
+            <div class="lesson quiz"><span class="ic">?</span> ქვიზი 2 <span class="free faint">6 კითხვა</span></div>
+          </div>
+          <div class="sect">
+            <div class="h">სექცია 3 · გაღრმავება <span class="faint">+ ქვიზი</span></div>
+            <div class="lesson"><span class="ic">▶</span> გაკვეთილი 5<span class="free faint">🔒 12:15</span></div>
+            <div class="lesson quiz"><span class="ic">?</span> დასკვნითი ქვიზი <span class="free faint">10 კითხვა</span></div>
+          </div>
+        </div>
+        <div class="ctab mt2" id="ct2" style="display:none">
+          <p class="muted mb2">კურსი მოიცავს შუალედურ და დასკვნით ქვიზებს. დასკვნითი ქვიზის ჩაბარება საჭიროა სერტიფიკატის მისაღებად.</p>
+          <div class="card pad mb1 row between"><span>ქვიზი 1 — შესავალი (5 კითხვა)</span><span class="pill">სექცია 1-ის ბოლოს</span></div>
+          <div class="card pad mb1 row between"><span>ქვიზი 2 — ტექნიკები (6 კითხვა)</span><span class="pill">სექცია 2-ის ბოლოს</span></div>
+          <div class="card pad row between"><span>დასკვნითი ქვიზი (10 კითხვა)</span><span class="pill gold">🎓 სერტიფიკატისთვის</span></div>
+        </div>
       </div>
+
       <div>
         <div class="card pad">
-          <h3>ერთი გამოწერა — ყველა ვიდეო</h3>
-          <div class="row mt1" style="align-items:baseline;gap:4px"><span style="font-size:30px;font-weight:800">₾ 29</span><span class="muted">/ თვე</span></div>
-          <ul class="muted" style="padding-left:18px;margin:12px 0">
-            <li>წვდომა <b>მთელ ბიბლიოთეკაზე</b></li><li>ახალი ვიდეოები ყოველთვე</li><li>წვდომა აქტიურია სანამ გამოწერაა</li>
-          </ul>
-          <button class="btn pri block" data-go="subscribe">რეგისტრაცია & გამოწერა</button>
-          <p class="faint center mt1" style="font-size:12px">ცალკეული ვიდეო არ იყიდება · წვდომა ავტომ. აქტიურდება გადახდის შემდეგ</p>
+          <div class="row between" style="align-items:baseline"><span style="font-size:32px;font-weight:800" id="cPrice">₾ 49</span><span class="faint small">ერთჯერადი</span></div>
+          <button class="btn pri block mt2" id="buyCourseBtn">კურსის ყიდვა</button>
+          <button class="btn block mt1" data-go="course-preview" id="previewBtn">▶ უფასო პრევიუ</button>
+          <div class="divider">ან</div>
+          <div class="card--flat card pad" style="padding:14px">
+            <div class="row between"><b class="small">🎁 პაკეტით</b><span class="pill gold">ფასდაკლება / უფასო</span></div>
+            <p class="muted small" style="margin:6px 0 0">პაკეტი 1–2: ფასდაკლება · პაკეტი 3: უფასო</p>
+            <button class="btn sm block mt1" data-go="packages">პაკეტების ნახვა</button>
+          </div>
+          <ul class="muted small mt2" style="padding-left:16px;margin:0"><li>მუდმივი წვდომა შეძენილ კურსზე</li><li>შუალედური ქვიზები</li><li>🎓 სერტიფიკატი დასრულებისას</li></ul>
         </div>
       </div>
     </div>
-    <h3 class="mt3 mb2">მსგავსი ვიდეოები</h3>
-    <div class="grid g4" id="relVideos"></div>
+    <h3 class="mt3 mb2">მსგავსი კურსები</h3>
+    <div class="grid g4" id="relCourses"></div>
   </div>
 </section>
 
-<!-- ============ SUBSCRIBE (video monthly subscription checkout) ============ -->
-<section class="view" id="v-subscribe">
+<!-- PACKAGES -->
+<section class="view" id="v-packages">
   <div class="wrap sec">
-    <div class="center mb3"><span class="pill pri">ვიდეო გამოწერა</span><h1 class="mt2">გამოიწერე მთელი ბიბლიოთეკა</h1>
-      <p class="muted mt1" style="max-width:620px;margin-left:auto;margin-right:auto">ერთი ყოველთვიური გამოწერა — წვდომა ყველა ვიდეოზე. ცალკეული ვიდეო არ იყიდება.</p></div>
-    <div class="steps" id="subSteps">
-      <div class="step active"><span class="n">1</span><span class="lbl">გეგმა & ანგარიში</span></div>
+    <div class="center mb3"><span class="pill pri">პაკეტები</span><h1 class="mt2">აირჩიე შენი პაკეტი</h1>
+      <p class="muted mt1" style="max-width:620px;margin-left:auto;margin-right:auto">პაკეტი 1 და 2 გაძლევს ფასდაკლებას კურსებსა და კონსულტაციაზე. პაკეტი 3 — კონსულტაციაც და კურსებიც სრულიად უფასო.</p></div>
+    <div class="grid g3" id="pkgGrid"></div>
+    <p class="faint center small mt3">ყველა პაკეტი — ყოველთვიური გამოწერა, გაუქმება ნებისმიერ დროს პროფილიდან.</p>
+  </div>
+</section>
+
+<!-- CHECKOUT (course or package) -->
+<section class="view" id="v-checkout">
+  <div class="wrap sec">
+    <div class="center mb3"><span class="pill pri" id="coKind">გადახდა</span><h1 class="mt2" id="coHeading">გადახდა</h1><p class="muted mt1" id="coSub"></p></div>
+    <div class="steps" id="coSteps">
+      <div class="step active"><span class="n">1</span><span class="lbl">ანგარიში</span></div>
       <div class="step"><span class="n">2</span><span class="lbl">გადახდა</span></div>
       <div class="step"><span class="n">3</span><span class="lbl">დასტური</span></div>
     </div>
-
-    <!-- step 1 -->
-    <div class="sstep on" id="ss1">
+    <div class="costep on" id="co1">
       <div class="grid split" style="grid-template-columns:1fr 340px;gap:28px;align-items:start">
         <div class="card pad">
           <h3 class="mb2">ანგარიშის შექმნა</h3>
+          <div class="row" style="gap:10px"><button class="soc" data-auth="social">> <span class="g">G</span> Google-ით</button><button class="soc" data-auth="social"><span class="f">f</span> Facebook-ით</button></div>
+          <div class="divider">ან ელფოსტით</div>
           <div class="grid g2"><div class="field"><label class="f">სახელი *</label><input class="inp"></div><div class="field"><label class="f">გვარი *</label><input class="inp"></div></div>
           <div class="grid g2"><div class="field"><label class="f">პირადი ნომერი *</label><input class="inp"></div><div class="field"><label class="f">ტელეფონი *</label><input class="inp"></div></div>
-          <div class="field"><label class="f">ელფოსტა * (მთავარი იდენტიფიკატორი)</label><input class="inp" type="email"></div>
-          <div class="field"><label class="f">პაროლი *</label><input class="inp" type="password" value="••••••••"></div>
+          <div class="field"><label class="f">ელფოსტა *</label><input class="inp" type="email"></div>
           <label class="row" style="gap:8px;font-size:13.5px;color:var(--muted)"><input type="checkbox"> ვეთანხმები წესებსა და კონფიდენციალურობის პოლიტიკას</label>
-          <div class="card pad mt2" style="background:var(--surface-2);box-shadow:none"><span class="small muted">უკვე დარეგისტრირებული ხარ? <a style="color:var(--primary-d);font-weight:700" data-auth="login">შესვლა</a></span></div>
-          <div class="row between mt3"><button class="btn" data-go="videos">← უკან</button><button class="btn pri" data-sstep="2">გადახდაზე გადასვლა →</button></div>
+          <div class="row between mt3"><button class="btn" id="coBack1">← უკან</button><button class="btn pri" data-costep="2">გადახდაზე გადასვლა →</button></div>
         </div>
-        <div class="card pad" id="subSum1"></div>
+        <div class="card pad" id="coSum1"></div>
       </div>
     </div>
-
-    <!-- step 2 -->
-    <div class="sstep" id="ss2" style="display:none">
+    <div class="costep" id="co2" style="display:none">
       <div class="grid split" style="grid-template-columns:1fr 340px;gap:28px;align-items:start">
         <div class="card pad">
           <h3 class="mb2">გადახდა</h3>
           <div class="row wrapf mb2" style="gap:10px"><span class="pill pri">💳 ბარათით</span><span class="pill">🏦 ბანკის აპლიკაცია</span></div>
           <div class="field"><label class="f">ბარათის ნომერი</label><input class="inp" placeholder="0000 0000 0000 0000"></div>
           <div class="grid g2"><div class="field"><label class="f">ვადა</label><input class="inp" placeholder="MM/YY"></div><div class="field"><label class="f">CVC</label><input class="inp" placeholder="123"></div></div>
-          <div class="card pad" style="background:var(--primary-soft);border-color:#bfe0db;box-shadow:none"><span class="small" style="color:var(--primary-d)">🔁 ყოველთვიური განმეორებადი გადახდა. გამოწერა ავტომ. განახლდება ყოველ თვე — გაუქმება ნებისმიერ დროს პროფილიდან.</span></div>
-          <div class="row between mt3"><button class="btn" data-sstep="1">← უკან</button><button class="btn pri" data-sstep="3">₾ 29 გამოწერა</button></div>
+          <p class="faint small">🔒 გადახდა მუშავდება ბანკის დაცული გვერდით.</p>
+          <div class="row between mt3"><button class="btn" data-costep="1">← უკან</button><button class="btn pri" data-costep="3" id="coPay">გადახდა</button></div>
         </div>
-        <div class="card pad" id="subSum2"></div>
+        <div class="card pad" id="coSum2"></div>
       </div>
     </div>
-
-    <!-- step 3 -->
-    <div class="sstep" id="ss3" style="display:none">
+    <div class="costep" id="co3" style="display:none">
       <div class="card pad center" style="max-width:520px;margin:0 auto">
         <div style="font-size:52px">✅</div>
-        <h2 class="mt1">გამოწერა გააქტიურდა</h2>
-        <p class="muted">წვდომა ყველა ვიდეოზე გახსნილია. მადლობა!</p>
-        <div class="card pad mt2" style="text-align:left;background:var(--surface-2);box-shadow:none">
-          <div class="row between"><span class="muted">გეგმა</span><b>ვიდეო გამოწერა · ₾ 29 / თვე</b></div>
-          <div class="row between mt1"><span class="muted">სტატუსი</span><span class="pill ok">აქტიური</span></div>
-          <div class="row between mt1"><span class="muted">შემდეგი გადახდა</span><b>01 აგვისტო 2026</b></div>
-          <div class="row between mt1"><span class="muted">ინვოისი</span><a class="pill pri">PDF ↓</a></div>
-        </div>
-        <p class="faint mt2" style="font-size:12px">წვდომა აქტიურია სანამ გამოწერაა. გადახდის შეწყვეტისას წვდომა ავტომატურად იხურება.</p>
-        <div class="row mt3" style="justify-content:center"><button class="btn pri" data-go="videos">ბიბლიოთეკაზე გადასვლა →</button><button class="btn" data-auth="profile">ჩემი პროფილი</button></div>
+        <h2 class="mt1" id="coDone">გადახდა დასრულდა</h2>
+        <p class="muted" id="coDoneSub"></p>
+        <div class="row mt3" style="justify-content:center"><button class="btn pri" id="coDoneBtn">გაგრძელება →</button><button class="btn" data-auth="profile">ჩემი კაბინეტი</button></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ BOOKING ============ -->
+<!-- BOOKING (ფსიქო კონსულტაცია) -->
 <section class="view" id="v-booking">
   <div class="wrap sec">
-    <div class="center mb3"><span class="pill pri">კონსულტაცია</span><h1 class="mt2">დაჯავშნე შენი სესია</h1>
+    <div class="center mb3"><span class="pill pri">ფსიქო კონსულტაცია</span><h1 class="mt2">დაჯავშნე შენი სესია</h1>
       <p class="muted mt1" style="max-width:640px;margin-left:auto;margin-right:auto">კონკრეტული სპეციალისტის არჩევა საჭირო არ არის — სისტემა ავტომატურად შეურჩევს თავისუფალ კონსულტანტს არჩეულ დროზე.</p></div>
     <div class="steps" id="steps">
-      <div class="step active"><span class="n">1</span><span class="lbl">დრო</span></div>
-      <div class="step"><span class="n">2</span><span class="lbl">მონაცემები</span></div>
-      <div class="step"><span class="n">3</span><span class="lbl">გადახდა</span></div>
-      <div class="step"><span class="n">4</span><span class="lbl">დასტური</span></div>
+      <div class="step active"><span class="n">1</span><span class="lbl">დრო</span></div><div class="step"><span class="n">2</span><span class="lbl">მონაცემები</span></div>
+      <div class="step"><span class="n">3</span><span class="lbl">გადახდა</span></div><div class="step"><span class="n">4</span><span class="lbl">დასტური</span></div>
     </div>
-
-    <!-- step 1 -->
     <div class="bstep on" id="bs1">
       <div class="grid split" style="grid-template-columns:1.3fr 1fr;gap:28px;align-items:start">
         <div class="card pad">
           <div class="row between mb2"><button class="btn sm" id="calPrev">‹</button><b id="calMonth">ივლისი 2026</b><button class="btn sm" id="calNext">›</button></div>
           <div class="cal"><div class="dow">ორ</div><div class="dow">სამ</div><div class="dow">ოთ</div><div class="dow">ხუ</div><div class="dow">პა</div><div class="dow">შა</div><div class="dow">კვ</div></div>
           <div class="cal mt1" id="calGrid"></div>
-          <div class="row wrapf mt2 faint" style="font-size:12.5px;gap:16px"><span>• ხელმისაწვდომი</span><span>▨ დაკავებული</span></div>
         </div>
         <div class="card pad">
-          <b>ხელმისაწვდომი დროები</b><div class="faint" style="font-size:13px" id="selDate">09 ივლისი</div>
+          <b>ხელმისაწვდომი დროები</b><div class="faint small" id="selDate">09 ივლისი</div>
           <div class="slots mt2" id="slots"></div>
-          <div class="card pad mt2" style="background:var(--surface-2);box-shadow:none">
+          <div class="card pad mt2 card--flat">
             <div class="row between"><span class="muted">არჩეული</span><b id="sumTime">—</b></div>
             <div class="row between mt1"><span class="muted">ხანგრძლივობა</span><span>30 წთ (+15 წთ ბუფერი)</span></div>
             <div class="row between mt1"><span class="muted">ღირებულება</span><b>₾ 60</b></div>
@@ -457,59 +415,50 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
         </div>
       </div>
       <div class="card pad mt3" style="background:var(--accent-soft);border-color:#d8d2f0">
-        <b style="color:var(--accent)">ℹ როგორ მუშაობს ხელმისაწვდომობა</b>
-        <p class="muted mt1" style="margin:0">დროის სლოტი აქტიურია სანამ მასზე დაჯავშნების რაოდენობა ნაკლებია აქტიური კონსულტანტების რაოდენობაზე. ჯავშანი ავტომატურად ნაწილდება თავისუფალ კონსულტანტზე.</p>
+        <b style="color:var(--accent)">ℹ ხელმისაწვდომობა</b>
+        <p class="muted mt1" style="margin:0">დროის სლოტი აქტიურია სანამ დაჯავშნების რაოდენობა ნაკლებია აქტიური კონსულტანტების რაოდენობაზე. ჯავშანი ავტომატურად ნაწილდება თავისუფალ კონსულტანტზე. პაკეტის მფლობელს — ფასდაკლება ან უფასო.</p>
       </div>
     </div>
-
-    <!-- step 2 -->
     <div class="bstep" id="bs2" style="display:none">
       <div class="grid split" style="grid-template-columns:1fr 340px;gap:28px;align-items:start">
         <div class="card pad">
           <h3 class="mb2">საკონტაქტო ინფორმაცია</h3>
           <div class="grid g2"><div class="field"><label class="f">სახელი *</label><input class="inp"></div><div class="field"><label class="f">გვარი *</label><input class="inp"></div></div>
           <div class="grid g2"><div class="field"><label class="f">პირადი ნომერი *</label><input class="inp"></div><div class="field"><label class="f">ტელეფონი *</label><input class="inp"></div></div>
-          <div class="field"><label class="f">ელფოსტა * (მთავარი იდენტიფიკატორი)</label><input class="inp" type="email"></div>
+          <div class="field"><label class="f">ელფოსტა *</label><input class="inp" type="email"></div>
           <label class="row" style="gap:8px;font-size:13.5px;color:var(--muted)"><input type="checkbox"> ვეთანხმები წესებსა და კონფიდენციალურობის პოლიტიკას</label>
           <div class="row between mt3"><button class="btn" data-bstep="1">← უკან</button><button class="btn pri" data-bstep="3">გადახდაზე გადასვლა →</button></div>
         </div>
-        <div class="card pad" id="sum2"></div>
+        <div class="card pad" id="bsum2"></div>
       </div>
     </div>
-
-    <!-- step 3 -->
     <div class="bstep" id="bs3" style="display:none">
       <div class="grid split" style="grid-template-columns:1fr 340px;gap:28px;align-items:start">
         <div class="card pad">
           <h3 class="mb2">გადახდა</h3>
-          <div class="row wrapf mb2" style="gap:10px"><span class="pill pri">💳 ბარათით</span><span class="pill">🏦 ბანკის აპლიკაცია</span></div>
           <div class="field"><label class="f">ბარათის ნომერი</label><input class="inp" placeholder="0000 0000 0000 0000"></div>
           <div class="grid g2"><div class="field"><label class="f">ვადა</label><input class="inp" placeholder="MM/YY"></div><div class="field"><label class="f">CVC</label><input class="inp" placeholder="123"></div></div>
-          <p class="faint" style="font-size:12.5px">🔒 გადახდა მუშავდება ბანკის დაცული გვერდით. დადებით ტრანზაქციაზე ჯავშანი ავტომატურად დასტურდება.</p>
+          <p class="faint small">🔒 დადებით ტრანზაქციაზე ჯავშანი ავტომატურად დასტურდება.</p>
           <div class="row between mt3"><button class="btn" data-bstep="2">← უკან</button><button class="btn pri" data-bstep="4">₾ 60 გადახდა</button></div>
         </div>
-        <div class="card pad" id="sum3"></div>
+        <div class="card pad" id="bsum3"></div>
       </div>
     </div>
-
-    <!-- step 4 -->
     <div class="bstep" id="bs4" style="display:none">
       <div class="card pad center" style="max-width:520px;margin:0 auto">
-        <div style="font-size:52px">✅</div>
-        <h2 class="mt1">ჯავშანი დადასტურდა</h2>
-        <p class="muted">დასტური გამოგზავნილია ელფოსტაზე. ჯავშანი ჩანს შენს პროფილში.</p>
-        <div class="card pad mt2" style="text-align:left;background:var(--surface-2);box-shadow:none">
+        <div style="font-size:52px">✅</div><h2 class="mt1">ჯავშანი დადასტურდა</h2>
+        <p class="muted">დასტური ელფოსტაზეა. კონსულტანტი შეხვედრის ბმულს გამოგიგზავნის — ის გამოჩნდება შენს კაბინეტში „შეტყობინებებში".</p>
+        <div class="card pad mt2 card--flat" style="text-align:left">
           <div class="row between"><span class="muted">კოდი</span><b>#BK-10234</b></div>
           <div class="row between mt1"><span class="muted">დრო</span><b id="doneTime">—</b></div>
-          <div class="row between mt1"><span class="muted">ინვოისი</span><a class="pill pri">PDF ↓</a></div>
         </div>
-        <div class="row mt3" style="justify-content:center"><button class="btn" data-go="home">მთავარზე</button><button class="btn pri" data-auth="profile">ჩემი პროფილი →</button></div>
+        <div class="row mt3" style="justify-content:center"><button class="btn" data-go="home">მთავარზე</button><button class="btn pri" data-auth="profile">ჩემი კაბინეტი →</button></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
+<!-- CONTACT -->
 <section class="view" id="v-contact">
   <div class="wrap sec">
     <div class="center mb3"><span class="pill pri">კონტაქტი</span><h1 class="mt2">დაგვიკავშირდი</h1></div>
@@ -523,9 +472,9 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
       </div>
       <div>
         <div class="card pad">
-          <div class="row" style="gap:12px;align-items:flex-start"><span style="font-size:20px">📍</span><div><b>მისამართი</b><div class="muted">თბილისი, საქართველო</div></div></div>
-          <div class="row mt2" style="gap:12px;align-items:flex-start"><span style="font-size:20px">📞</span><div><b>ტელეფონი</b><div class="muted">+995 5XX XX XX XX</div></div></div>
-          <div class="row mt2" style="gap:12px;align-items:flex-start"><span style="font-size:20px">✉</span><div><b>ელფოსტა</b><div class="muted">info@psychocampus.ge</div></div></div>
+          <div class="row" style="gap:10px;align-items:flex-start"><span style="font-size:20px">📍</span><div><b>მისამართი</b><div class="muted">თბილისი, საქართველო</div></div></div>
+          <div class="row mt2" style="gap:10px;align-items:flex-start"><span style="font-size:20px">📞</span><div><b>ტელეფონი</b><div class="muted">+995 5XX XX XX XX</div></div></div>
+          <div class="row mt2" style="gap:10px;align-items:flex-start"><span style="font-size:20px">✉</span><div><b>ელფოსტა</b><div class="muted">info@psychocampus.ge</div></div></div>
           <div class="row mt2" style="gap:8px"><span class="pill">Facebook</span><span class="pill">Instagram</span><span class="pill">YouTube</span></div>
         </div>
         <div class="thumb mt2" style="aspect-ratio:16/9;font-size:34px">🗺</div>
@@ -535,72 +484,94 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
   </div>
 </section>
 
-<!-- ============ LEGAL ============ -->
+<!-- LEGAL -->
 <section class="view" id="v-legal">
   <div class="wrap sec">
     <div class="row wrapf mb3" style="gap:8px" id="legalTabs">
-      <button class="pill pri" data-legal="0">წესები & პირობები</button>
-      <button class="pill" data-legal="1">კონფიდენციალურობა</button>
-      <button class="pill" data-legal="2">Cookie პოლიტიკა</button>
-      <button class="pill" data-legal="3">დაბრუნების პოლიტიკა</button>
+      <button class="pill pri" data-legal="0">წესები & პირობები</button><button class="pill" data-legal="1">კონფიდენციალურობა</button>
+      <button class="pill" data-legal="2">Cookie პოლიტიკა</button><button class="pill" data-legal="3">დაბრუნების პოლიტიკა</button>
     </div>
-    <div class="grid split" style="grid-template-columns:230px 1fr;gap:28px;align-items:start">
-      <div class="card pad" style="position:sticky;top:82px">
-        <b style="font-size:13px">შიგთავსი</b>
-        <div class="mt1" style="display:flex;flex-direction:column;gap:6px;font-size:13.5px" class="muted">
-          <a class="muted">1. ზოგადი დებულებები</a><a class="muted">2. მომსახურება</a><a class="muted">3. გადახდები</a>
-          <a class="muted">4. პერსონალური მონაცემები</a><a class="muted">5. Cookie</a><a class="muted">6. თანხის დაბრუნება</a>
-        </div>
-      </div>
-      <div class="card pad">
-        <h1 id="legalTitle">წესები და პირობები</h1>
-        <p class="muted mt2">წინამდებარე დოკუმენტი აწესრიგებს PsychoCampus პლატფორმით სარგებლობის პირობებს. პლატფორმაზე რეგისტრაციითა და მომსახურების გამოყენებით თქვენ ეთანხმებით ქვემოთ მოცემულ პირობებს.</p>
-        <p class="muted mt2">პლატფორმა ამუშავებს პერსონალურ მონაცემებს (სახელი, პირადი ნომერი, ელფოსტა, ტელეფონი) მომსახურების გაწევის მიზნით და იყენებს cookie ფაილებს მომხმარებლის გამოცდილების გასაუმჯობესებლად.</p>
-        <p class="muted mt2">გადახდები მუშავდება ბანკის დაცული სისტემით. თანხის დაბრუნება ხდება მოქმედი წესების შესაბამისად.</p>
-        <p class="faint mt3" style="font-size:12.5px">ბოლო განახლება: 09/07/2026</p>
-      </div>
+    <div class="card pad"><h1 id="legalTitle">წესები და პირობები</h1>
+      <p class="muted mt2">წინამდებარე დოკუმენტი აწესრიგებს PsychoCampus პლატფორმით სარგებლობის პირობებს. რეგისტრაციითა და მომსახურების გამოყენებით თქვენ ეთანხმებით პირობებს.</p>
+      <p class="muted mt2">პლატფორმა ამუშავებს პერსონალურ მონაცემებს მომსახურების გაწევის მიზნით და იყენებს cookie ფაილებს. გადახდები მუშავდება ბანკის დაცული სისტემით.</p>
+      <p class="faint mt3 small">ბოლო განახლება: 13/07/2026</p>
     </div>
   </div>
 </section>
 
-<!-- ============ USER PROFILE ============ -->
+<!-- USER CABINET -->
 <section class="view" id="v-profile">
   <div class="wrap sec">
     <div class="row between wrapf mb3">
-      <div><h1>ჩემი პროფილი</h1><p class="muted mt1">გიორგი მაისურაძე · g.m@example.com</p></div>
-      <span class="pill ok">გამოწერა აქტიურია · განახლდება 01 აგვ</span>
+      <div><h1>ჩემი კაბინეტი</h1><p class="muted mt1">გიორგი მაისურაძე · g.m@example.com</p></div>
+      <span class="pill acc" id="pkgBadge">პაკეტი: არ გაქვს</span>
     </div>
-    <div class="tabs mb3" style="max-width:560px" id="profTabs">
-      <button class="on" data-ptab="0">ჯავშნები</button><button data-ptab="1">გამოწერა</button><button data-ptab="2">გადახდები</button><button data-ptab="3">პირადი მონაცემები</button>
+    <div class="tabs mb3" id="profTabs">
+      <button class="on" data-ptab="0">ჯავშნები</button><button data-ptab="1">ჩემი კურსები</button><button data-ptab="2">სერტიფიკატები</button>
+      <button data-ptab="3">შეტყობინებები <span class="pill pri" style="padding:0 7px">2</span></button><button data-ptab="4">პაკეტი & გადახდები</button><button data-ptab="5">პირადი მონაცემები</button>
     </div>
+
     <div class="ptab on" id="pt0">
-      <div class="card pad">
-        <table class="tb">
-          <thead><tr><th>კოდი</th><th>თარიღი / დრო</th><th>სტატუსი</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>#BK-10234</td><td>09 ივლ · 10:30</td><td><span class="pill acc">დაგეგმილი</span></td><td class="row"><button class="btn sm">დროის შეცვლა</button><button class="btn sm danger">გაუქმება</button></td></tr>
-            <tr><td>#BK-10101</td><td>28 ივნ · 14:00</td><td><span class="pill ok">დასრულებული</span></td><td><button class="btn sm">ინვოისი ↓</button></td></tr>
-            <tr><td>#BK-09980</td><td>15 ივნ · 11:30</td><td><span class="pill danger">გაუქმებული</span></td><td class="faint">დაბრუნება მუშავდება</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="ptab" id="pt1" style="display:none">
-      <div class="card pad">
-        <div class="row between"><h3>ვიდეო გამოწერა</h3><span class="pill ok">აქტიური</span></div>
-        <div class="row between mt2"><div><b>₾ 29 / თვე</b><div class="faint">შემდეგი გადახდა · 01 აგვ 2026</div></div><button class="btn danger">გამოწერის გაუქმება</button></div>
-        <div class="card pad mt2" style="background:var(--surface-2);box-shadow:none"><span class="small muted">✓ წვდომა ყველა ვიდეოზე გახსნილია. წვდომა აქტიურია სანამ გამოწერაა — გადახდის შეწყვეტისას ავტომატურად იხურება.</span></div>
-      </div>
-    </div>
-    <div class="ptab" id="pt2" style="display:none">
-      <div class="card pad"><table class="tb">
-        <thead><tr><th>თარიღი</th><th>აღწერა</th><th>თანხა</th><th>სტატუსი</th><th>ინვოისი</th></tr></thead>
+      <div class="card pad"><table style="width:100%;border-collapse:collapse;font-size:14px" class="tb">
+        <thead><tr><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">კოდი</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">დრო</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">სტატუსი</th><th style="border-bottom:1px solid var(--line)"></th></tr></thead>
         <tbody>
-          <tr><td>01 ივლ</td><td>ვიდეო გამოწერა</td><td>₾ 29</td><td><span class="pill ok">გადახდილი</span></td><td><a class="pill pri">PDF ↓</a></td></tr>
-          <tr><td>28 ივნ</td><td>კონსულტაცია #BK-10101</td><td>₾ 60</td><td><span class="pill ok">გადახდილი</span></td><td><a class="pill pri">PDF ↓</a></td></tr>
+          <tr><td style="padding:12px 10px">#BK-10234</td><td style="padding:12px 10px">09 ივლ · 10:30</td><td style="padding:12px 10px"><span class="pill acc">დაგეგმილი</span></td><td style="padding:12px 10px" class="row"><button class="btn sm" data-ptab="3">✉ შეხვედრის ბმული</button><button class="btn sm">დროის შეცვლა</button><button class="btn sm danger">გაუქმება</button></td></tr>
+          <tr><td style="padding:12px 10px">#BK-10101</td><td style="padding:12px 10px">28 ივნ · 14:00</td><td style="padding:12px 10px"><span class="pill ok">დასრულებული</span></td><td style="padding:12px 10px"><button class="btn sm">ინვოისი ↓</button></td></tr>
         </tbody></table></div>
     </div>
+
+    <div class="ptab" id="pt1" style="display:none">
+      <div class="grid g2" id="myCourses"></div>
+    </div>
+
+    <div class="ptab" id="pt2" style="display:none">
+      <div class="grid g2">
+        <div class="cert"><span class="seal">🎓</span><div class="pill gold">სერტიფიკატი</div><h3 class="mt2">შფოთვის მართვა</h3><p class="muted small mt1">გაცემულია: 28 ივნ 2026 · ID: CERT-4821</p><div class="row mt2"><button class="btn sm pri" data-toast="სერტიფიკატი იხსნება (PDF)">ნახვა</button><button class="btn sm" data-toast="ჩამოტვირთვა (PDF)">ჩამოტვირთვა</button></div></div>
+        <div class="card pad center card--flat" style="display:flex;flex-direction:column;justify-content:center;color:var(--faint)"><div style="font-size:30px">🎓</div><p class="small mt1">დაასრულე კურსი და მიიღე სერტიფიკატი აქ</p><button class="btn sm mt1" data-go="courses">კურსების ნახვა</button></div>
+      </div>
+    </div>
+
     <div class="ptab" id="pt3" style="display:none">
+      <div class="card pad">
+        <div class="msg unread">
+          <div class="av">🗓</div>
+          <div style="flex:1"><div class="row between"><b>ფსიქო კონსულტაცია — შეხვედრის ბმული</b><span class="faint small">ახლა</span></div>
+            <p class="muted small" style="margin:4px 0 8px">გამარჯობა! თქვენი კონსულტაცია 09 ივლ 10:30-ზეა. შეხვედრის ბმული:</p>
+            <div class="row wrapf" style="gap:8px"><code style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px">meet.psychocampus.ge/bk-10234</code><button class="btn sm pri" data-toast="შეხვედრას უერთდები...">შეხვედრაზე შესვლა</button></div>
+            <div class="faint small mt1">გამომგზავნი: კონსულტანტი</div>
+          </div>
+        </div>
+        <div class="msg unread mt1">
+          <div class="av">🎓</div>
+          <div style="flex:1"><div class="row between"><b>სერტიფიკატი გაიცა</b><span class="faint small">2 დღის წინ</span></div>
+            <p class="muted small" style="margin:4px 0 0">გილოცავთ! კურსი „შფოთვის მართვა" დასრულებულია — სერტიფიკატი ხელმისაწვდომია.</p>
+            <button class="btn sm mt1" data-ptab="2">სერტიფიკატის ნახვა</button></div>
+        </div>
+        <div class="msg">
+          <div class="av">💳</div>
+          <div style="flex:1"><div class="row between"><b>გადახდა მიღებულია</b><span class="faint small">01 ივლ</span></div>
+            <p class="muted small" style="margin:4px 0 0">კურსის „შფოთვის მართვა" გადახდა დადასტურდა. მადლობა!</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ptab" id="pt4" style="display:none">
+      <div class="card pad mb2" id="pkgCard">
+        <div class="row between"><h3>ჩემი პაკეტი</h3><span class="pill" id="pkgStatePill">არ გაქვს</span></div>
+        <p class="muted small mt1" id="pkgDesc">პაკეტი არ გაქვს გააქტიურებული. აირჩიე პაკეტი ფასდაკლების ან უფასო წვდომისთვის.</p>
+        <button class="btn pri mt1" data-go="packages">პაკეტების ნახვა</button>
+      </div>
+      <div class="card pad"><h3 class="mb2">გადახდები & ინვოისები</h3>
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
+          <thead><tr><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">თარიღი</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">აღწერა</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">თანხა</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">ინვოისი</th></tr></thead>
+          <tbody>
+            <tr><td style="padding:12px 10px">01 ივლ</td><td style="padding:12px 10px">კურსი · შფოთვის მართვა</td><td style="padding:12px 10px">₾ 49</td><td style="padding:12px 10px"><a class="pill pri">PDF ↓</a></td></tr>
+            <tr><td style="padding:12px 10px">28 ივნ</td><td style="padding:12px 10px">ფსიქო კონსულტაცია #BK-10101</td><td style="padding:12px 10px">₾ 60</td><td style="padding:12px 10px"><a class="pill pri">PDF ↓</a></td></tr>
+          </tbody></table>
+      </div>
+    </div>
+
+    <div class="ptab" id="pt5" style="display:none">
       <div class="card pad" style="max-width:560px">
         <div class="grid g2"><div class="field"><label class="f">სახელი</label><input class="inp" value="გიორგი"></div><div class="field"><label class="f">გვარი</label><input class="inp" value="მაისურაძე"></div></div>
         <div class="field"><label class="f">ელფოსტა</label><input class="inp" value="g.m@example.com"></div>
@@ -613,206 +584,195 @@ table.tb tr:last-child td{border-bottom:0} table.tb tbody tr:hover{background:va
 
 </main>
 
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap grid g4" style="gap:30px">
     <div><div class="logo" style="color:#fff"><span class="dot"></span> PsychoCampus</div><p style="opacity:.75;font-size:13.5px;margin-top:10px">ფსიქოლოგიური მხარდაჭერის ონლაინ პლატფორმა.</p></div>
-    <div><h4>სერვისები</h4><a data-go="booking">კონსულტაცია</a><a data-go="videos">ვიდეო კონტენტი</a><a data-go="services">ყველა სერვისი</a></div>
+    <div><h4>სერვისები</h4><a data-go="courses">ფსიქო განათლება</a><a data-go="booking">ფსიქო კონსულტაცია</a><a data-go="packages">პაკეტები</a></div>
     <div><h4>ინფორმაცია</h4><a data-go="about">ჩვენ შესახებ</a><a data-go="contact">კონტაქტი</a><a data-go="legal">წესები & პირობები</a></div>
     <div><h4>დაგვიკავშირდი</h4><a>info@psychocampus.ge</a><a>+995 5XX XX XX XX</a><div class="row mt1" style="gap:8px"><span>📘</span><span>📷</span><span>▶️</span></div></div>
   </div>
   <div class="wrap" style="border-top:1px solid #33403f;margin-top:26px;padding-top:18px;opacity:.7;font-size:12.5px">© 2026 PsychoCampus · ყველა უფლება დაცულია</div>
 </footer>
 
-<!-- ============ CHAT ============ -->
 <button class="fab" id="chatFab">💬</button>
 <div class="chat" id="chatBox">
   <div class="head"><b>ონლაინ ჩატი</b><div style="font-size:12px;opacity:.85">ოპერატორი • ჩვეულებრივ პასუხობს წუთებში</div></div>
-  <div class="msgs">
-    <div class="bubble in">გამარჯობა! 👋 როგორ დაგეხმაროთ?</div>
-    <div class="bubble out">მაინტერესებს კონსულტაციის დაჯავშნა</div>
-    <div class="bubble in">რა თქმა უნდა — გადადით გვერდზე „კონსულტაცია“ და აირჩიეთ თავისუფალი დრო 🗓</div>
-  </div>
+  <div class="msgs"><div class="bubble in">გამარჯობა! 👋 როგორ დაგეხმაროთ?</div><div class="bubble out">მაინტერესებს კურსები</div><div class="bubble in">გადადით „ფსიქო განათლებაზე" — თითო კურსი ცალკე იყიდება, პაკეტით კი ფასდაკლება ან უფასოა 🎓</div></div>
   <div class="row" style="padding:12px;border-top:1px solid var(--line)"><input class="inp" placeholder="დაწერეთ..."><button class="btn pri sm">➤</button></div>
 </div>
 
-<!-- ============ AUTH MODAL ============ -->
-<div class="overlay" id="authModal">
-  <div class="modal">
-    <div class="head"><b id="authTitle">შესვლა</b><button class="btn ghost sm" data-close>✕</button></div>
-    <div class="body">
-      <div class="tabs mb3"><button class="on" data-atab="login">შესვლა</button><button data-atab="register">რეგისტრაცია</button></div>
-      <div id="regFields" style="display:none">
-        <div class="grid g2"><div class="field"><label class="f">სახელი</label><input class="inp"></div><div class="field"><label class="f">გვარი</label><input class="inp"></div></div>
-        <div class="field"><label class="f">პირადი ნომერი</label><input class="inp"></div>
-        <div class="field"><label class="f">ტელეფონი</label><input class="inp"></div>
-      </div>
-      <div class="field"><label class="f">ელფოსტა</label><input class="inp" type="email"></div>
-      <div class="field"><label class="f">პაროლი</label><input class="inp" type="password" value="••••••••"></div>
-      <button class="btn pri block mt1" id="authSubmit">შესვლა</button>
-      <p class="faint center mt1" style="font-size:12px">დაცული და კონფიდენციალური</p>
+<!-- AUTH MODAL -->
+<div class="overlay" id="authModal"><div class="modal"><div class="head"><b id="authTitle">შესვლა</b><button class="btn ghost sm" data-close>✕</button></div>
+  <div class="body">
+    <div class="tabs mb3"><button class="on" data-atab="login">შესვლა</button><button data-atab="register">რეგისტრაცია</button></div>
+    <div class="row mb1" style="gap:10px"><button class="soc" data-auth="social"><span class="g">G</span> Google</button><button class="soc" data-auth="social"><span class="f">f</span> Facebook</button></div>
+    <div class="divider">ან ელფოსტით</div>
+    <div id="regFields" style="display:none">
+      <div class="grid g2"><div class="field"><label class="f">სახელი</label><input class="inp"></div><div class="field"><label class="f">გვარი</label><input class="inp"></div></div>
+      <div class="field"><label class="f">პირადი ნომერი</label><input class="inp"></div>
+      <div class="field"><label class="f">ტელეფონი</label><input class="inp"></div>
     </div>
+    <div class="field"><label class="f">ელფოსტა</label><input class="inp" type="email"></div>
+    <div class="field"><label class="f">პაროლი</label><input class="inp" type="password" value="••••••••"></div>
+    <button class="btn pri block mt1" id="authSubmit">შესვლა</button>
+    <p class="faint center mt1 small">დაცული და კონფიდენციალური</p>
   </div>
-</div>
+</div></div>
 
 <div class="toast" id="toast"></div>
 <a class="proto" href="../index.html">◐ Prototype — მთავარ გვერდზე დაბრუნება</a>
 
 <script>
-/* ============ i18n (nav + hero) ============ */
-const I18N={
-  en:{"nav.home":"Home","nav.about":"About","nav.services":"Services","nav.videos":"Videos","nav.booking":"Consultation","nav.contact":"Contact","nav.login":"Log in","nav.register":"Sign up",
-      "home.badge":"Mental health support platform","home.h1":"A space for your peace of mind","home.lede":"Online consultations with certified specialists and a video library — simple, confidential, on your schedule.","home.cta1":"Book a consultation","home.cta2":"Video content","home.serv":"How we help","home.featured":"Featured videos"}
-};
-function applyLang(l){
-  document.querySelectorAll('[data-i]').forEach(function(el){
-    const k=el.getAttribute('data-i');
-    if(l==='en'&&I18N.en[k]){ if(!el.dataset.ka)el.dataset.ka=el.textContent; el.textContent=I18N.en[k]; }
-    else if(el.dataset.ka){ el.textContent=el.dataset.ka; }
-  });
-  document.documentElement.lang=l;
-}
-document.getElementById('lang').addEventListener('click',function(e){
-  const b=e.target.closest('button'); if(!b)return;
-  this.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
-  applyLang(b.dataset.lang);
-});
+/* ===== i18n ===== */
+const I18N={en:{"nav.home":"Home","nav.about":"About","nav.courses":"Psycho Education","nav.booking":"Psycho Consultation","nav.packages":"Packages","nav.contact":"Contact"}};
+function applyLang(l){document.querySelectorAll('[data-i]').forEach(function(el){const k=el.getAttribute('data-i');
+  if(l==='en'&&I18N.en[k]){if(!el.dataset.ka)el.dataset.ka=el.textContent;el.textContent=I18N.en[k];}else if(el.dataset.ka){el.textContent=el.dataset.ka;}});document.documentElement.lang=l;}
+document.getElementById('lang').addEventListener('click',function(e){const b=e.target.closest('button');if(!b)return;
+  this.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');applyLang(b.dataset.lang);});
 
-/* ============ router ============ */
-const views=['home','about','services','videos','video','subscribe','booking','contact','legal','profile'];
-function go(name){
-  views.forEach(v=>document.getElementById('v-'+v).classList.toggle('on',v===name));
+/* ===== router ===== */
+const views=['home','about','courses','course','packages','checkout','booking','contact','legal','profile'];
+function go(name){views.forEach(v=>document.getElementById('v-'+v).classList.toggle('on',v===name));
   document.querySelectorAll('.menu a,.mobile-menu a').forEach(a=>a.classList.toggle('on',a.dataset.go===name));
-  document.getElementById('mmenu').classList.remove('on');
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(location.hash!=='#'+name) history.replaceState(null,'','#'+name);
-}
+  document.getElementById('mmenu').classList.remove('on');window.scrollTo({top:0,behavior:'smooth'});
+  if(location.hash!=='#'+name)history.replaceState(null,'','#'+name);}
 document.addEventListener('click',function(e){
-  const g=e.target.closest('[data-go]'); if(g){e.preventDefault();go(g.dataset.go);}
-  const t=e.target.closest('[data-toast]'); if(t){toast(t.dataset.toast);}
-});
-window.addEventListener('hashchange',()=>{const h=location.hash.slice(1); if(views.includes(h))go(h);});
-
-/* ============ mobile menu ============ */
+  const g=e.target.closest('[data-go]');if(g){e.preventDefault();
+    if(g.dataset.go==='course-preview'){toast('▶ უფასო პრევიუ უშვება');return;}
+    go(g.dataset.go);}
+  const t=e.target.closest('[data-toast]');if(t){toast(t.dataset.toast);}});
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(views.includes(h))go(h);});
 document.getElementById('burger').onclick=()=>document.getElementById('mmenu').classList.toggle('on');
 
-/* ============ toast ============ */
-let toT; function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toT);toT=setTimeout(()=>t.classList.remove('on'),2400);}
+/* ===== toast ===== */
+let toT;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toT);toT=setTimeout(()=>t.classList.remove('on'),2400);}
 
-/* ============ videos ============ */
-const VT=["შფოთვის მართვა","ჯანსაღი ურთიერთობები","თვითშეფასების ამაღლება","სტრესთან გამკლავება","ძილის ჰიგიენა","ემოციური ინტელექტი","პანიკური შეტევები","მოტივაცია და მიზნები"];
-function videoCard(i){
-  return '<div class="card hoverable" data-go="video" data-vt="'+VT[i%VT.length]+'"><div class="thumb"><div class="play">▶</div><span class="lock">🔒 გამოწერა</span><span class="dur">'+(4+i%9)+':'+(i%6)+'0</span></div>'+
-    '<div style="padding:14px"><b style="display:block">'+VT[i%VT.length]+'</b><div class="faint" style="font-size:12.5px;margin-top:3px">კატეგორია · '+(10+i)+' ვიდეო</div></div></div>';
+/* ===== courses data ===== */
+const COURSES=[["შფოთვის მართვა",49],["ჯანსაღი ურთიერთობები",59],["თვითშეფასების ამაღლება",39],["სტრესთან გამკლავება",49],["ემოციური ინტელექტი",69],["პანიკურ შეტევებთან გამკლავება",59],["ძილის ჰიგიენა",39],["მოტივაცია და მიზნები",45]];
+function courseCard(i){const c=COURSES[i%COURSES.length];
+  return '<div class="card hoverable" data-go="course" data-ct="'+c[0]+'" data-cp="'+c[1]+'"><div class="thumb"><div class="play">▶</div>'+
+    '<span class="badge">₾ '+c[1]+'</span><span class="lvl">🎓 სერტიფიკატი</span></div>'+
+    '<div style="padding:14px"><b style="display:block">'+c[0]+'</b>'+
+    '<div class="faint small mt1">5 სექცია · 18 გაკვეთილი · ქვიზები</div>'+
+    '<div class="row between mt2"><span class="pill">⭐ 4.8</span><span class="strong">₾ '+c[1]+'</span></div></div></div>';}
+document.getElementById('homeCourses').innerHTML=[0,1,2,3].map(courseCard).join('');
+document.getElementById('courseGrid').innerHTML=COURSES.map((_,i)=>courseCard(i)).join('');
+document.getElementById('relCourses').innerHTML=[4,5,6,7].map(courseCard).join('');
+document.addEventListener('click',e=>{const c=e.target.closest('[data-ct]');if(c){document.getElementById('cTitle').textContent=c.dataset.ct;document.getElementById('cPrice').textContent='₾ '+c.dataset.cp;document.getElementById('buyCourseBtn').dataset.cp=c.dataset.cp;document.getElementById('buyCourseBtn').dataset.ct=c.dataset.ct;}});
+
+/* course tabs */
+document.getElementById('courseTabs').addEventListener('click',e=>{const b=e.target.closest('[data-ctab]');if(!b)return;
+  document.querySelectorAll('#courseTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  [0,1,2].forEach(i=>document.getElementById('ct'+i).style.display=(''+i===b.dataset.ctab?'block':'none'));});
+
+/* ===== packages ===== */
+const PKGS=[
+  ["პაკეტი 1","₾ 19","/ თვე",false,["<b>ფასდაკლება</b> კურსებზე (−20%)","<b>ფასდაკლება</b> კონსულტაციაზე (−15%)","წვდომა უფასო მასალებზე"]],
+  ["პაკეტი 2","₾ 39","/ თვე",true,["<b>ფასდაკლება</b> კურსებზე (−50%)","<b>ფასდაკლება</b> კონსულტაციაზე (−40%)","პრიორიტეტული ჯავშანი"]],
+  ["პაკეტი 3","₾ 79","/ თვე",false,["<b>ყველა კურსი უფასოდ</b>","<b>კონსულტაცია უფასოდ</b>","ყველა ახალი კონტენტი"]]
+];
+function pkgCardHTML(p,i,compact){
+  return '<div class="pkg'+(p[3]?' feat':'')+'"><div class="top">'+(p[3]?'<span class="pill pri mb1">პოპულარული</span><br>':'')+
+    '<h3>'+p[0]+'</h3><div class="row mt1" style="align-items:baseline;gap:4px"><span class="price">'+p[1]+'</span><span class="muted small">'+p[2]+'</span></div>'+
+    (compact?'':'<ul>'+p[4].map(x=>'<li>✓ <span>'+x+'</span></li>').join('')+'</ul>')+'</div>'+
+    '<div class="foot"><button class="btn '+(p[3]?'pri':'')+' block" data-pkg="'+i+'">არჩევა</button></div></div>';}
+document.getElementById('pkgGrid').innerHTML=PKGS.map((p,i)=>pkgCardHTML(p,i,false)).join('');
+document.getElementById('homePkgs').innerHTML=PKGS.map((p,i)=>pkgCardHTML(p,i,true)).join('');
+
+/* ===== checkout (course or package) ===== */
+let CO={kind:'course',title:'',price:0,recurring:false};
+function openCheckout(kind,title,price,recurring){
+  CO={kind,title,price,recurring};
+  document.getElementById('coKind').textContent=kind==='package'?'პაკეტის გამოწერა':'კურსის ყიდვა';
+  document.getElementById('coHeading').textContent=title;
+  document.getElementById('coSub').textContent=recurring?'ყოველთვიური გამოწერა · გაუქმება ნებისმიერ დროს':'ერთჯერადი გადახდა · მუდმივი წვდომა';
+  const sum='<b>შეჯამება</b>'+
+    '<div class="row between mt2"><span class="muted">'+(kind==='package'?'პაკეტი':'კურსი')+'</span><span>'+title+'</span></div>'+
+    '<div class="row between mt1"><span class="muted">ტიპი</span><span>'+(recurring?'ყოველთვიური':'ერთჯერადი')+'</span></div>'+
+    '<hr style="border:0;border-top:1px dashed var(--line);margin:12px 0"><div class="row between"><span class="muted">ჯამი</span><b style="font-size:18px">₾ '+price+(recurring?' / თვე':'')+'</b></div>';
+  document.getElementById('coSum1').innerHTML=sum;document.getElementById('coSum2').innerHTML=sum;
+  document.getElementById('coPay').textContent='₾ '+price+' გადახდა';
+  costep(1);go('checkout');
 }
-document.getElementById('homeVideos').innerHTML=[0,1,2,3].map(videoCard).join('');
-document.getElementById('videoGrid').innerHTML=Array.from({length:8},(_,i)=>videoCard(i)).join('');
-document.getElementById('relVideos').innerHTML=[4,5,6,7].map(videoCard).join('');
-document.getElementById('servList').innerHTML=["ინდივიდუალური თერაპია","წყვილების კონსულტაცია","სტრესის მენეჯმენტი","კარიერული კონსულტაცია","მოზარდთა მხარდაჭერა","ჯგუფური სესიები"]
-  .map(s=>'<div class="card pad hoverable"><div class="thumb mb2" style="aspect-ratio:16/9;font-size:26px">🧩</div><b>'+s+'</b><p class="muted" style="font-size:13.5px;margin:6px 0 0">მოკლე აღწერა სერვისის შესახებ.</p></div>').join('');
-document.addEventListener('click',e=>{const v=e.target.closest('[data-vt]');if(v)document.getElementById('vTitle').textContent=v.dataset.vt;});
-document.getElementById('previewBtn').onclick=()=>toast('▶ უფასო ფრაგმენტი უშვება (0:45)');
-
-/* ============ booking ============ */
-let selDay=9, selSlot=null, calMonth=6;
-const MONTHS=["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი"];
-function renderCal(){
-  document.getElementById('calMonth').textContent=MONTHS[calMonth]+' 2026';
-  let h='';
-  for(let i=1;i<=31;i++){
-    const wd=(i+2)%7; const off=(wd===5||wd===6||i<8);
-    h+='<div class="day'+(off?' off':'')+(i===selDay&&!off?' sel':'')+'" data-day="'+i+'"'+(off?'':' role="button"')+'>'+i+(off?'':'<span class="load"></span>')+'</div>';
+function costep(n){[1,2,3].forEach(i=>document.getElementById('co'+i).style.display=(i===n?'block':'none'));
+  document.querySelectorAll('#coSteps .step').forEach((s,i)=>{s.classList.toggle('active',i===n-1);s.classList.toggle('done',i<n-1);});
+  if(n===3){setLoggedIn();
+    if(CO.kind==='package'){setPackage(CO.title);document.getElementById('coDone').textContent='პაკეტი გააქტიურდა';document.getElementById('coDoneSub').textContent=CO.title+' აქტიურია — ფასდაკლება/უფასო წვდომა.';document.getElementById('coDoneBtn').textContent='კურსების ნახვა →';document.getElementById('coDoneBtn').setAttribute('data-go','courses');}
+    else{document.getElementById('coDone').textContent='კურსი შეძენილია';document.getElementById('coDoneSub').textContent='„'+CO.title+'" ხელმისაწვდომია. დაასრულე და მიიღე სერტიფიკატი.';document.getElementById('coDoneBtn').textContent='კურსზე გადასვლა →';document.getElementById('coDoneBtn').setAttribute('data-go','course');}
   }
-  document.getElementById('calGrid').innerHTML=h;
-}
-function renderSlots(){
-  const times=["10:00","10:30","11:00","11:30","12:00","12:30","14:00","14:30","15:00"];
-  const full=[3,5];
-  document.getElementById('slots').innerHTML=times.map((t,i)=>{
-    const isFull=full.includes(i);
-    return '<div class="slot'+(isFull?' full':'')+(selSlot===t?' sel':'')+'" '+(isFull?'':'data-slot="'+t+'"')+'>'+t+'<small>'+(isFull?'სავსე':(3-(i%3))+' ადგ.')+'</small></div>';
-  }).join('');
-  document.getElementById('selDate').textContent=selDay+' '+MONTHS[calMonth];
-}
-function updateSummary(){
-  const time=selSlot?(selDay+' '+MONTHS[calMonth]+' · '+selSlot):'—';
-  document.getElementById('sumTime').textContent=time;
-  document.getElementById('toStep2').disabled=!selSlot;
-  const html='<b>ჯავშნის შეჯამება</b>'+
-    '<div class="row between mt2"><span class="muted">სერვისი</span><span>კონსულტაცია</span></div>'+
-    '<div class="row between mt1"><span class="muted">დრო</span><b>'+time+'</b></div>'+
-    '<div class="row between mt1"><span class="muted">ხანგრძლივობა</span><span>30 წთ</span></div>'+
+  window.scrollTo({top:200,behavior:'smooth'});}
+document.addEventListener('click',e=>{
+  const s=e.target.closest('[data-costep]');if(s)costep(+s.dataset.costep);
+  const p=e.target.closest('[data-pkg]');if(p){const k=+p.dataset.pkg;openCheckout('package',PKGS[k][0],PKGS[k][1].replace('₾','').trim(),true);}
+});
+document.getElementById('buyCourseBtn').onclick=function(){openCheckout('course',this.dataset.ct||'კურსი',this.dataset.cp||49,false);};
+document.getElementById('coBack1').onclick=()=>go(CO.kind==='package'?'packages':'course');
+
+/* ===== booking ===== */
+let selDay=9,selSlot=null,calMonth=6;
+const MONTHS=["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი"];
+function renderCal(){document.getElementById('calMonth').textContent=MONTHS[calMonth]+' 2026';let h='';
+  for(let i=1;i<=31;i++){const wd=(i+2)%7;const off=(wd===5||wd===6||i<8);
+    h+='<div class="day'+(off?' off':'')+(i===selDay&&!off?' sel':'')+'" data-day="'+i+'">'+i+(off?'':'<span class="load"></span>')+'</div>';}
+  document.getElementById('calGrid').innerHTML=h;}
+function renderSlots(){const times=["10:00","10:30","11:00","11:30","12:00","12:30","14:00","14:30","15:00"];const full=[3,5];
+  document.getElementById('slots').innerHTML=times.map((t,i)=>{const isFull=full.includes(i);
+    return '<div class="slot'+(isFull?' full':'')+(selSlot===t?' sel':'')+'" '+(isFull?'':'data-slot="'+t+'"')+'>'+t+'<small>'+(isFull?'სავსე':(3-(i%3))+' ადგ.')+'</small></div>';}).join('');
+  document.getElementById('selDate').textContent=selDay+' '+MONTHS[calMonth];}
+function updateSummary(){const time=selSlot?(selDay+' '+MONTHS[calMonth]+' · '+selSlot):'—';
+  document.getElementById('sumTime').textContent=time;document.getElementById('toStep2').disabled=!selSlot;
+  const html='<b>ჯავშნის შეჯამება</b><div class="row between mt2"><span class="muted">სერვისი</span><span>ფსიქო კონსულტაცია</span></div>'+
+    '<div class="row between mt1"><span class="muted">დრო</span><b>'+time+'</b></div><div class="row between mt1"><span class="muted">ხანგრძლივობა</span><span>30 წთ</span></div>'+
     '<hr style="border:0;border-top:1px dashed var(--line);margin:12px 0"><div class="row between"><span class="muted">ჯამი</span><b style="font-size:18px">₾ 60</b></div>';
-  document.getElementById('sum2').innerHTML=html; document.getElementById('sum3').innerHTML=html;
-  document.getElementById('doneTime').textContent=time;
-}
+  document.getElementById('bsum2').innerHTML=html;document.getElementById('bsum3').innerHTML=html;document.getElementById('doneTime').textContent=time;}
 document.getElementById('calGrid').addEventListener('click',e=>{const d=e.target.closest('[data-day]');if(!d||d.classList.contains('off'))return;selDay=+d.dataset.day;selSlot=null;renderCal();renderSlots();updateSummary();});
 document.getElementById('slots').addEventListener('click',e=>{const s=e.target.closest('[data-slot]');if(!s)return;selSlot=s.dataset.slot;renderSlots();updateSummary();});
 document.getElementById('calPrev').onclick=()=>{if(calMonth>0){calMonth--;renderCal();renderSlots();updateSummary();}};
 document.getElementById('calNext').onclick=()=>{if(calMonth<11){calMonth++;renderCal();renderSlots();updateSummary();}};
-function bstep(n){
-  [1,2,3,4].forEach(i=>document.getElementById('bs'+i).style.display=(i===n?'block':'none'));
-  document.querySelectorAll('#steps .step').forEach((s,i)=>{s.classList.toggle('active',i===n-1);s.classList.toggle('done',i<n-1);});
-  window.scrollTo({top:200,behavior:'smooth'});
-}
+function bstep(n){[1,2,3,4].forEach(i=>document.getElementById('bs'+i).style.display=(i===n?'block':'none'));
+  document.querySelectorAll('#steps .step').forEach((s,i)=>{s.classList.toggle('active',i===n-1);s.classList.toggle('done',i<n-1);});window.scrollTo({top:200,behavior:'smooth'});}
 document.getElementById('toStep2').onclick=()=>bstep(2);
 document.addEventListener('click',e=>{const b=e.target.closest('[data-bstep]');if(b)bstep(+b.dataset.bstep);});
 renderCal();renderSlots();updateSummary();
 
-/* ============ subscription checkout ============ */
-(function(){
-  const sum='<b>გამოწერის შეჯამება</b>'+
-    '<div class="row between mt2"><span class="muted">გეგმა</span><span>ვიდეო გამოწერა</span></div>'+
-    '<div class="row between mt1"><span class="muted">პერიოდი</span><span>ყოველთვიური</span></div>'+
-    '<div class="row between mt1"><span class="muted">წვდომა</span><span>ყველა ვიდეო</span></div>'+
-    '<hr style="border:0;border-top:1px dashed var(--line);margin:12px 0"><div class="row between"><span class="muted">ჯამი / თვე</span><b style="font-size:18px">₾ 29</b></div>';
-  document.getElementById('subSum1').innerHTML=sum;document.getElementById('subSum2').innerHTML=sum;
-})();
-function sstep(n){
-  [1,2,3].forEach(i=>document.getElementById('ss'+i).style.display=(i===n?'block':'none'));
-  document.querySelectorAll('#subSteps .step').forEach((s,i)=>{s.classList.toggle('active',i===n-1);s.classList.toggle('done',i<n-1);});
-  if(n===3)setLoggedIn();
-  window.scrollTo({top:200,behavior:'smooth'});
-}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-sstep]');if(b)sstep(+b.dataset.sstep);});
+/* ===== my courses ===== */
+document.getElementById('myCourses').innerHTML=[["შფოთვის მართვა",100],["ჯანსაღი ურთიერთობები",60]].map(function(c){
+  return '<div class="card pad"><div class="row between"><b>'+c[0]+'</b>'+(c[1]===100?'<span class="pill ok">დასრულებული</span>':'<span class="pill">'+c[1]+'%</span>')+'</div>'+
+    '<div class="prog mt2"><i style="width:'+c[1]+'%"></i></div>'+
+    '<button class="btn '+(c[1]===100?'':'pri ')+'block mt2" data-go="course">'+(c[1]===100?'🎓 სერტიფიკატის ნახვა':'გაგრძელება')+'</button></div>';}).join('');
 
-/* ============ tabs (profile, legal, auth) ============ */
+/* ===== tabs (profile, legal, auth) ===== */
 document.getElementById('profTabs').addEventListener('click',e=>{const b=e.target.closest('[data-ptab]');if(!b)return;
   document.querySelectorAll('#profTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-  [0,1,2,3].forEach(i=>document.getElementById('pt'+i).style.display=(''+i===b.dataset.ptab?'block':'none'));});
+  [0,1,2,3,4,5].forEach(i=>document.getElementById('pt'+i).style.display=(''+i===b.dataset.ptab?'block':'none'));});
+/* clicking data-ptab from anywhere (e.g. bookings row) opens profile tab */
+document.addEventListener('click',e=>{const b=e.target.closest('[data-ptab]');if(!b||b.closest('#profTabs'))return;
+  go('profile');document.querySelectorAll('#profTabs button').forEach(x=>x.classList.toggle('on',x.dataset.ptab===b.dataset.ptab));
+  [0,1,2,3,4,5].forEach(i=>document.getElementById('pt'+i).style.display=(''+i===b.dataset.ptab?'block':'none'));});
 const LEGAL=["წესები და პირობები","კონფიდენციალურობის პოლიტიკა","Cookie პოლიტიკა","დაბრუნების პოლიტიკა"];
 document.getElementById('legalTabs').addEventListener('click',e=>{const b=e.target.closest('[data-legal]');if(!b)return;
-  document.querySelectorAll('#legalTabs button').forEach(x=>{x.classList.remove('pri');x.classList.add('pill');});b.classList.add('pri');
-  document.getElementById('legalTitle').textContent=LEGAL[+b.dataset.legal];});
+  document.querySelectorAll('#legalTabs button').forEach(x=>{x.classList.remove('pri');});b.classList.add('pri');document.getElementById('legalTitle').textContent=LEGAL[+b.dataset.legal];});
 
-/* ============ auth ============ */
+/* ===== auth ===== */
 const modal=document.getElementById('authModal');
-function openAuth(mode){modal.classList.add('on');switchAuth(mode==='register'?'register':'login');}
-function switchAuth(mode){
-  const reg=mode==='register';
-  document.getElementById('regFields').style.display=reg?'block':'none';
-  document.getElementById('authTitle').textContent=reg?'რეგისტრაცია':'შესვლა';
-  document.getElementById('authSubmit').textContent=reg?'რეგისტრაცია':'შესვლა';
-  document.querySelectorAll('#authModal [data-atab]').forEach(x=>x.classList.toggle('on',x.dataset.atab===mode));
-}
+function switchAuth(mode){const reg=mode==='register';document.getElementById('regFields').style.display=reg?'block':'none';
+  document.getElementById('authTitle').textContent=reg?'რეგისტრაცია':'შესვლა';document.getElementById('authSubmit').textContent=reg?'რეგისტრაცია':'შესვლა';
+  document.querySelectorAll('#authModal [data-atab]').forEach(x=>x.classList.toggle('on',x.dataset.atab===mode));}
 document.querySelector('#authModal .tabs').addEventListener('click',e=>{const b=e.target.closest('[data-atab]');if(b)switchAuth(b.dataset.atab);});
-document.addEventListener('click',e=>{
-  const a=e.target.closest('[data-auth]'); if(a){e.preventDefault();
+document.addEventListener('click',e=>{const a=e.target.closest('[data-auth]');if(a){e.preventDefault();
     if(a.dataset.auth==='profile'){setLoggedIn();go('profile');return;}
-    openAuth(a.dataset.auth);}
-  if(e.target.closest('[data-close]')||e.target===modal)modal.classList.remove('on');
-});
+    if(a.dataset.auth==='social'){modal.classList.remove('on');setLoggedIn();toast('ავტორიზაცია წარმატებულია ✓');go('profile');return;}
+    modal.classList.add('on');switchAuth(a.dataset.auth==='register'?'register':'login');}
+  if(e.target.closest('[data-close]')||e.target===modal)modal.classList.remove('on');});
 document.getElementById('authSubmit').onclick=()=>{modal.classList.remove('on');setLoggedIn();toast('წარმატებით შეხვედით ✓');go('profile');};
-function setLoggedIn(){
-  document.getElementById('authArea').innerHTML='<button class="btn sm" data-go="profile">👤 გიორგი</button>';
-  document.getElementById('subState').textContent='აქტიური';
-  document.getElementById('subState').className='pill ok';
-}
+function setLoggedIn(){document.getElementById('authArea').innerHTML='<button class="btn sm" data-go="profile">👤 გიორგი</button>';}
+function setPackage(name){document.getElementById('pkgBadge').textContent='პაკეტი: '+name;document.getElementById('pkgBadge').className='pill ok';
+  document.getElementById('pkgStatePill').textContent='აქტიური';document.getElementById('pkgStatePill').className='pill ok';
+  document.getElementById('pkgDesc').textContent=name+' აქტიურია — ფასდაკლება ან უფასო წვდომა კურსებსა და კონსულტაციაზე.';}
 
-/* ============ chat ============ */
+/* ===== chat ===== */
 document.getElementById('chatFab').onclick=()=>document.getElementById('chatBox').classList.toggle('on');
 
-/* init from hash */
 (function(){const h=location.hash.slice(1);if(views.includes(h))go(h);})();
 </script>
 </body>

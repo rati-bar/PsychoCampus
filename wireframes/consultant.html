@@ -120,10 +120,10 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
             <table class="tb" id="bkTable">
               <thead><tr><th>დრო</th><th>კოდი</th><th>მომხმარებელი</th><th>საკონტაქტო</th><th>სტატუსი</th><th></th></tr></thead>
               <tbody>
-                <tr><td><b>10:30</b></td><td>#BK-10234</td><td>გ. მ.</td><td>+995 5XX · g.m@…</td><td><span class="pill acc">მომდევნო</span></td><td><button class="btn sm" data-open="10:30 · #BK-10234 · გ. მ.">დეტალები</button></td></tr>
-                <tr><td><b>11:15</b></td><td>#BK-10240</td><td>ნ. კ.</td><td>+995 5XX · n.k@…</td><td><span class="pill">დაგეგმილი</span></td><td><button class="btn sm" data-open="11:15 · #BK-10240 · ნ. კ.">დეტალები</button></td></tr>
-                <tr><td><b>14:00</b></td><td>#BK-10251</td><td>დ. ბ.</td><td>+995 5XX · d.b@…</td><td><span class="pill">დაგეგმილი</span></td><td><button class="btn sm" data-open="14:00 · #BK-10251 · დ. ბ.">დეტალები</button></td></tr>
-                <tr><td class="faint">09:30</td><td>#BK-10228</td><td>ს. ლ.</td><td>+995 5XX · s.l@…</td><td><span class="pill ok">დასრულებული</span></td><td><button class="btn sm" data-open="09:30 · #BK-10228 · ს. ლ.">ჩანაწერი</button></td></tr>
+                <tr><td><b>10:30</b></td><td>#BK-10234</td><td>გ. მ.</td><td>+995 5XX · g.m@…</td><td><span class="pill acc">მომდევნო</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="გ. მ.|#BK-10234|10:30">✉ მიწერა</button><button class="btn sm" data-open="10:30 · #BK-10234 · გ. მ.">დეტალები</button></div></td></tr>
+                <tr><td><b>11:15</b></td><td>#BK-10240</td><td>ნ. კ.</td><td>+995 5XX · n.k@…</td><td><span class="pill">დაგეგმილი</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="ნ. კ.|#BK-10240|11:15">✉ მიწერა</button><button class="btn sm" data-open="11:15 · #BK-10240 · ნ. კ.">დეტალები</button></div></td></tr>
+                <tr><td><b>14:00</b></td><td>#BK-10251</td><td>დ. ბ.</td><td>+995 5XX · d.b@…</td><td><span class="pill">დაგეგმილი</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="დ. ბ.|#BK-10251|14:00">✉ მიწერა</button><button class="btn sm" data-open="14:00 · #BK-10251 · დ. ბ.">დეტალები</button></div></td></tr>
+                <tr><td class="faint">09:30</td><td>#BK-10228</td><td>ს. ლ.</td><td>+995 5XX · s.l@…</td><td><span class="pill ok">დასრულებული</span></td><td><div class="row" style="gap:6px"><button class="btn sm" data-msg="ს. ლ.|#BK-10228|09:30">✉ მიწერა</button><button class="btn sm" data-open="09:30 · #BK-10228 · ს. ლ.">ჩანაწერი</button></div></td></tr>
               </tbody>
             </table>
           </div>
@@ -201,6 +201,22 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
   </div>
 </div>
 
+<!-- send message modal -->
+<div class="overlay" id="msgModal">
+  <div class="modal">
+    <div class="head"><b>შეტყობინება მომხმარებელს</b><button class="btn ghost sm" data-close>✕</button></div>
+    <div class="pad">
+      <div class="pill acc mb2" id="msgTo">—</div>
+      <label class="f">🔗 შეხვედრის ბმული</label>
+      <div class="row" style="gap:8px"><input class="inp" id="meetLink" value="meet.psychocampus.ge/bk-xxxx"><button class="btn sm" id="genLink" data-toast="ბმული დაგენერირდა">გენერაცია</button></div>
+      <label class="f mt2">შეტყობინების ტექსტი</label>
+      <textarea class="inp" id="msgBody" style="min-height:90px">გამარჯობა! თქვენი კონსულტაცია დაჯავშნილია. შეხვედრის ბმული ზემოთაა — შესვლა შესაძლებელია დანიშნულ დროს.</textarea>
+      <div class="row between mt2"><button class="btn" data-close>გაუქმება</button><button class="btn pri" id="sendMsg">გაგზავნა</button></div>
+      <p class="faint mt1" style="font-size:12px">შეტყობინება გამოჩნდება მომხმარებლის კაბინეტში „შეტყობინებებში".</p>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <a class="proto" href="../index.html">◐ Prototype — მთავარ გვერდზე დაბრუნება</a>
 
@@ -235,11 +251,17 @@ let active=true;
 document.getElementById('topSwitch').onclick=()=>{active=!active;setActive(active);};
 document.getElementById('availSwitch').onclick=()=>{active=!active;setActive(active);};
 
-/* booking modal */
+/* booking + message modals */
 document.addEventListener('click',e=>{
   const o=e.target.closest('[data-open]');if(o){document.getElementById('mkCode').textContent=o.dataset.open;document.getElementById('bkModal').classList.add('on');}
-  if(e.target.closest('[data-close]')||e.target===document.getElementById('bkModal'))document.getElementById('bkModal').classList.remove('on');
+  const m=e.target.closest('[data-msg]');if(m){const [name,code,time]=m.dataset.msg.split('|');
+    document.getElementById('msgTo').textContent='მიმღები: '+name+' · '+code+' · '+time;
+    document.getElementById('meetLink').value='meet.psychocampus.ge/'+code.replace('#','').toLowerCase();
+    document.getElementById('msgModal').classList.add('on');}
+  if(e.target.closest('[data-close]')||e.target.classList.contains('overlay')){document.querySelectorAll('.overlay').forEach(x=>x.classList.remove('on'));}
 });
+document.getElementById('genLink').onclick=()=>{document.getElementById('meetLink').value='meet.psychocampus.ge/room-'+(document.getElementById('meetLink').value.length);};
+document.getElementById('sendMsg').onclick=()=>{document.getElementById('msgModal').classList.remove('on');toast('შეტყობინება გაიგზავნა მომხმარებელთან ✓');};
 
 /* schedule grid */
 (function(){

@@ -16,18 +16,20 @@ Each file is a small single-page app: real navigation, tabs, modals, a working b
 
 ## 1️⃣ public.html — Public website
 Client-side routed views, all in one file:
-- **Home** — hero, service hub, featured videos, live-chat widget
-- **About / Services** — company info + the two directions (video, consultation) and extra services
-- **Video library** — grid with free preview vs 🔒 subscription-locked full video; single-video paywall page
-- **Video subscription checkout** — 3-step monthly-subscription flow (plan & account → bank/card payment → confirmation) that activates access to the whole library; access auto-closes when payment stops
-- **Consultation booking** — 4-step flow (calendar → contact → payment → confirmation) with a working month calendar, slot capacity, live summary
-- **Auth** — login / registration modal (personal number, name, email = unique ID, phone); logging in reveals the **user profile** (bookings with reschedule/cancel, subscription, payments & invoices, personal data)
+- **Home** — hero, the two directions, packages teaser, featured courses, live-chat widget
+- **ფსიქო განათლება (Psycho Education)** — catalog of **individually priced** Udemy-style video courses (free preview + per-course price)
+- **Course detail** — Udemy-style: player, tabs (overview / syllabus / quizzes), multi-section curriculum with lectures and mid-course quizzes, purchase card, certificate-on-completion note
+- **Packages** — 3 monthly tiers: packages 1 & 2 give discounts on courses + consultations, package 3 makes both free
+- **Checkout** — shared 3-step flow (account → bank/card payment → confirmation) for both a single course purchase and a package subscription
+- **ფსიქო კონსულტაცია (Psycho Consultation) booking** — 4-step flow (calendar → contact → payment → confirmation) with working month calendar, slot capacity, live summary
+- **Auth** — login / registration modal incl. **Google & Facebook** social login (plus personal number, name, email = unique ID, phone); logging in reveals the **user cabinet**
+- **User cabinet** — tabs: bookings (reschedule/cancel), my courses (progress), 🎓 certificates, 🔔 messages (consultant meeting link etc.), package & payments/invoices, personal data
 - **Contact / Legal** — form + map; terms, privacy, cookie & refund tabs
 - **GEO / ENG** language toggle, responsive mobile menu, chat panel
 
 ## 2️⃣ consultant.html — Consultant workspace
 Login → dashboard with sidebar navigation:
-- **My bookings** — stat tiles + assigned-only booking list, booking-detail modal (incognito model: sees only own bookings)
+- **My bookings** — stat tiles + assigned-only booking list, **✉ message-user button** (send meeting link → appears in the user's cabinet), booking-detail modal (incognito model: sees only own bookings)
 - **My schedule** — working hours + weekly grid
 - **Availability** — active/inactive toggle (synced to the top bar), force-majeure explanation, time-off request
 - **Profile**
@@ -37,7 +39,8 @@ Login → full management panel:
 - **Overview** — KPIs, revenue bar chart, source donut, recent orders, live status
 - **Orders & payments** — filters, table, order-detail modal, Excel export, refund action
 - **Bookings & consultants** — consultant table with working **force-majeure toggle** (reassign logic), time management (global / per-operator / manual), buffer, unified load calendar
-- **Content & SEO** — tabs for videos / services / pages / SEO; content editor with bilingual toggle + SEO panel (auto-generate, OG banner); sitemap, JSON-LD, Meta Pixel, GA4 switches
+- **Content & SEO** — tabs for courses / services / pages / SEO; course editor with **per-course price**, Udemy-style curriculum (sections/lectures/quizzes) and certificate toggle, bilingual + SEO panel; sitemap, JSON-LD, Meta Pixel, GA4 switches
+- **Packages** — manage the 3 tiers (price, course/consultation discount %, or full-free), active-subscriber counts
 - **Users** — searchable table + user detail modal (personal data, linked payments)
 - **Chat / operators** — queue, operator status
 - **Settings** — general, languages, payment/pricing, cancellation & refund policy

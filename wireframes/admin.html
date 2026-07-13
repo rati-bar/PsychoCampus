@@ -102,6 +102,7 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
     <a data-v="orders">🛒 შეკვეთები & გადახდები</a>
     <a data-v="bookings">📅 ჯავშნები & კონსულტანტები</a>
     <a data-v="content">🎬 კონტენტი & SEO</a>
+    <a data-v="packages">🎁 პაკეტები</a>
     <a data-v="users">👥 მომხმარებლები</a>
     <a data-v="chat">💬 ჩატი / ოპერატორები</a>
     <a data-v="settings">⚙ პარამეტრები</a>
@@ -197,21 +198,29 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
 
       <!-- CONTENT & SEO -->
       <section class="view" id="v-content">
-        <div class="row between wrapf mb3"><div class="tabs" id="cTabs"><button class="on" data-ct="videos">ვიდეოები</button><button data-ct="services">სერვისები</button><button data-ct="pages">გვერდები</button><button data-ct="seo">SEO</button></div><span class="pill acc">🌐 ქარ / ENG</span></div>
+        <div class="row between wrapf mb3"><div class="tabs" id="cTabs"><button class="on" data-ct="videos">კურსები</button><button data-ct="services">სერვისები</button><button data-ct="pages">გვერდები</button><button data-ct="seo">SEO</button></div><span class="pill acc">🌐 ქარ / ENG</span></div>
 
         <div class="cpanel on" id="cp-videos">
-          <div class="card mb3"><div class="pad" style="padding-bottom:0"><div class="row between"><b>ვიდეოები</b><button class="btn sm pri" data-toast="ვიდეოს დამატების ფორმა">+ ვიდეო</button></div></div>
-            <div class="pad"><table class="tb"><thead><tr><th>სათაური</th><th>კატეგორია</th><th>წვდომა</th><th>სტატუსი</th><th></th></tr></thead><tbody>
-              <tr><td>შფოთვის მართვა</td><td>შფოთვა</td><td><span class="pill warn">🔒 გამოწერა</span></td><td><span class="pill ok">გამოქვეყნებული</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
-              <tr><td>ჯანსაღი ურთიერთობები</td><td>ურთიერთობები</td><td><span class="pill">👁 preview</span></td><td><span class="pill">დრაფტი</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
+          <div class="card mb3"><div class="pad" style="padding-bottom:0"><div class="row between"><b>კურსები (ფსიქო განათლება)</b><button class="btn sm pri" data-toast="ახალი კურსის დამატება">+ კურსი</button></div></div>
+            <div class="pad"><table class="tb"><thead><tr><th>სათაური</th><th>კატეგორია</th><th>ფასი</th><th>კონტენტი</th><th>სერტიფიკატი</th><th>სტატუსი</th><th></th></tr></thead><tbody>
+              <tr><td>შფოთვის მართვა</td><td>შფოთვა</td><td><b>₾ 49</b></td><td class="faint">5 სექცია · 4 ქვიზი</td><td><span class="pill gold">🎓 კი</span></td><td><span class="pill ok">გამოქვეყნებული</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
+              <tr><td>ჯანსაღი ურთიერთობები</td><td>ურთიერთობები</td><td><b>₾ 59</b></td><td class="faint">6 სექცია · 5 ქვიზი</td><td><span class="pill gold">🎓 კი</span></td><td><span class="pill">დრაფტი</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
             </tbody></table></div></div>
           <div class="split2" id="editor" style="display:none">
             <div class="card pad"><div class="row between mb2"><h3>ჩანაწერის რედაქტირება</h3><div class="tabs"><button class="on">ქარ</button><button>ENG</button></div></div>
               <div class="field"><label class="f">სათაური</label><input class="inp" value="შფოთვის მართვა"></div>
               <div class="field"><label class="f">მოკლე აღწერა</label><textarea class="inp" style="min-height:60px">პრაქტიკული ტექნიკები შფოთვასთან გასამკლავებლად.</textarea></div>
-              <div class="field"><label class="f">სრული ტექსტი</label><div class="inp faint" style="min-height:100px">B  I  U  ¶  🔗  🖼  —  rich text editor</div></div>
-              <div class="grid g2"><div class="field"><label class="f">მთავარი ფოტო</label><div class="inp faint center" style="padding:22px">↑ ატვირთვა</div></div><div class="field"><label class="f">ვიდეო ფაილი</label><div class="inp faint center" style="padding:22px">↑ ატვირთვა</div></div></div>
-              <div class="row"><button class="btn" data-toast="დრაფტი შენახულია">დრაფტი</button><button class="btn pri" data-toast="გამოქვეყნდა ✓">გამოქვეყნება</button></div>
+              <div class="grid g2"><div class="field"><label class="f">ფასი (₾)</label><input class="inp" value="49"></div><div class="field"><label class="f">კატეგორია</label><input class="inp" value="შფოთვა"></div></div>
+              <div class="field"><label class="f">მთავარი ფოტო</label><div class="inp faint center" style="padding:18px">↑ ატვირთვა</div></div>
+              <label class="f">სასწავლო გეგმა · Udemy ფორმატი (სექციები · გაკვეთილები · ქვიზები)</label>
+              <div class="card card--flat" style="padding:12px">
+                <div class="row between" style="font-weight:600;font-size:13.5px">სექცია 1 · შესავალი <span class="faint">3 გაკვეთილი</span></div>
+                <div class="faint" style="font-size:12.5px;margin-top:4px">▶ გაკვეთილი 1 (უფასო) · ▶ გაკვეთილი 2 · ? ქვიზი 1</div>
+                <div class="row between mt1" style="font-weight:600;font-size:13.5px">სექცია 2 · ტექნიკები <span class="faint">2 გაკვ. + ქვიზი</span></div>
+                <div class="row mt1" style="gap:6px"><button class="btn sm" data-toast="სექციის დამატება">+ სექცია</button><button class="btn sm" data-toast="გაკვეთილის დამატება">+ გაკვეთილი</button><button class="btn sm" data-toast="ქვიზის დამატება">+ ქვიზი</button></div>
+              </div>
+              <label class="row mt2" style="gap:8px;font-size:13.5px;color:var(--muted)"><input type="checkbox" checked> დასრულებისას სერტიფიკატის ავტ. გენერაცია</label>
+              <div class="row mt2"><button class="btn" data-toast="დრაფტი შენახულია">დრაფტი</button><button class="btn pri" data-toast="გამოქვეყნდა ✓">გამოქვეყნება</button></div>
             </div>
             <div class="card pad"><h3 class="mb2">SEO</h3>
               <div class="field"><label class="f">SEO Title</label><input class="inp" placeholder="ავტომ. თუ ცარიელია"></div>
@@ -246,6 +255,26 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
             <button class="btn pri" data-toast="შენახულია ✓">შენახვა</button>
           </div>
         </div></div>
+      </section>
+
+      <!-- PACKAGES -->
+      <section class="view" id="v-packages">
+        <div class="card mb3"><div class="pad" style="padding-bottom:0"><div class="row between"><b>გამოწერის პაკეტები</b><button class="btn sm pri" data-toast="ახალი პაკეტის დამატება">+ პაკეტი</button></div></div>
+          <div class="pad"><table class="tb"><thead><tr><th>პაკეტი</th><th>ფასი / თვე</th><th>კურსებზე</th><th>კონსულტაციაზე</th><th>აქტიური გამომწერი</th><th>სტატუსი</th><th></th></tr></thead><tbody>
+            <tr><td><b>პაკეტი 1</b></td><td>₾ 19</td><td><span class="pill">−20% ფასდაკლება</span></td><td><span class="pill">−15% ფასდაკლება</span></td><td>84</td><td><span class="pill ok">აქტიური</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
+            <tr><td><b>პაკეტი 2</b></td><td>₾ 39</td><td><span class="pill">−50% ფასდაკლება</span></td><td><span class="pill">−40% ფასდაკლება</span></td><td>121</td><td><span class="pill ok">აქტიური</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
+            <tr><td><b>პაკეტი 3</b></td><td>₾ 79</td><td><span class="pill gold">უფასო</span></td><td><span class="pill gold">უფასო</span></td><td>43</td><td><span class="pill ok">აქტიური</span></td><td><button class="btn sm" data-edit>✎</button></td></tr>
+          </tbody></table></div></div>
+        <div class="split2" id="pkgEditor" style="display:none">
+          <div class="card pad"><h3 class="mb2">პაკეტის რედაქტირება</h3>
+            <div class="grid g2"><div class="field"><label class="f">დასახელება</label><input class="inp" value="პაკეტი 2"></div><div class="field"><label class="f">ფასი / თვე (₾)</label><input class="inp" value="39"></div></div>
+            <div class="grid g2"><div class="field"><label class="f">ფასდაკლება კურსებზე (%)</label><input class="inp" value="50"></div><div class="field"><label class="f">ფასდაკლება კონსულტაციაზე (%)</label><input class="inp" value="40"></div></div>
+            <label class="row mb2" style="gap:8px;font-size:13.5px;color:var(--muted)"><input type="checkbox"> კურსები სრულიად უფასო</label>
+            <label class="row" style="gap:8px;font-size:13.5px;color:var(--muted)"><input type="checkbox"> კონსულტაცია სრულიად უფასო</label>
+            <div class="row mt3"><button class="btn" data-toast="დრაფტი">დრაფტი</button><button class="btn pri" data-toast="შენახულია ✓">შენახვა</button></div>
+          </div>
+          <div class="card pad card--flat"><b>ლოგიკა</b><p class="muted" style="font-size:13px">პაკეტი 1 და 2 — ფასდაკლების პროცენტი კურსებსა და კონსულტაციაზე. პაკეტი 3 — სრული უფასო წვდომა. ფასდაკლება ავტომ. გამოითვლება მომხმარებლის აქტიური პაკეტის მიხედვით გადახდისას.</p></div>
+        </div>
       </section>
 
       <!-- USERS -->
@@ -343,7 +372,7 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
 <a class="proto" href="../index.html">◐ Prototype — მთავარ გვერდზე დაბრუნება</a>
 
 <script>
-const TITLES={dash:"მიმოხილვა",orders:"შეკვეთები & გადახდები",bookings:"ჯავშნები & კონსულტანტები",content:"კონტენტი & SEO",users:"მომხმარებლები",chat:"ჩატი / ოპერატორები",settings:"პარამეტრები"};
+const TITLES={dash:"მიმოხილვა",orders:"შეკვეთები & გადახდები",bookings:"ჯავშნები & კონსულტანტები",content:"კონტენტი & SEO",packages:"პაკეტები",users:"მომხმარებლები",chat:"ჩატი / ოპერატორები",settings:"პარამეტრები"};
 function go(v){
   document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
   document.querySelectorAll('.side a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
@@ -381,7 +410,9 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-fm]');if(!
 document.getElementById('cTabs').addEventListener('click',e=>{const b=e.target.closest('[data-ct]');if(!b)return;
   document.querySelectorAll('#cTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
   ['videos','services','pages','seo'].forEach(k=>document.getElementById('cp-'+k).style.display=(k===b.dataset.ct?'block':'none'));});
-document.addEventListener('click',e=>{if(e.target.closest('[data-edit]')){const ed=document.getElementById('editor');if(ed){ed.style.display='grid';ed.scrollIntoView({behavior:'smooth',block:'center'});}}});
+document.addEventListener('click',e=>{if(!e.target.closest('[data-edit]'))return;
+  const pe=e.target.closest('#v-packages')?document.getElementById('pkgEditor'):document.getElementById('editor');
+  if(pe){pe.style.display='grid';pe.scrollIntoView({behavior:'smooth',block:'center'});}});
 
 /* modals */
 document.addEventListener('click',e=>{
