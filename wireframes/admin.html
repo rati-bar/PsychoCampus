@@ -177,9 +177,9 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
         </div>
         <div class="card mb3"><div class="pad" style="padding-bottom:0"><div class="row between"><b>კონსულტანტების გრაფიკები — დასადასტურებელი</b><span class="pill warn">2 მოლოდინში</span></div></div>
           <div class="pad"><table class="tb"><thead><tr><th>კონსულტანტი</th><th>პერიოდი</th><th>საათები (კვირა)</th><th>სტატუსი</th><th></th></tr></thead><tbody>
-            <tr><td>კონსულტანტი ბ</td><td>14–20 ივლ</td><td>24 სთ</td><td><span class="pill warn">⏳ მოლოდინში</span></td><td class="row" style="gap:6px"><button class="btn sm" data-toast="გრაფიკის დათვალიერება">ნახვა</button><button class="btn sm pri" data-toast="გრაფიკი დადასტურდა ✓">დადასტურება</button><button class="btn sm danger" data-toast="გრაფიკი უარყოფილია">უარი</button></td></tr>
-            <tr><td>კონსულტანტი გ</td><td>14–20 ივლ</td><td>18 სთ</td><td><span class="pill warn">⏳ მოლოდინში</span></td><td class="row" style="gap:6px"><button class="btn sm" data-toast="გრაფიკის დათვალიერება">ნახვა</button><button class="btn sm pri" data-toast="გრაფიკი დადასტურდა ✓">დადასტურება</button><button class="btn sm danger" data-toast="გრაფიკი უარყოფილია">უარი</button></td></tr>
-            <tr><td>კონსულტანტი ა</td><td>07–13 ივლ</td><td>30 სთ</td><td><span class="pill ok">✓ დადასტურებული</span></td><td class="faint" style="font-size:12.5px">დადასტურდა 05 ივლ</td></tr>
+            <tr><td>კონსულტანტი ბ</td><td>ივლისი 2026</td><td>24 სთ</td><td><span class="pill warn">⏳ მოლოდინში</span></td><td class="row" style="gap:6px"><button class="btn sm pri" data-review="კონსულტანტი ბ|ივლისი 2026">გადახედვა & დადასტურება</button></td></tr>
+            <tr><td>კონსულტანტი გ</td><td>ივლისი 2026</td><td>18 სთ</td><td><span class="pill warn">⏳ მოლოდინში</span></td><td class="row" style="gap:6px"><button class="btn sm pri" data-review="კონსულტანტი გ|ივლისი 2026">გადახედვა & დადასტურება</button></td></tr>
+            <tr><td>კონსულტანტი ა</td><td>ივნისი 2026</td><td>30 სთ</td><td><span class="pill ok">✓ დადასტურებული</span></td><td><button class="btn sm" data-review="კონსულტანტი ა|ივნისი 2026">ნახვა</button></td></tr>
           </tbody></table>
           <p class="faint" style="font-size:12.5px;margin-top:6px">კონსულტანტი გრაფიკს ადგენს თავად (1 თვით ადრე); ის აქტიურდება მხოლოდ ადმინის დადასტურების შემდეგ.</p>
           </div></div>
@@ -308,10 +308,20 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
   </div>
 </div>
 
+<!-- SCHEDULE REVIEW MODAL -->
+<div class="overlay" id="schedModal"><div class="modal" style="max-width:560px"><div class="head"><b>გრაფიკის გადახედვა — <span id="scName"></span></b><button class="btn ghost sm" data-close>✕</button></div>
+  <div class="pad">
+    <div class="row between mb2"><span class="pill acc" id="scPeriod">—</span><span class="pill warn">⏳ დასადასტურებელი</span></div>
+    <table class="tb"><thead><tr><th>დღე</th><th>ხელმისაწვდომი საათები</th></tr></thead><tbody id="scBody"></tbody></table>
+    <p class="faint" style="font-size:12.5px;margin-top:8px">კონსულტანტის მიერ თითო დღეზე მონიშნული საათები. დაადასტურე ან დააბრუნე შესწორებისთვის.</p>
+    <div class="row between mt2"><button class="btn danger" data-toast="გრაფიკი დაბრუნდა შესწორებისთვის">დაბრუნება</button><button class="btn pri" data-toast="გრაფიკი დადასტურდა ✓">დადასტურება</button></div>
+  </div>
+</div></div>
+
 <!-- ORDER MODAL -->
 <div class="overlay" id="orderModal"><div class="modal"><div class="head"><b>შეკვეთა <span id="oNum"></span></b><button class="btn ghost sm" data-close>✕</button></div>
   <div class="pad">
-    <div class="row between mb2"><span class="pill ok">გადახდილი</span><a class="pill pri">ინვოისი PDF ↓</a></div>
+    <div class="row between mb2"><span class="pill ok">გადახდილი</span><a class="pill pri">გადახდის დეტალები PDF ↓</a></div>
     <div class="row between"><span class="muted">მომხმარებელი</span><b>გ. მაისურაძე</b></div>
     <div class="row between mt1"><span class="muted">ელფოსტა / ტელ</span><span>g.m@… · +995 5XX</span></div>
     <div class="row between mt1"><span class="muted">პირადი ნომერი</span><span>0100XXXXXXX</span></div>
@@ -385,6 +395,11 @@ document.addEventListener('click',e=>{if(!e.target.closest('[data-edit]'))return
 document.addEventListener('click',e=>{
   const o=e.target.closest('[data-order]');if(o){document.getElementById('oNum').textContent='#'+o.dataset.order;document.getElementById('orderModal').classList.add('on');}
   const u=e.target.closest('[data-user]');if(u){document.getElementById('uName').textContent=u.dataset.user;document.getElementById('userModal').classList.add('on');}
+  const r=e.target.closest('[data-review]');if(r){const [name,period]=r.dataset.review.split('|');
+    document.getElementById('scName').textContent=name;document.getElementById('scPeriod').textContent=period;
+    const rows=[["ორშ 07","10:00 – 14:00"],["სამ 08","11:00 – 16:00"],["ოთხ 09","10:00, 11:00, 14:00, 15:00"],["ხუთ 10","—"],["პარ 11","12:00 – 18:00"],["ორშ 14","10:00 – 13:00"],["სამ 15","16:00 – 18:00"]];
+    document.getElementById('scBody').innerHTML=rows.map(x=>'<tr><td>'+x[0]+'</td><td>'+(x[1]==='—'?'<span class="faint">არ არის მონიშნული</span>':x[1])+'</td></tr>').join('');
+    document.getElementById('schedModal').classList.add('on');}
   if(e.target.closest('[data-close]')||e.target.classList.contains('overlay')){document.querySelectorAll('.overlay').forEach(x=>x.classList.remove('on'));}
 });
 </script>

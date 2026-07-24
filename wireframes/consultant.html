@@ -73,7 +73,22 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
 .schd .c.book{background:var(--accent-soft);border-color:#d8d2f0;cursor:default}
 .schd .c .cov{width:7px;height:7px;border-radius:999px;margin-top:2px}
 .schd .c .cov.g{background:var(--ok)} .schd .c .cov.w{background:var(--warn)}
-.dot-g,.dot-w{display:inline-block;width:8px;height:8px;border-radius:999px;vertical-align:middle}.dot-g{background:var(--ok)}.dot-w{background:var(--warn)}
+.dot-g,.dot-w,.dot-a{display:inline-block;width:8px;height:8px;border-radius:999px;vertical-align:middle}.dot-g{background:var(--ok)}.dot-w{background:var(--warn)}.dot-a{background:var(--accent)}
+.mcal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.mcal .dw{text-align:center;font-size:11px;color:var(--faint);font-weight:700;padding:2px 0}
+.mcal .d{aspect-ratio:1;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);cursor:pointer;padding:5px;font-size:12px;display:flex;flex-direction:column;transition:.1s;position:relative}
+.mcal .d:hover:not(.off){border-color:var(--primary)}
+.mcal .d.off{background:var(--surface-2);color:var(--faint);cursor:not-allowed}
+.mcal .d.sel{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-soft)}
+.mcal .d .n{font-weight:700;color:var(--muted)}
+.mcal .d .mk{margin-top:auto;font-size:9.5px;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:5px;padding:1px 4px;align-self:flex-start}
+.mcal .d .bk{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:999px;background:var(--accent)}
+.mk-legend{font-size:9.5px;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:5px;padding:1px 4px}
+.hrs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hr{border:1px solid var(--line);border-radius:9px;padding:9px 6px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;background:var(--surface)}
+.hr:hover:not(.booked){border-color:var(--primary)}
+.hr.on{background:var(--ok-soft);border-color:#bfdcca;color:var(--ok)}
+.hr.booked{background:var(--accent-soft);border-color:#d8d2f0;color:var(--accent);cursor:default}
 @media(max-width:860px){.app{grid-template-columns:1fr}.side{position:fixed;left:-260px;transition:.2s;z-index:50;width:250px}.side.open{left:0}.g4{grid-template-columns:1fr 1fr}.g3,.g2{grid-template-columns:1fr}.burger{display:inline-flex!important}}
 .burger{display:none}
 </style>
@@ -150,15 +165,22 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
           <div><b>გრაფიკის შედგენა</b><div class="faint" style="font-size:12.5px">მონიშნე საათები, როცა შეგიძლია მუშაობა — 1 თვით ადრე. საჭიროებს ადმინის დადასტურებას.</div></div>
           <div class="row" style="gap:8px"><span class="pill warn" id="apprState">⏳ დადასტურების მოლოდინში</span><button class="btn pri" id="submitSched">დადასტურებაზე გაგზავნა</button></div>
         </div>
-        <div class="card pad">
-          <div class="row between mb2"><button class="btn sm" id="wPrev">‹</button><b id="weekLabel">14–20 ივლისი 2026</b><button class="btn sm" id="wNext">›</button></div>
-          <div class="schd" id="schd"></div>
-          <div class="row wrapf mt2 faint" style="font-size:12px;gap:14px">
-            <span>🟩 მონიშნული (ვმუშაობ)</span><span>⬜ თავისუფალი</span><span>🟪 ჩემი ჯავშანი</span>
-            <span><span class="dot-g"></span> უკვე დაფარულია სხვა კონსულტანტით</span><span><span class="dot-w"></span> საჭიროებს დაფარვას</span>
+        <div class="grid" style="grid-template-columns:1.5fr 1fr;gap:20px;align-items:start" id="schedWrap">
+          <div class="card pad">
+            <div class="row between mb2"><button class="btn sm" id="mPrev">‹</button><b id="mLabel">ივლისი 2026</b><button class="btn sm" id="mNext">›</button></div>
+            <div class="mcal" style="margin-bottom:5px"><div class="dw">ორ</div><div class="dw">სამ</div><div class="dw">ოთ</div><div class="dw">ხუ</div><div class="dw">პა</div><div class="dw">შა</div><div class="dw">კვ</div></div>
+            <div class="mcal" id="mcal"></div>
+            <div class="row wrapf mt2 faint" style="font-size:12px;gap:14px"><span><span class="mk-legend">3სთ</span> მონიშნული საათები</span><span><span class="dot-a"></span> ჯავშანია ამ დღეს</span></div>
+          </div>
+          <div class="card pad">
+            <div class="row between"><b>დღის ხელმისაწვდომობა</b><span class="pill acc" id="dayLabel">09 ივლისი</span></div>
+            <p class="faint" style="font-size:12.5px;margin:6px 0 12px">მონიშნე საათები, როცა ხელმისაწვდომი ხარ ამ დღეს.</p>
+            <div class="hrs" id="hrs"></div>
+            <div class="row between mt2"><button class="btn sm" id="hClear">გასუფთავება</button><button class="btn sm" id="hAll">ყველას მონიშვნა</button></div>
+            <div class="row wrapf mt2 faint" style="font-size:12px;gap:12px"><span><span class="dot-g"></span> ხელმისაწვდომი</span><span><span class="dot-a"></span> დაჯავშნილი</span></div>
           </div>
         </div>
-        <div class="card pad mt3 card--flat"><b>ℹ როგორ მუშაობს</b><p class="muted" style="font-size:13px;margin:6px 0 0">დააჭირე უჯრებს სამუშაო საათების მოსანიშნად. უკვე დაჯავშნილი დროები (🟪) ჩანს ინდიკატორით — ეს ჯავშანი უკვე დაფარულია სხვა კონსულტანტის გრაფიკით თუ ჯერ საჭიროებს დაფარვას. საბოლოო გრაფიკს ადასტურებს ადმინისტრატორი.</p></div>
+        <div class="card pad mt3 card--flat"><b>ℹ როგორ მუშაობს</b><p class="muted" style="font-size:13px;margin:6px 0 0">გადაათვალიერე თვე, დააჭირე დღეს და მონიშნე ხელმისაწვდომი საათები — ასე თითოეულ დღეზე ცალკე. ბოლოს დააჭირე „დადასტურებაზე გაგზავნა". ადმინისტრატორი გადახედავს და დაადასტურებს გრაფიკს.</p></div>
       </section>
 
       <!-- AVAILABILITY -->
@@ -276,33 +298,46 @@ document.addEventListener('click',e=>{
 document.getElementById('genLink').onclick=()=>{document.getElementById('meetLink').value='meet.psychocampus.ge/room-'+(document.getElementById('meetLink').value.length);};
 document.getElementById('sendMsg').onclick=()=>{document.getElementById('msgModal').classList.remove('on');toast('შეტყობინება გაიგზავნა მომხმარებელთან ✓');};
 
-/* schedule composer (self-set, needs admin approval) */
+/* schedule: month view, per-day availability hours (needs admin approval) */
 (function(){
-  const hours=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
-  const days=["ორშ","სამ","ოთხ","ხუთ","პარ","შაბ","კვ"];
-  // preselected working cells "day-hourIndex"
-  const work=new Set(["0-1","0-2","1-1","1-2","2-3","2-4","4-0","4-1"]);
-  // existing bookings: key -> covered(true) or needs-coverage(false)
-  const booked={"0-1":true,"1-4":false,"3-2":true};
-  let h='<div></div>'+days.map(d=>'<div class="hd">'+d+'</div>').join('');
-  hours.forEach((hr,hi)=>{
-    h+='<div class="h">'+hr+'</div>';
-    for(let d=0;d<7;d++){
-      const key=d+'-'+hi;
-      if(booked[key]!==undefined){
-        h+='<div class="c book" title="დაჯავშნილი"><span>🟪</span><span class="cov '+(booked[key]?'g':'w')+'"></span></div>';
-      }else{
-        h+='<div class="c'+(work.has(key)?' work':'')+'" data-cell="'+key+'"></div>';
-      }
-    }
-  });
-  const grid=document.getElementById('schd'); grid.innerHTML=h;
-  grid.addEventListener('click',e=>{const c=e.target.closest('[data-cell]');if(!c)return;c.classList.toggle('work');
-    document.getElementById('apprState').className='pill warn';document.getElementById('apprState').textContent='⏳ შენახული, გასაგზავნია';});
+  const HOURS=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"];
+  const MONTHS=["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი"];
+  let month=6, selDay=9;
+  // avail[day] = Set of hour-strings the consultant marked
+  const avail={9:new Set(["10:00","10:30","11:00","14:00","15:00"].filter(h=>HOURS.includes(h))),10:new Set(["11:00","12:00"]),15:new Set(["16:00","17:00","18:00"])};
+  // bookings already assigned on given days -> the hours booked
+  const booked={9:["10:30"],11:["14:00"]};
+  function dirty(){const s=document.getElementById('apprState');s.className='pill warn';s.textContent='⏳ შენახული — გასაგზავნია';}
+  function renderMonth(){
+    document.getElementById('mLabel').textContent=MONTHS[month]+' 2026';
+    let h='';
+    for(let i=1;i<=31;i++){const wd=(i+2)%7;const off=(i<8);
+      const cnt=avail[i]?avail[i].size:0;
+      h+='<div class="d'+(off?' off':'')+(i===selDay&&!off?' sel':'')+'" '+(off?'':'data-day="'+i+'"')+'>'+
+         '<span class="n">'+i+'</span>'+(booked[i]?'<span class="bk"></span>':'')+
+         (cnt&&!off?'<span class="mk">'+cnt+'სთ</span>':'')+'</div>';}
+    document.getElementById('mcal').innerHTML=h;
+  }
+  function renderHours(){
+    document.getElementById('dayLabel').textContent=selDay+' '+MONTHS[month];
+    const set=avail[selDay]||new Set(); const bk=booked[selDay]||[];
+    document.getElementById('hrs').innerHTML=HOURS.map(hr=>{
+      const isBk=bk.includes(hr);
+      return '<div class="hr'+(isBk?' booked':(set.has(hr)?' on':''))+'" '+(isBk?'':'data-hr="'+hr+'"')+'>'+hr+(isBk?' 🟪':'')+'</div>';
+    }).join('');
+  }
+  renderMonth();renderHours();
+  document.getElementById('mcal').addEventListener('click',e=>{const d=e.target.closest('[data-day]');if(!d)return;selDay=+d.dataset.day;renderMonth();renderHours();});
+  document.getElementById('hrs').addEventListener('click',e=>{const c=e.target.closest('[data-hr]');if(!c)return;
+    if(!avail[selDay])avail[selDay]=new Set();
+    const hr=c.dataset.hr; avail[selDay].has(hr)?avail[selDay].delete(hr):avail[selDay].add(hr);
+    renderHours();renderMonth();dirty();});
+  document.getElementById('hClear').onclick=()=>{avail[selDay]=new Set();renderHours();renderMonth();dirty();};
+  document.getElementById('hAll').onclick=()=>{avail[selDay]=new Set(HOURS.filter(h=>!(booked[selDay]||[]).includes(h)));renderHours();renderMonth();dirty();};
+  document.getElementById('mPrev').onclick=()=>{if(month>0){month--;renderMonth();}};
+  document.getElementById('mNext').onclick=()=>{if(month<11){month++;renderMonth();}};
 })();
-document.getElementById('submitSched').onclick=()=>{const s=document.getElementById('apprState');s.className='pill';s.textContent='📤 გაგზავნილია — ადმინის დადასტურების მოლოდინში';toast('გრაფიკი გაიგზავნა ადმინთან დასადასტურებლად ✓');};
-document.getElementById('wPrev').onclick=()=>toast('წინა კვირა');
-document.getElementById('wNext').onclick=()=>toast('შემდეგი კვირა');
+document.getElementById('submitSched').onclick=()=>{const s=document.getElementById('apprState');s.className='pill';s.textContent='📤 გაგზავნილია — ადმინის დადასტურების მოლოდინში';toast('თვის გრაფიკი გაიგზავნა ადმინთან დასადასტურებლად ✓');};
 </script>
 </body>
 </html>
