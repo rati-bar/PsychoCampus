@@ -72,6 +72,12 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
 .cal .day.off{background:var(--surface-2);color:var(--faint)}
 .cal .day .num{color:var(--muted);font-weight:700}
 .cal .day .b{margin-top:4px;font-size:10px;padding:1px 5px;border-radius:5px;display:inline-block}
+.mcal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.mcal .dw{text-align:center;font-size:10.5px;color:var(--faint);font-weight:700}
+.mcal .d{min-height:58px;border:1px solid var(--line-2);border-radius:7px;background:var(--surface);padding:4px;font-size:11px;display:flex;flex-direction:column}
+.mcal .d.off{background:var(--surface-2);color:var(--faint)}
+.mcal .d .n{font-weight:700;color:var(--muted);font-size:11px}
+.mcal .d .mkh{margin-top:auto;font-size:8.5px;line-height:1.3;font-weight:700;color:var(--primary-d);background:var(--ok-soft);border-radius:4px;padding:1px 3px;width:100%;overflow:hidden}
 .matrix td{text-align:center}.matrix td:first-child{text-align:left;font-weight:600}
 .chk{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:12px;background:var(--surface)}
 .chk.on{background:var(--primary);border-color:var(--primary)}
@@ -309,11 +315,12 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
 </div>
 
 <!-- SCHEDULE REVIEW MODAL -->
-<div class="overlay" id="schedModal"><div class="modal" style="max-width:560px"><div class="head"><b>გრაფიკის გადახედვა — <span id="scName"></span></b><button class="btn ghost sm" data-close>✕</button></div>
+<div class="overlay" id="schedModal"><div class="modal" style="max-width:820px"><div class="head"><b>გრაფიკის გადახედვა — <span id="scName"></span></b><button class="btn ghost sm" data-close>✕</button></div>
   <div class="pad">
     <div class="row between mb2"><span class="pill acc" id="scPeriod">—</span><span class="pill warn">⏳ დასადასტურებელი</span></div>
-    <table class="tb"><thead><tr><th>დღე</th><th>ხელმისაწვდომი საათები</th></tr></thead><tbody id="scBody"></tbody></table>
-    <p class="faint" style="font-size:12.5px;margin-top:8px">კონსულტანტის მიერ თითო დღეზე მონიშნული საათები. დაადასტურე ან დააბრუნე შესწორებისთვის.</p>
+    <div class="mcal" style="margin-bottom:4px"><div class="dw">ორ</div><div class="dw">სამ</div><div class="dw">ოთ</div><div class="dw">ხუ</div><div class="dw">პა</div><div class="dw">შა</div><div class="dw">კვ</div></div>
+    <div class="mcal" id="scCal"></div>
+    <p class="faint" style="font-size:12.5px;margin-top:8px">თითო დღეზე ჩანს კონსულტანტის მიერ მონიშნული საათები. დაადასტურე ან დააბრუნე შესწორებისთვის.</p>
     <div class="row between mt2"><button class="btn danger" data-toast="გრაფიკი დაბრუნდა შესწორებისთვის">დაბრუნება</button><button class="btn pri" data-toast="გრაფიკი დადასტურდა ✓">დადასტურება</button></div>
   </div>
 </div></div>
@@ -397,8 +404,10 @@ document.addEventListener('click',e=>{
   const u=e.target.closest('[data-user]');if(u){document.getElementById('uName').textContent=u.dataset.user;document.getElementById('userModal').classList.add('on');}
   const r=e.target.closest('[data-review]');if(r){const [name,period]=r.dataset.review.split('|');
     document.getElementById('scName').textContent=name;document.getElementById('scPeriod').textContent=period;
-    const rows=[["ორშ 07","10:00 – 14:00"],["სამ 08","11:00 – 16:00"],["ოთხ 09","10:00, 11:00, 14:00, 15:00"],["ხუთ 10","—"],["პარ 11","12:00 – 18:00"],["ორშ 14","10:00 – 13:00"],["სამ 15","16:00 – 18:00"]];
-    document.getElementById('scBody').innerHTML=rows.map(x=>'<tr><td>'+x[0]+'</td><td>'+(x[1]==='—'?'<span class="faint">არ არის მონიშნული</span>':x[1])+'</td></tr>').join('');
+    const av={9:'09–12, 14–16',10:'11–12',11:'12–18',14:'10–13',15:'16–18',16:'09–11',18:'10–15',21:'17–20',22:'09–13',23:'14–19'};
+    let h='';for(let i=1;i<=31;i++){const off=(i<8);
+      h+='<div class="d'+(off?' off':'')+'"><span class="n">'+i+'</span>'+((av[i]&&!off)?'<span class="mkh">'+av[i]+'</span>':'')+'</div>';}
+    document.getElementById('scCal').innerHTML=h;
     document.getElementById('schedModal').classList.add('on');}
   if(e.target.closest('[data-close]')||e.target.classList.contains('overlay')){document.querySelectorAll('.overlay').forEach(x=>x.classList.remove('on'));}
 });
