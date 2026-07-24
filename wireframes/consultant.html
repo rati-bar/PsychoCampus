@@ -84,8 +84,8 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
 .mcal .d .mk{margin-top:auto;font-size:9.5px;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:5px;padding:1px 4px;align-self:flex-start}
 .mcal .d .bk{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:999px;background:var(--accent)}
 .mk-legend{font-size:9.5px;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:5px;padding:1px 4px}
-.hrs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.hr{border:1px solid var(--line);border-radius:9px;padding:9px 6px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;background:var(--surface)}
+.hrs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.hr{border:1px solid var(--line);border-radius:9px;padding:8px 4px;text-align:center;font-size:12.5px;font-weight:600;cursor:pointer;background:var(--surface)}
 .hr:hover:not(.booked){border-color:var(--primary)}
 .hr.on{background:var(--ok-soft);border-color:#bfdcca;color:var(--ok)}
 .hr.booked{background:var(--accent-soft);border-color:#d8d2f0;color:var(--accent);cursor:default}
@@ -170,17 +170,17 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
             <div class="row between mb2"><button class="btn sm" id="mPrev">‹</button><b id="mLabel">ივლისი 2026</b><button class="btn sm" id="mNext">›</button></div>
             <div class="mcal" style="margin-bottom:5px"><div class="dw">ორ</div><div class="dw">სამ</div><div class="dw">ოთ</div><div class="dw">ხუ</div><div class="dw">პა</div><div class="dw">შა</div><div class="dw">კვ</div></div>
             <div class="mcal" id="mcal"></div>
-            <div class="row wrapf mt2 faint" style="font-size:12px;gap:14px"><span><span class="mk-legend">3სთ</span> მონიშნული საათები</span><span><span class="dot-a"></span> ჯავშანია ამ დღეს</span></div>
+            <div class="row wrapf mt2 faint" style="font-size:12px;gap:14px"><span><span class="mk-legend">3სთ</span> მონიშნული საათები</span><span><span class="dot-a"></span> ჯავშანი (დაფარული)</span><span><span class="dot-w"></span> ჯავშანი (დასაფარი)</span></div>
           </div>
           <div class="card pad">
             <div class="row between"><b>დღის ხელმისაწვდომობა</b><span class="pill acc" id="dayLabel">09 ივლისი</span></div>
-            <p class="faint" style="font-size:12.5px;margin:6px 0 12px">მონიშნე საათები, როცა ხელმისაწვდომი ხარ ამ დღეს.</p>
+            <p class="faint" style="font-size:12.5px;margin:6px 0 12px">მონიშნე ხელმისაწვდომი საათები — 24-საათიანი გრაფიკიდან.</p>
             <div class="hrs" id="hrs"></div>
             <div class="row between mt2"><button class="btn sm" id="hClear">გასუფთავება</button><button class="btn sm" id="hAll">ყველას მონიშვნა</button></div>
-            <div class="row wrapf mt2 faint" style="font-size:12px;gap:12px"><span><span class="dot-g"></span> ხელმისაწვდომი</span><span><span class="dot-a"></span> დაჯავშნილი</span></div>
+            <div class="row wrapf mt2 faint" style="font-size:12px;gap:10px"><span>🟩 ხელმისაწვდომი</span><span>🟪 დაჯავშნილი</span><span>🟢 დაფარულია სხვა კონსულტანტით</span><span>🟠 საჭიროებს დაფარვას</span></div>
           </div>
         </div>
-        <div class="card pad mt3 card--flat"><b>ℹ როგორ მუშაობს</b><p class="muted" style="font-size:13px;margin:6px 0 0">გადაათვალიერე თვე, დააჭირე დღეს და მონიშნე ხელმისაწვდომი საათები — ასე თითოეულ დღეზე ცალკე. ბოლოს დააჭირე „დადასტურებაზე გაგზავნა". ადმინისტრატორი გადახედავს და დაადასტურებს გრაფიკს.</p></div>
+        <div class="card pad mt3 card--flat"><b>ℹ როგორ მუშაობს</b><p class="muted" style="font-size:13px;margin:6px 0 0">გადაათვალიერე თვე, დააჭირე დღეს და მონიშნე ხელმისაწვდომი საათები 24-საათიანი გრაფიკიდან — ასე თითოეულ დღეზე ცალკე. უკვე დაჯავშნილ საათებზე ჩანს, ეს ჯავშანი დაფარულია სხვა კონსულტანტით (🟢) თუ ჯერ საჭიროებს დაფარვას (🟠). ბოლოს დააჭირე „დადასტურებაზე გაგზავნა" — ადმინისტრატორი გადახედავს და დაადასტურებს.</p></div>
       </section>
 
       <!-- AVAILABILITY -->
@@ -300,21 +300,22 @@ document.getElementById('sendMsg').onclick=()=>{document.getElementById('msgModa
 
 /* schedule: month view, per-day availability hours (needs admin approval) */
 (function(){
-  const HOURS=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"];
+  const HOURS=[];for(let i=0;i<24;i++)HOURS.push((i<10?'0'+i:i)+':00'); // 24-hour schedule
   const MONTHS=["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი"];
   let month=6, selDay=9;
   // avail[day] = Set of hour-strings the consultant marked
-  const avail={9:new Set(["10:00","10:30","11:00","14:00","15:00"].filter(h=>HOURS.includes(h))),10:new Set(["11:00","12:00"]),15:new Set(["16:00","17:00","18:00"])};
-  // bookings already assigned on given days -> the hours booked
-  const booked={9:["10:30"],11:["14:00"]};
+  const avail={9:new Set(["09:00","10:00","11:00","14:00","15:00"]),10:new Set(["11:00","12:00"]),15:new Set(["16:00","17:00","18:00","19:00","20:00"])};
+  // bookings already on given days -> {h:hour, cov:covered by another consultant's schedule?}
+  const booked={9:[{h:"10:00",cov:true},{h:"14:00",cov:false}],11:[{h:"18:00",cov:true}]};
   function dirty(){const s=document.getElementById('apprState');s.className='pill warn';s.textContent='⏳ შენახული — გასაგზავნია';}
   function renderMonth(){
     document.getElementById('mLabel').textContent=MONTHS[month]+' 2026';
     let h='';
     for(let i=1;i<=31;i++){const wd=(i+2)%7;const off=(i<8);
       const cnt=avail[i]?avail[i].size:0;
+      const needs=(booked[i]||[]).some(b=>!b.cov);   // any booking this day still needs coverage
       h+='<div class="d'+(off?' off':'')+(i===selDay&&!off?' sel':'')+'" '+(off?'':'data-day="'+i+'"')+'>'+
-         '<span class="n">'+i+'</span>'+(booked[i]?'<span class="bk"></span>':'')+
+         '<span class="n">'+i+'</span>'+(booked[i]?'<span class="bk" style="background:'+(needs?'var(--warn)':'var(--accent)')+'"></span>':'')+
          (cnt&&!off?'<span class="mk">'+cnt+'სთ</span>':'')+'</div>';}
     document.getElementById('mcal').innerHTML=h;
   }
@@ -322,8 +323,9 @@ document.getElementById('sendMsg').onclick=()=>{document.getElementById('msgModa
     document.getElementById('dayLabel').textContent=selDay+' '+MONTHS[month];
     const set=avail[selDay]||new Set(); const bk=booked[selDay]||[];
     document.getElementById('hrs').innerHTML=HOURS.map(hr=>{
-      const isBk=bk.includes(hr);
-      return '<div class="hr'+(isBk?' booked':(set.has(hr)?' on':''))+'" '+(isBk?'':'data-hr="'+hr+'"')+'>'+hr+(isBk?' 🟪':'')+'</div>';
+      const b=bk.find(x=>x.h===hr);
+      if(b)return '<div class="hr booked" title="დაჯავშნილი — '+(b.cov?'დაფარულია სხვა კონსულტანტით':'ჯერ არ არის დაფარული')+'">'+hr+' '+(b.cov?'🟢':'🟠')+'</div>';
+      return '<div class="hr'+(set.has(hr)?' on':'')+'" data-hr="'+hr+'">'+hr+'</div>';
     }).join('');
   }
   renderMonth();renderHours();
