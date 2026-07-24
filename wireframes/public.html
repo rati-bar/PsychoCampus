@@ -137,11 +137,11 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
     <a class="logo" data-go="home"><span class="dot"></span> PsychoCampus</a>
     <nav class="menu">
       <a data-go="home"     data-i="nav.home">მთავარი</a>
-      <a data-go="about"    data-i="nav.about">ჩვენ შესახებ</a>
       <a data-go="courses"  data-i="nav.courses">ფსიქო განათლება</a>
-      <a data-go="booking"  data-i="nav.booking">ფსიქო კონსულტაცია</a>
+      <a data-go="booking"  data-i="nav.booking">ფსიქო ნავიგაცია</a>
       <a data-go="packages" data-i="nav.packages">პაკეტები</a>
       <a data-go="contact"  data-i="nav.contact">კონტაქტი</a>
+      <a data-go="about"    data-i="nav.about">ჩვენ შესახებ</a>
     </nav>
     <span class="spacer"></span>
     <div class="lang" id="lang"><button data-lang="ka" class="on">ქარ</button><button data-lang="en">ENG</button></div>
@@ -152,8 +152,8 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
     <button class="burger" id="burger">☰</button>
   </div>
   <div class="mobile-menu" id="mmenu">
-    <a data-go="home">მთავარი</a><a data-go="about">ჩვენ შესახებ</a><a data-go="courses">ფსიქო განათლება</a>
-    <a data-go="booking">ფსიქო კონსულტაცია</a><a data-go="packages">პაკეტები</a><a data-go="contact">კონტაქტი</a>
+    <a data-go="home">მთავარი</a><a data-go="courses">ფსიქო განათლება</a><a data-go="booking">ფსიქო ნავიგაცია</a>
+    <a data-go="packages">პაკეტები</a><a data-go="contact">კონტაქტი</a><a data-go="about">ჩვენ შესახებ</a>
     <div class="row mt1"><button class="btn sm block" data-auth="login">შესვლა</button><button class="btn sm pri block" data-auth="register">რეგისტრაცია</button></div>
   </div>
 </header>
@@ -162,51 +162,52 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
 
 <!-- HOME -->
 <section class="view on" id="v-home">
-  <div class="hero"><div class="wrap hero-grid">
-    <div>
+  <!-- 1. HERO — two directions first -->
+  <div class="hero"><div class="wrap sec">
+    <div class="center mb3">
       <span class="pill pri">ფსიქოლოგიური მხარდაჭერის პლატფორმა</span>
-      <h1 class="mt2">სივრცე შენი ფსიქიკური სიმშვიდისთვის</h1>
-      <p class="lede">ფსიქო განათლების ონლაინ კურსები და ინდივიდუალური ფსიქო კონსულტაცია — მოსახერხებელ დროს, კონფიდენციალურად.</p>
-      <div class="row mt3 wrapf">
-        <button class="btn pri lg" data-go="courses">ფსიქო განათლება</button>
-        <button class="btn lg" data-go="booking">ფსიქო კონსულტაცია</button>
-      </div>
-      <div class="row mt3 wrapf" style="gap:24px;color:var(--muted);font-size:13.5px"><span>✓ სერტიფიკატი</span><span>✓ სერტიფიცირებული სპეციალისტები</span><span>✓ პაკეტები & ფასდაკლება</span></div>
+      <h1 class="mt2">აირჩიე მიმართულება</h1>
+      <p class="lede" style="margin:12px auto 0">ფსიქო განათლების ონლაინ კურსები და ინდივიდუალური ფსიქო ნავიგაცია — მოსახერხებელ დროს, კონფიდენციალურად.</p>
     </div>
-    <div class="hero-art">
-      <div class="glass" style="top:22px;left:22px;width:160px"><div class="pill gold">🎓 სერტიფიკატი</div><div class="faint" style="font-size:12px;margin-top:8px">კურსი დასრულებულია</div></div>
-      <div class="glass" style="bottom:26px;right:22px;width:170px"><div class="row between"><b style="font-size:13px">ფსიქო კონსულტაცია</b><span class="pill ok">დაჯავშნილი</span></div><div class="faint" style="font-size:12px;margin-top:6px">ხვალ · 10:30</div></div>
-      <span style="font-size:56px">🧠</span>
-    </div>
-  </div></div>
-
-  <div class="wrap sec">
-    <div class="center mb3"><h2>ორი მიმართულება</h2><p class="muted mt1">აირჩიე შენთვის შესაფერისი ფორმატი</p></div>
     <div class="grid g2">
       <div class="card pad hoverable" data-go="courses">
-        <div class="row between"><h3>🎓 ფსიქო განათლება</h3><span class="pill pri">კურსები</span></div>
-        <p class="muted mt1">ონლაინ ვიდეო კურსები (Udemy-ის ფორმატში) — რამდენიმე ნაწილიანი, შუალედური ქვიზებით. თითოეული კურსი იყიდება ცალკე; დასრულებისას გენერირდება სერტიფიკატი.</p>
-        <div class="row mt2 wrapf"><span class="pill">ცალკეული ყიდვა</span><span class="pill gold">🎓 სერტიფიკატი</span></div>
-        <div class="btn pri mt3">კურსების ნახვა →</div>
+        <div class="thumb mb2" style="aspect-ratio:16/7;font-size:44px">🎓</div>
+        <div class="row between"><h2>ფსიქო განათლება</h2><span class="pill pri">კურსები</span></div>
+        <p class="muted mt1">ონლაინ ვიდეო კურსები Udemy-ის ფორმატში — რამდენიმე ნაწილიანი, შუალედური ქვიზებით. თითოეული იყიდება ცალკე; დასრულებისას სერტიფიკატი.</p>
+        <div class="btn pri block mt2">კურსების ნახვა →</div>
       </div>
       <div class="card pad hoverable" data-go="booking">
-        <div class="row between"><h3>🗓 ფსიქო კონსულტაცია</h3><span class="pill acc">1:1</span></div>
-        <p class="muted mt1">ინდივიდუალური ონლაინ სესია სპეციალისტთან. ერთიანი კალენდარი, თავისუფალი დროის სწრაფი არჩევა და ავტომატური დადასტურება.</p>
-        <div class="row mt2 wrapf"><span class="pill">30 წთ სესია</span><span class="pill">დაცული გადახდა</span></div>
-        <div class="btn pri mt3">დაჯავშნა →</div>
+        <div class="thumb mb2" style="aspect-ratio:16/7;font-size:44px">🧭</div>
+        <div class="row between"><h2>ფსიქო ნავიგაცია</h2><span class="pill acc">1:1</span></div>
+        <p class="muted mt1">ინდივიდუალური ონლაინ სესია სპეციალისტთან. ერთიანი კალენდარი, თავისუფალი დროის სწრაფი არჩევა და დადასტურება SMS-ით.</p>
+        <div class="btn pri block mt2">დაჯავშნა →</div>
       </div>
     </div>
-  </div>
-
-  <!-- packages teaser -->
-  <div style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap sec">
-    <div class="row between wrapf mb3"><div><h2>პაკეტები</h2><p class="muted mt1">ფასდაკლება ან სრულიად უფასო წვდომა</p></div><button class="btn" data-go="packages">ყველა პაკეტი →</button></div>
-    <div class="grid g3" id="homePkgs"></div>
   </div></div>
 
+  <!-- 2. Courses (ფსიქო განათლება) -->
   <div class="wrap sec">
     <div class="row between mb3 wrapf"><h2>ფსიქო განათლება — კურსები</h2><button class="btn" data-go="courses">ყველა კურსი →</button></div>
     <div class="grid g4" id="homeCourses"></div>
+  </div>
+
+  <!-- 3. ფსიქო ნავიგაცია description -->
+  <div style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap sec">
+    <div class="grid g2" style="align-items:center">
+      <div class="thumb" style="aspect-ratio:4/3;font-size:52px">🧭</div>
+      <div>
+        <span class="pill acc">ფსიქო ნავიგაცია</span>
+        <h2 class="mt2">ინდივიდუალური ონლაინ სესია</h2>
+        <p class="muted mt1">დაჯავშნე შეხვედრა სპეციალისტთან ერთიანი კალენდრიდან. კონკრეტული სპეციალისტის არჩევა საჭირო არ არის — სისტემა ავტომატურად შეურჩევს თავისუფალ კონსულტანტს. დადასტურება მოგივა SMS-ით, შეხვედრის ბმულით.</p>
+        <button class="btn pri mt2" data-go="booking">დროის დაჯავშნა →</button>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- 4. Packages -->
+  <div class="wrap sec">
+    <div class="row between wrapf mb3"><div><h2>პაკეტები</h2><p class="muted mt1">ფასდაკლება ან სრულიად უფასო წვდომა</p></div><button class="btn" data-go="packages">ყველა პაკეტი →</button></div>
+    <div class="grid g3" id="homePkgs"></div>
   </div>
 </section>
 
@@ -387,10 +388,10 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
   </div>
 </section>
 
-<!-- BOOKING (ფსიქო კონსულტაცია) -->
+<!-- BOOKING (ფსიქო ნავიგაცია) -->
 <section class="view" id="v-booking">
   <div class="wrap sec">
-    <div class="center mb3"><span class="pill pri">ფსიქო კონსულტაცია</span><h1 class="mt2">დაჯავშნე შენი სესია</h1>
+    <div class="center mb3"><span class="pill pri">ფსიქო ნავიგაცია</span><h1 class="mt2">დაჯავშნე შენი სესია</h1>
       <p class="muted mt1" style="max-width:640px;margin-left:auto;margin-right:auto">კონკრეტული სპეციალისტის არჩევა საჭირო არ არის — სისტემა ავტომატურად შეურჩევს თავისუფალ კონსულტანტს არჩეულ დროზე.</p></div>
     <div class="steps" id="steps">
       <div class="step active"><span class="n">1</span><span class="lbl">დრო</span></div><div class="step"><span class="n">2</span><span class="lbl">მონაცემები</span></div>
@@ -399,7 +400,11 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
     <div class="bstep on" id="bs1">
       <div class="grid split" style="grid-template-columns:1.3fr 1fr;gap:28px;align-items:start">
         <div class="card pad">
-          <div class="row between mb2"><button class="btn sm" id="calPrev">‹</button><b id="calMonth">ივლისი 2026</b><button class="btn sm" id="calNext">›</button></div>
+          <div class="row between mb2 wrapf" style="gap:8px">
+            <button class="btn sm" id="calPrev">‹</button>
+            <div class="row" style="gap:8px"><select class="inp" id="calMonthSel" style="width:135px;padding:8px 10px"></select><select class="inp" id="calYearSel" style="width:95px;padding:8px 10px"></select></div>
+            <button class="btn sm" id="calNext">›</button>
+          </div>
           <div class="cal"><div class="dow">ორ</div><div class="dow">სამ</div><div class="dow">ოთ</div><div class="dow">ხუ</div><div class="dow">პა</div><div class="dow">შა</div><div class="dow">კვ</div></div>
           <div class="cal mt1" id="calGrid"></div>
         </div>
@@ -423,9 +428,12 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
       <div class="grid split" style="grid-template-columns:1fr 340px;gap:28px;align-items:start">
         <div class="card pad">
           <h3 class="mb2">საკონტაქტო ინფორმაცია</h3>
-          <div class="grid g2"><div class="field"><label class="f">სახელი *</label><input class="inp"></div><div class="field"><label class="f">გვარი *</label><input class="inp"></div></div>
-          <div class="grid g2"><div class="field"><label class="f">პირადი ნომერი *</label><input class="inp"></div><div class="field"><label class="f">ტელეფონი *</label><input class="inp"></div></div>
-          <div class="field"><label class="f">ელფოსტა *</label><input class="inp" type="email"></div>
+          <div class="field"><label class="f">სახელი <span class="faint" style="font-weight:400">— არასავალდებულო</span></label><input class="inp" placeholder="სურვილისამებრ"></div>
+          <div class="grid g2">
+            <div class="field"><label class="f">ტელეფონი * <span class="faint" style="font-weight:400">— SMS დასტურისთვის</span></label><input class="inp"></div>
+            <div class="field"><label class="f">რეგიონი *</label><select class="inp"><option value="">აირჩიე რეგიონი</option><option>თბილისი</option><option>აჭარა</option><option>იმერეთი</option><option>კახეთი</option><option>სამეგრელო</option><option>ქვემო ქართლი</option><option>სხვა</option></select></div>
+          </div>
+          <div class="field"><label class="f">ელფოსტა <span class="faint" style="font-weight:400">— არასავალდებულო</span></label><input class="inp" type="email" placeholder="სურვილისამებრ"></div>
           <label class="row" style="gap:8px;font-size:13.5px;color:var(--muted)"><input type="checkbox"> ვეთანხმები წესებსა და კონფიდენციალურობის პოლიტიკას</label>
           <div class="row between mt3"><button class="btn" data-bstep="1">← უკან</button><button class="btn pri" data-bstep="3">გადახდაზე გადასვლა →</button></div>
         </div>
@@ -447,12 +455,15 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
     <div class="bstep" id="bs4" style="display:none">
       <div class="card pad center" style="max-width:520px;margin:0 auto">
         <div style="font-size:52px">✅</div><h2 class="mt1">ჯავშანი დადასტურდა</h2>
-        <p class="muted">დასტური ელფოსტაზეა. კონსულტანტი შეხვედრის ბმულს გამოგიგზავნის — ის გამოჩნდება შენს კაბინეტში „შეტყობინებებში".</p>
+        <p class="muted">დასტური გამოგზავნილია <b>SMS-ით</b> თქვენს ნომერზე და შეიცავს შეხვედრის ბმულს. ბმული ხელმისაწვდომია აქვე და თქვენს კაბინეტში.</p>
         <div class="card pad mt2 card--flat" style="text-align:left">
           <div class="row between"><span class="muted">კოდი</span><b>#BK-10234</b></div>
           <div class="row between mt1"><span class="muted">დრო</span><b id="doneTime">—</b></div>
+          <div class="row between mt1" style="gap:8px"><span class="muted">🔗 შეხვედრის ბმული</span><a class="pill pri" data-toast="შეხვედრას უერთდები...">meet.psychocampus.ge/bk-10234</a></div>
         </div>
-        <div class="row mt3" style="justify-content:center"><button class="btn" data-go="home">მთავარზე</button><button class="btn pri" data-auth="profile">ჩემი კაბინეტი →</button></div>
+        <div class="row mt2" style="justify-content:center"><button class="btn" data-toast="📄 PDF ჩამოიტვირთა">📄 PDF ჩამოტვირთვა</button><button class="btn" data-toast="შეხვედრას უერთდები...">შეხვედრაზე შესვლა</button></div>
+        <p class="faint small mt1">💬 SMS მიდის მხოლოდ სერვისის შეძენის შემდეგ (ბენეფიციარის გადახდა).</p>
+        <div class="row mt2" style="justify-content:center"><button class="btn" data-go="home">მთავარზე</button><button class="btn pri" data-auth="profile">ჩემი კაბინეტი →</button></div>
       </div>
     </div>
   </div>
@@ -515,8 +526,8 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
       <div class="card pad"><table style="width:100%;border-collapse:collapse;font-size:14px" class="tb">
         <thead><tr><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">კოდი</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">დრო</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">სტატუსი</th><th style="border-bottom:1px solid var(--line)"></th></tr></thead>
         <tbody>
-          <tr><td style="padding:12px 10px">#BK-10234</td><td style="padding:12px 10px">09 ივლ · 10:30</td><td style="padding:12px 10px"><span class="pill acc">დაგეგმილი</span></td><td style="padding:12px 10px" class="row"><button class="btn sm" data-ptab="3">✉ შეხვედრის ბმული</button><button class="btn sm">დროის შეცვლა</button><button class="btn sm danger">გაუქმება</button></td></tr>
-          <tr><td style="padding:12px 10px">#BK-10101</td><td style="padding:12px 10px">28 ივნ · 14:00</td><td style="padding:12px 10px"><span class="pill ok">დასრულებული</span></td><td style="padding:12px 10px"><button class="btn sm">ინვოისი ↓</button></td></tr>
+          <tr><td style="padding:12px 10px">#BK-10234</td><td style="padding:12px 10px">09 ივლ · 10:30</td><td style="padding:12px 10px"><span class="pill acc">დაგეგმილი</span></td><td style="padding:12px 10px" class="row wrapf"><button class="btn sm" data-ptab="3">✉ შეხვედრის ბმული</button><button class="btn sm" data-toast="📄 გადახდის დეტალები (PDF)">გადახდის დეტალები ↓</button><button class="btn sm">დროის შეცვლა</button><button class="btn sm danger">გაუქმება</button></td></tr>
+          <tr><td style="padding:12px 10px">#BK-10101</td><td style="padding:12px 10px">28 ივნ · 14:00</td><td style="padding:12px 10px"><span class="pill ok">დასრულებული</span></td><td style="padding:12px 10px"><button class="btn sm" data-toast="📄 გადახდის დეტალები (PDF)">გადახდის დეტალები ↓</button></td></tr>
         </tbody></table></div>
     </div>
 
@@ -535,7 +546,7 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
       <div class="card pad">
         <div class="msg unread">
           <div class="av">🗓</div>
-          <div style="flex:1"><div class="row between"><b>ფსიქო კონსულტაცია — შეხვედრის ბმული</b><span class="faint small">ახლა</span></div>
+          <div style="flex:1"><div class="row between"><b>ფსიქო ნავიგაცია — შეხვედრის ბმული</b><span class="faint small">ახლა</span></div>
             <p class="muted small" style="margin:4px 0 8px">გამარჯობა! თქვენი კონსულტაცია 09 ივლ 10:30-ზეა. შეხვედრის ბმული:</p>
             <div class="row wrapf" style="gap:8px"><code style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px">meet.psychocampus.ge/bk-10234</code><button class="btn sm pri" data-toast="შეხვედრას უერთდები...">შეხვედრაზე შესვლა</button></div>
             <div class="faint small mt1">გამომგზავნი: კონსულტანტი</div>
@@ -561,12 +572,12 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
         <p class="muted small mt1" id="pkgDesc">პაკეტი არ გაქვს გააქტიურებული. აირჩიე პაკეტი ფასდაკლების ან უფასო წვდომისთვის.</p>
         <button class="btn pri mt1" data-go="packages">პაკეტების ნახვა</button>
       </div>
-      <div class="card pad"><h3 class="mb2">გადახდები & ინვოისები</h3>
+      <div class="card pad"><h3 class="mb2">გადახდები</h3>
         <table style="width:100%;border-collapse:collapse;font-size:14px">
-          <thead><tr><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">თარიღი</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">აღწერა</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">თანხა</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">ინვოისი</th></tr></thead>
+          <thead><tr><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">თარიღი</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">აღწერა</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">თანხა</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">გადახდის დეტალები</th></tr></thead>
           <tbody>
             <tr><td style="padding:12px 10px">01 ივლ</td><td style="padding:12px 10px">კურსი · შფოთვის მართვა</td><td style="padding:12px 10px">₾ 49</td><td style="padding:12px 10px"><a class="pill pri">PDF ↓</a></td></tr>
-            <tr><td style="padding:12px 10px">28 ივნ</td><td style="padding:12px 10px">ფსიქო კონსულტაცია #BK-10101</td><td style="padding:12px 10px">₾ 60</td><td style="padding:12px 10px"><a class="pill pri">PDF ↓</a></td></tr>
+            <tr><td style="padding:12px 10px">28 ივნ</td><td style="padding:12px 10px">ფსიქო ნავიგაცია #BK-10101</td><td style="padding:12px 10px">₾ 60</td><td style="padding:12px 10px"><a class="pill pri">PDF ↓</a></td></tr>
           </tbody></table>
       </div>
     </div>
@@ -587,7 +598,7 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
 <footer>
   <div class="wrap grid g4" style="gap:30px">
     <div><div class="logo" style="color:#fff"><span class="dot"></span> PsychoCampus</div><p style="opacity:.75;font-size:13.5px;margin-top:10px">ფსიქოლოგიური მხარდაჭერის ონლაინ პლატფორმა.</p></div>
-    <div><h4>სერვისები</h4><a data-go="courses">ფსიქო განათლება</a><a data-go="booking">ფსიქო კონსულტაცია</a><a data-go="packages">პაკეტები</a></div>
+    <div><h4>სერვისები</h4><a data-go="courses">ფსიქო განათლება</a><a data-go="booking">ფსიქო ნავიგაცია</a><a data-go="packages">პაკეტები</a></div>
     <div><h4>ინფორმაცია</h4><a data-go="about">ჩვენ შესახებ</a><a data-go="contact">კონტაქტი</a><a data-go="legal">წესები & პირობები</a></div>
     <div><h4>დაგვიკავშირდი</h4><a>info@psychocampus.ge</a><a>+995 5XX XX XX XX</a><div class="row mt1" style="gap:8px"><span>📘</span><span>📷</span><span>▶️</span></div></div>
   </div>
@@ -624,7 +635,7 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
 
 <script>
 /* ===== i18n ===== */
-const I18N={en:{"nav.home":"Home","nav.about":"About","nav.courses":"Psycho Education","nav.booking":"Psycho Consultation","nav.packages":"Packages","nav.contact":"Contact"}};
+const I18N={en:{"nav.home":"Home","nav.about":"About","nav.courses":"Psycho Education","nav.booking":"Psycho Navigation","nav.packages":"Packages","nav.contact":"Contact"}};
 function applyLang(l){document.querySelectorAll('[data-i]').forEach(function(el){const k=el.getAttribute('data-i');
   if(l==='en'&&I18N.en[k]){if(!el.dataset.ka)el.dataset.ka=el.textContent;el.textContent=I18N.en[k];}else if(el.dataset.ka){el.textContent=el.dataset.ka;}});document.documentElement.lang=l;}
 document.getElementById('lang').addEventListener('click',function(e){const b=e.target.closest('button');if(!b)return;
@@ -709,9 +720,11 @@ document.getElementById('buyCourseBtn').onclick=function(){openCheckout('course'
 document.getElementById('coBack1').onclick=()=>go(CO.kind==='package'?'packages':'course');
 
 /* ===== booking ===== */
-let selDay=9,selSlot=null,calMonth=6;
+let selDay=9,selSlot=null,calMonth=6,calYear=2026;
 const MONTHS=["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი"];
-function renderCal(){document.getElementById('calMonth').textContent=MONTHS[calMonth]+' 2026';let h='';
+(function(){const m=document.getElementById('calMonthSel');m.innerHTML=MONTHS.map((n,i)=>'<option value="'+i+'">'+n+'</option>').join('');
+  const y=document.getElementById('calYearSel');y.innerHTML=[2026,2027,2028].map(v=>'<option value="'+v+'">'+v+'</option>').join('');})();
+function renderCal(){document.getElementById('calMonthSel').value=calMonth;document.getElementById('calYearSel').value=calYear;let h='';
   for(let i=1;i<=31;i++){const wd=(i+2)%7;const off=(wd===5||wd===6||i<8);
     h+='<div class="day'+(off?' off':'')+(i===selDay&&!off?' sel':'')+'" data-day="'+i+'">'+i+(off?'':'<span class="load"></span>')+'</div>';}
   document.getElementById('calGrid').innerHTML=h;}
@@ -721,14 +734,17 @@ function renderSlots(){const times=["10:00","10:30","11:00","11:30","12:00","12:
   document.getElementById('selDate').textContent=selDay+' '+MONTHS[calMonth];}
 function updateSummary(){const time=selSlot?(selDay+' '+MONTHS[calMonth]+' · '+selSlot):'—';
   document.getElementById('sumTime').textContent=time;document.getElementById('toStep2').disabled=!selSlot;
-  const html='<b>ჯავშნის შეჯამება</b><div class="row between mt2"><span class="muted">სერვისი</span><span>ფსიქო კონსულტაცია</span></div>'+
+  const html='<b>ჯავშნის შეჯამება</b><div class="row between mt2"><span class="muted">სერვისი</span><span>ფსიქო ნავიგაცია</span></div>'+
     '<div class="row between mt1"><span class="muted">დრო</span><b>'+time+'</b></div><div class="row between mt1"><span class="muted">ხანგრძლივობა</span><span>30 წთ</span></div>'+
     '<hr style="border:0;border-top:1px dashed var(--line);margin:12px 0"><div class="row between"><span class="muted">ჯამი</span><b style="font-size:18px">₾ 60</b></div>';
   document.getElementById('bsum2').innerHTML=html;document.getElementById('bsum3').innerHTML=html;document.getElementById('doneTime').textContent=time;}
 document.getElementById('calGrid').addEventListener('click',e=>{const d=e.target.closest('[data-day]');if(!d||d.classList.contains('off'))return;selDay=+d.dataset.day;selSlot=null;renderCal();renderSlots();updateSummary();});
 document.getElementById('slots').addEventListener('click',e=>{const s=e.target.closest('[data-slot]');if(!s)return;selSlot=s.dataset.slot;renderSlots();updateSummary();});
-document.getElementById('calPrev').onclick=()=>{if(calMonth>0){calMonth--;renderCal();renderSlots();updateSummary();}};
-document.getElementById('calNext').onclick=()=>{if(calMonth<11){calMonth++;renderCal();renderSlots();updateSummary();}};
+function calRefresh(){selSlot=null;renderCal();renderSlots();updateSummary();}
+document.getElementById('calPrev').onclick=()=>{calMonth--;if(calMonth<0){calMonth=11;if(calYear>2026)calYear--;}calRefresh();};
+document.getElementById('calNext').onclick=()=>{calMonth++;if(calMonth>11){calMonth=0;if(calYear<2028)calYear++;}calRefresh();};
+document.getElementById('calMonthSel').onchange=function(){calMonth=+this.value;calRefresh();};
+document.getElementById('calYearSel').onchange=function(){calYear=+this.value;calRefresh();};
 function bstep(n){[1,2,3,4].forEach(i=>document.getElementById('bs'+i).style.display=(i===n?'block':'none'));
   document.querySelectorAll('#steps .step').forEach((s,i)=>{s.classList.toggle('active',i===n-1);s.classList.toggle('done',i<n-1);});window.scrollTo({top:200,behavior:'smooth'});}
 document.getElementById('toStep2').onclick=()=>bstep(2);

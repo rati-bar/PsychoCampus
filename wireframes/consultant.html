@@ -64,6 +64,16 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
 .sched .cell{border:1px solid var(--line-2);border-radius:8px;min-height:34px;background:var(--surface)}
 .sched .cell.work{background:var(--primary-soft);border-color:#bfe0db}
 .sched .cell.book{background:var(--accent-soft);border-color:#d8d2f0;font-weight:600;color:var(--accent);display:flex;align-items:center;justify-content:center}
+.schd{display:grid;grid-template-columns:56px repeat(7,1fr);gap:5px;font-size:11.5px}
+.schd .hd{text-align:center;font-weight:700;color:var(--faint);padding:4px 0}
+.schd .h{color:var(--faint);text-align:right;padding:7px 6px 0 0}
+.schd .c{border:1px solid var(--line-2);border-radius:7px;min-height:38px;background:var(--surface);cursor:pointer;transition:.1s;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2px;text-align:center}
+.schd .c:hover{border-color:var(--primary)}
+.schd .c.work{background:var(--ok-soft);border-color:#bfdcca}
+.schd .c.book{background:var(--accent-soft);border-color:#d8d2f0;cursor:default}
+.schd .c .cov{width:7px;height:7px;border-radius:999px;margin-top:2px}
+.schd .c .cov.g{background:var(--ok)} .schd .c .cov.w{background:var(--warn)}
+.dot-g,.dot-w{display:inline-block;width:8px;height:8px;border-radius:999px;vertical-align:middle}.dot-g{background:var(--ok)}.dot-w{background:var(--warn)}
 @media(max-width:860px){.app{grid-template-columns:1fr}.side{position:fixed;left:-260px;transition:.2s;z-index:50;width:250px}.side.open{left:0}.g4{grid-template-columns:1fr 1fr}.g3,.g2{grid-template-columns:1fr}.burger{display:inline-flex!important}}
 .burger{display:none}
 </style>
@@ -118,12 +128,12 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
           <div class="row between pad" style="padding-bottom:0"><b>დღევანდელი ჯავშნები</b><select class="inp" style="width:160px"><option>დღეს</option><option>ამ კვირას</option><option>ყველა</option></select></div>
           <div class="pad">
             <table class="tb" id="bkTable">
-              <thead><tr><th>დრო</th><th>კოდი</th><th>მომხმარებელი</th><th>საკონტაქტო</th><th>სტატუსი</th><th></th></tr></thead>
+              <thead><tr><th>თარიღი & დრო</th><th>მომხმარებელი</th><th>საკონტაქტო</th><th>სტატუსი</th><th></th></tr></thead>
               <tbody>
-                <tr><td><b>10:30</b></td><td>#BK-10234</td><td>გ. მ.</td><td>+995 5XX · g.m@…</td><td><span class="pill acc">მომდევნო</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="გ. მ.|#BK-10234|10:30">✉ მიწერა</button><button class="btn sm" data-open="10:30 · #BK-10234 · გ. მ.">დეტალები</button></div></td></tr>
-                <tr><td><b>11:15</b></td><td>#BK-10240</td><td>ნ. კ.</td><td>+995 5XX · n.k@…</td><td><span class="pill">დაგეგმილი</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="ნ. კ.|#BK-10240|11:15">✉ მიწერა</button><button class="btn sm" data-open="11:15 · #BK-10240 · ნ. კ.">დეტალები</button></div></td></tr>
-                <tr><td><b>14:00</b></td><td>#BK-10251</td><td>დ. ბ.</td><td>+995 5XX · d.b@…</td><td><span class="pill">დაგეგმილი</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="დ. ბ.|#BK-10251|14:00">✉ მიწერა</button><button class="btn sm" data-open="14:00 · #BK-10251 · დ. ბ.">დეტალები</button></div></td></tr>
-                <tr><td class="faint">09:30</td><td>#BK-10228</td><td>ს. ლ.</td><td>+995 5XX · s.l@…</td><td><span class="pill ok">დასრულებული</span></td><td><div class="row" style="gap:6px"><button class="btn sm" data-msg="ს. ლ.|#BK-10228|09:30">✉ მიწერა</button><button class="btn sm" data-open="09:30 · #BK-10228 · ს. ლ.">ჩანაწერი</button></div></td></tr>
+                <tr><td><b>09 ივლ · 10:30</b></td><td>გ. მ.</td><td>+995 5XX · g.m@…</td><td><span class="pill acc">მომდევნო</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="გ. მ.|#BK-10234|09 ივლ · 10:30">✉ მიწერა</button><button class="btn sm" data-open="09 ივლ · 10:30 · #BK-10234 · გ. მ.">დეტალები</button></div></td></tr>
+                <tr><td><b>09 ივლ · 11:15</b></td><td>ნ. კ.</td><td>+995 5XX · n.k@…</td><td><span class="pill">დაგეგმილი</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="ნ. კ.|#BK-10240|09 ივლ · 11:15">✉ მიწერა</button><button class="btn sm" data-open="09 ივლ · 11:15 · #BK-10240 · ნ. კ.">დეტალები</button></div></td></tr>
+                <tr><td><b>09 ივლ · 14:00</b></td><td>დ. ბ.</td><td>+995 5XX · d.b@…</td><td><span class="pill">დაგეგმილი</span></td><td><div class="row" style="gap:6px"><button class="btn sm pri" data-msg="დ. ბ.|#BK-10251|09 ივლ · 14:00">✉ მიწერა</button><button class="btn sm" data-open="09 ივლ · 14:00 · #BK-10251 · დ. ბ.">დეტალები</button></div></td></tr>
+                <tr><td class="faint">09 ივლ · 09:30</td><td>ს. ლ.</td><td>+995 5XX · s.l@…</td><td><span class="pill ok">დასრულებული</span></td><td><div class="row" style="gap:6px"><button class="btn sm" data-msg="ს. ლ.|#BK-10228|09 ივლ · 09:30">✉ მიწერა</button><button class="btn sm" data-open="09 ივლ · 09:30 · #BK-10228 · ს. ლ.">ჩანაწერი</button></div></td></tr>
               </tbody>
             </table>
           </div>
@@ -134,18 +144,21 @@ table.tb td{padding:13px 12px;border-bottom:1px solid var(--line-2)}table.tb tr:
         </div>
       </section>
 
-      <!-- SCHEDULE -->
+      <!-- SCHEDULE (self-composed, needs admin approval) -->
       <section class="view" id="v-schedule">
-        <div class="grid g3 mb3">
-          <div class="card stat"><div class="k">სამუშაო საათები</div><div class="v" style="font-size:20px">11:00–18:00</div><div class="d">ორშ – პარ</div></div>
-          <div class="card stat"><div class="k">სესიის ხანგრძლივობა</div><div class="v" style="font-size:20px">30 წთ</div><div class="d">+15 წთ ბუფერი</div></div>
-          <div class="card stat"><div class="k">დღიური ლიმიტი</div><div class="v" style="font-size:20px">10</div><div class="d">სესია</div></div>
+        <div class="row between wrapf mb3">
+          <div><b>გრაფიკის შედგენა</b><div class="faint" style="font-size:12.5px">მონიშნე საათები, როცა შეგიძლია მუშაობა — 1 თვით ადრე. საჭიროებს ადმინის დადასტურებას.</div></div>
+          <div class="row" style="gap:8px"><span class="pill warn" id="apprState">⏳ დადასტურების მოლოდინში</span><button class="btn pri" id="submitSched">დადასტურებაზე გაგზავნა</button></div>
         </div>
         <div class="card pad">
-          <div class="row between mb2"><b>ამ კვირის გრაფიკი</b><span class="faint" style="font-size:12.5px">გრაფიკს ადგენს ადმინისტრატორი</span></div>
-          <div class="sched" id="schedGrid"></div>
-          <div class="row wrapf mt2 faint" style="font-size:12px;gap:16px"><span>🟩 სამუშაო დრო</span><span>🟪 დაჯავშნილი</span></div>
+          <div class="row between mb2"><button class="btn sm" id="wPrev">‹</button><b id="weekLabel">14–20 ივლისი 2026</b><button class="btn sm" id="wNext">›</button></div>
+          <div class="schd" id="schd"></div>
+          <div class="row wrapf mt2 faint" style="font-size:12px;gap:14px">
+            <span>🟩 მონიშნული (ვმუშაობ)</span><span>⬜ თავისუფალი</span><span>🟪 ჩემი ჯავშანი</span>
+            <span><span class="dot-g"></span> უკვე დაფარულია სხვა კონსულტანტით</span><span><span class="dot-w"></span> საჭიროებს დაფარვას</span>
+          </div>
         </div>
+        <div class="card pad mt3 card--flat"><b>ℹ როგორ მუშაობს</b><p class="muted" style="font-size:13px;margin:6px 0 0">დააჭირე უჯრებს სამუშაო საათების მოსანიშნად. უკვე დაჯავშნილი დროები (🟪) ჩანს ინდიკატორით — ეს ჯავშანი უკვე დაფარულია სხვა კონსულტანტის გრაფიკით თუ ჯერ საჭიროებს დაფარვას. საბოლოო გრაფიკს ადასტურებს ადმინისტრატორი.</p></div>
       </section>
 
       <!-- AVAILABILITY -->
@@ -263,20 +276,33 @@ document.addEventListener('click',e=>{
 document.getElementById('genLink').onclick=()=>{document.getElementById('meetLink').value='meet.psychocampus.ge/room-'+(document.getElementById('meetLink').value.length);};
 document.getElementById('sendMsg').onclick=()=>{document.getElementById('msgModal').classList.remove('on');toast('შეტყობინება გაიგზავნა მომხმარებელთან ✓');};
 
-/* schedule grid */
+/* schedule composer (self-set, needs admin approval) */
 (function(){
-  const hours=["11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
-  const booked={"11:00":0,"12:00":1,"14:00":3,"15:00":0};
-  let h='<div></div>'+["ორშ","სამ","ოთხ","ხუთ","პარ"].map(d=>'<div class="center faint" style="font-weight:700">'+d+'</div>').join('');
-  hours.forEach(hr=>{
+  const hours=["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
+  const days=["ორშ","სამ","ოთხ","ხუთ","პარ","შაბ","კვ"];
+  // preselected working cells "day-hourIndex"
+  const work=new Set(["0-1","0-2","1-1","1-2","2-3","2-4","4-0","4-1"]);
+  // existing bookings: key -> covered(true) or needs-coverage(false)
+  const booked={"0-1":true,"1-4":false,"3-2":true};
+  let h='<div></div>'+days.map(d=>'<div class="hd">'+d+'</div>').join('');
+  hours.forEach((hr,hi)=>{
     h+='<div class="h">'+hr+'</div>';
-    for(let d=0;d<5;d++){
-      const isBooked=(booked[hr]!==undefined&&d===booked[hr]);
-      h+='<div class="cell '+(isBooked?'book':'work')+'">'+(isBooked?'●':'')+'</div>';
+    for(let d=0;d<7;d++){
+      const key=d+'-'+hi;
+      if(booked[key]!==undefined){
+        h+='<div class="c book" title="დაჯავშნილი"><span>🟪</span><span class="cov '+(booked[key]?'g':'w')+'"></span></div>';
+      }else{
+        h+='<div class="c'+(work.has(key)?' work':'')+'" data-cell="'+key+'"></div>';
+      }
     }
   });
-  document.getElementById('schedGrid').innerHTML=h;
+  const grid=document.getElementById('schd'); grid.innerHTML=h;
+  grid.addEventListener('click',e=>{const c=e.target.closest('[data-cell]');if(!c)return;c.classList.toggle('work');
+    document.getElementById('apprState').className='pill warn';document.getElementById('apprState').textContent='⏳ შენახული, გასაგზავნია';});
 })();
+document.getElementById('submitSched').onclick=()=>{const s=document.getElementById('apprState');s.className='pill';s.textContent='📤 გაგზავნილია — ადმინის დადასტურების მოლოდინში';toast('გრაფიკი გაიგზავნა ადმინთან დასადასტურებლად ✓');};
+document.getElementById('wPrev').onclick=()=>toast('წინა კვირა');
+document.getElementById('wNext').onclick=()=>toast('შემდეგი კვირა');
 </script>
 </body>
 </html>
