@@ -117,6 +117,13 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
 .msg{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line-2)}
 .msg .av{width:40px;height:40px;border-radius:999px;background:var(--primary-soft);color:var(--primary-d);display:flex;align-items:center;justify-content:center;flex:none}
 .msg.unread{background:var(--primary-soft);border-radius:10px;padding:14px;border:0}
+.mitem{display:flex;gap:10px;padding:13px 14px;border-bottom:1px solid var(--line-2);cursor:pointer;align-items:flex-start}
+.mitem:last-child{border-bottom:0}.mitem:hover{background:var(--surface-2)}.mitem.sel{background:var(--primary-soft)}
+.mitem .av{width:36px;height:36px;border-radius:999px;background:var(--primary-soft);color:var(--primary-d);display:flex;align-items:center;justify-content:center;flex:none;font-size:16px}
+.mitem .dot{width:8px;height:8px;border-radius:999px;background:var(--primary);flex:none;margin-top:6px}
+.rxn{display:inline-flex;gap:6px;flex-wrap:wrap}
+.rxn button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:15px;font-family:inherit;transition:.12s}
+.rxn button:hover{border-color:var(--primary)}.rxn button.on{background:var(--primary-soft);border-color:var(--primary)}
 /* social */
 .soc{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:11px;padding:11px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
 .soc:hover{background:var(--surface-2)}.soc .g{color:#4285F4;font-weight:800}.soc .f{color:#1877F2;font-weight:800}
@@ -178,9 +185,9 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
       </div>
       <div class="card pad hoverable" data-go="booking">
         <div class="thumb mb2" style="aspect-ratio:16/7;font-size:44px">🧭</div>
-        <div class="row between"><h2>ფსიქო ნავიგაცია</h2><span class="pill acc">1:1</span></div>
-        <p class="muted mt1">ინდივიდუალური ონლაინ სესია სპეციალისტთან. ერთიანი კალენდარი, თავისუფალი დროის სწრაფი არჩევა და დადასტურება SMS-ით.</p>
-        <div class="btn pri block mt2">დაჯავშნა →</div>
+        <div class="row between"><h2>ფსიქო ნავიგაცია</h2><span class="pill acc">📹 ონლაინ</span></div>
+        <p class="muted mt1"><b style="color:var(--ink)">კონსულტაცია პროფესიონალთან, რომელიც დაგეხმარება სწორი თერაპევტის მოძიებაში.</b> ონლაინ გასაუბრება — დაჯავშნე თავისუფალი დრო, დადასტურება SMS-ით.</p>
+        <div class="btn pri block mt2">ონლაინ გასაუბრების დაჯავშნა →</div>
       </div>
     </div>
   </div></div>
@@ -196,10 +203,11 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
     <div class="grid g2" style="align-items:center">
       <div class="thumb" style="aspect-ratio:4/3;font-size:52px">🧭</div>
       <div>
-        <span class="pill acc">ფსიქო ნავიგაცია</span>
-        <h2 class="mt2">ინდივიდუალური ონლაინ სესია</h2>
-        <p class="muted mt1">დაჯავშნე შეხვედრა სპეციალისტთან ერთიანი კალენდრიდან. კონკრეტული სპეციალისტის არჩევა საჭირო არ არის — სისტემა ავტომატურად შეურჩევს თავისუფალ კონსულტანტს. დადასტურება მოგივა SMS-ით, შეხვედრის ბმულით.</p>
-        <button class="btn pri mt2" data-go="booking">დროის დაჯავშნა →</button>
+        <span class="pill acc">📹 ონლაინ გასაუბრება</span>
+        <h2 class="mt2">კონსულტაცია პროფესიონალთან</h2>
+        <p class="lede" style="margin-top:12px"><b style="color:var(--ink)">დაგეხმარებით სწორი თერაპევტის მოძიებაში.</b> ეს არის ონლაინ გასაუბრება პროფესიონალთან, რომელიც მოგისმენს და მიგითითებს შენთვის შესაფერის სპეციალისტსა თუ მიმართულებაზე.</p>
+        <p class="muted mt2">კონკრეტული სპეციალისტის არჩევა საჭირო არ არის — სისტემა ავტომატურად შეურჩევს თავისუფალ კონსულტანტს. დადასტურება მოგივა SMS-ით, გასაუბრების ბმულით.</p>
+        <button class="btn pri mt2" data-go="booking">ონლაინ გასაუბრების დაჯავშნა →</button>
       </div>
     </div>
   </div></div>
@@ -340,6 +348,43 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
   </div>
 </section>
 
+<!-- PACKAGE DETAIL (service details before payment) -->
+<section class="view" id="v-pkgdetail">
+  <div class="wrap sec">
+    <a class="pill mb2" data-go="packages">← პაკეტებში დაბრუნება</a>
+    <div class="grid split" style="grid-template-columns:1fr 350px;gap:28px;align-items:start">
+      <div>
+        <!-- media: video + photos -->
+        <div class="thumb" style="aspect-ratio:16/9;font-size:20px">
+          <div class="center" style="position:relative;z-index:2"><div class="play" style="margin:0 auto">▶</div><div class="strong mt1" style="color:var(--ink)">პაკეტის მიმოხილვა (ვიდეო)</div></div>
+        </div>
+        <div class="grid g3 mt2">
+          <div class="thumb" style="aspect-ratio:4/3;font-size:22px">🖼</div>
+          <div class="thumb" style="aspect-ratio:4/3;font-size:22px">🖼</div>
+          <div class="thumb" style="aspect-ratio:4/3;font-size:22px">🖼</div>
+        </div>
+        <h1 class="mt3" id="pdName">პაკეტი</h1>
+        <div class="row wrapf mt1"><span class="pill acc">ყოველთვიური გამოწერა</span><span class="pill">გაუქმება ნებისმიერ დროს</span></div>
+        <h3 class="mt3">რას მოიცავს</h3>
+        <ul class="muted" style="padding-left:18px;margin:8px 0 0;line-height:1.9" id="pdBenefits"></ul>
+        <h3 class="mt3">აღწერა</h3>
+        <p class="muted mt1" id="pdDesc">ეს პაკეტი შექმნილია იმისთვის, რომ მიიღოთ მაქსიმალური სარგებელი პლატფორმისგან — როგორც ფსიქო განათლების კურსებზე, ისე ფსიქო ნავიგაციის ონლაინ გასაუბრებებზე. გამოწერა ავტომატურად ახლდება ყოველ თვე და შეგიძლიათ გააუქმოთ ნებისმიერ დროს პროფილიდან.</p>
+      </div>
+      <div>
+        <div class="card pad">
+          <div class="row between" style="align-items:baseline"><span style="font-size:32px;font-weight:800" id="pdPrice">₾ —</span><span class="faint small">/ თვე</span></div>
+          <button class="btn pri block mt2" id="pdBuy">გადახდაზე გადასვლა →</button>
+          <p class="faint center mt1 small">დაცული გადახდა · ბანკის ინტეგრაცია</p>
+          <hr style="border:0;border-top:1px solid var(--line-2);margin:16px 0">
+          <div class="small muted">✓ წვდომა/ფასდაკლება კურსებზე</div>
+          <div class="small muted mt1">✓ წვდომა/ფასდაკლება ფსიქო ნავიგაციაზე</div>
+          <div class="small muted mt1">✓ ახალი კონტენტი ყოველთვე</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CHECKOUT (course or package) -->
 <section class="view" id="v-checkout">
   <div class="wrap sec">
@@ -391,8 +436,10 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
 <!-- BOOKING (ფსიქო ნავიგაცია) -->
 <section class="view" id="v-booking">
   <div class="wrap sec">
-    <div class="center mb3"><span class="pill pri">ფსიქო ნავიგაცია</span><h1 class="mt2">დაჯავშნე შენი სესია</h1>
-      <p class="muted mt1" style="max-width:640px;margin-left:auto;margin-right:auto">კონკრეტული სპეციალისტის არჩევა საჭირო არ არის — სისტემა ავტომატურად შეურჩევს თავისუფალ კონსულტანტს არჩეულ დროზე.</p></div>
+    <div class="center mb3"><span class="pill pri">ფსიქო ნავიგაცია</span><h1 class="mt2">დაჯავშნე ონლაინ გასაუბრება</h1>
+      <p class="lede" style="max-width:680px;margin:12px auto 0"><b style="color:var(--ink)">კონსულტაცია პროფესიონალთან, რომელიც დაგეხმარება სწორი თერაპევტის მოძიებაში.</b></p>
+      <div class="row" style="justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap"><span class="pill acc">📹 ონლაინ გასაუბრება (ვიდეო)</span><span class="pill">⏱ 30 წთ</span><span class="pill">🔗 ბმული მოგივა SMS-ით</span></div>
+      <p class="muted mt2" style="max-width:640px;margin-left:auto;margin-right:auto">კონკრეტული სპეციალისტის არჩევა საჭირო არ არის — სისტემა ავტომატურად შეურჩევს თავისუფალ კონსულტანტს არჩეულ დროზე.</p></div>
     <div class="steps" id="steps">
       <div class="step active"><span class="n">1</span><span class="lbl">დრო</span></div><div class="step"><span class="n">2</span><span class="lbl">მონაცემები</span></div>
       <div class="step"><span class="n">3</span><span class="lbl">გადახდა</span></div><div class="step"><span class="n">4</span><span class="lbl">დასტური</span></div>
@@ -518,11 +565,12 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
       <span class="pill acc" id="pkgBadge">პაკეტი: არ გაქვს</span>
     </div>
     <div class="tabs mb3" id="profTabs">
-      <button class="on" data-ptab="0">ჯავშნები</button><button data-ptab="1">ჩემი კურსები</button><button data-ptab="2">სერტიფიკატები</button>
-      <button data-ptab="3">შეტყობინებები <span class="pill pri" style="padding:0 7px">2</span></button><button data-ptab="4">პაკეტი & გადახდები</button><button data-ptab="5">პირადი მონაცემები</button>
+      <button class="on" data-ptab="3">შეტყობინებები <span class="pill pri" id="msgBadge" style="padding:0 7px">2</span></button>
+      <button data-ptab="0">ჯავშნები</button><button data-ptab="1">ჩემი კურსები</button><button data-ptab="2">სერტიფიკატები</button>
+      <button data-ptab="4">პაკეტი & გადახდები</button><button data-ptab="5">პირადი მონაცემები</button>
     </div>
 
-    <div class="ptab on" id="pt0">
+    <div class="ptab" id="pt0" style="display:none">
       <div class="card pad"><table style="width:100%;border-collapse:collapse;font-size:14px" class="tb">
         <thead><tr><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">კოდი</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">დრო</th><th style="text-align:left;padding:10px;color:var(--faint);font-size:11.5px;text-transform:uppercase;border-bottom:1px solid var(--line)">სტატუსი</th><th style="border-bottom:1px solid var(--line)"></th></tr></thead>
         <tbody>
@@ -542,27 +590,10 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
       </div>
     </div>
 
-    <div class="ptab" id="pt3" style="display:none">
-      <div class="card pad">
-        <div class="msg unread">
-          <div class="av">🗓</div>
-          <div style="flex:1"><div class="row between"><b>ფსიქო ნავიგაცია — შეხვედრის ბმული</b><span class="faint small">ახლა</span></div>
-            <p class="muted small" style="margin:4px 0 8px">გამარჯობა! თქვენი კონსულტაცია 09 ივლ 10:30-ზეა. შეხვედრის ბმული:</p>
-            <div class="row wrapf" style="gap:8px"><code style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px">meet.psychocampus.ge/bk-10234</code><button class="btn sm pri" data-toast="შეხვედრას უერთდები...">შეხვედრაზე შესვლა</button></div>
-            <div class="faint small mt1">გამომგზავნი: კონსულტანტი</div>
-          </div>
-        </div>
-        <div class="msg unread mt1">
-          <div class="av">🎓</div>
-          <div style="flex:1"><div class="row between"><b>სერტიფიკატი გაიცა</b><span class="faint small">2 დღის წინ</span></div>
-            <p class="muted small" style="margin:4px 0 0">გილოცავთ! კურსი „შფოთვის მართვა" დასრულებულია — სერტიფიკატი ხელმისაწვდომია.</p>
-            <button class="btn sm mt1" data-ptab="2">სერტიფიკატის ნახვა</button></div>
-        </div>
-        <div class="msg">
-          <div class="av">💳</div>
-          <div style="flex:1"><div class="row between"><b>გადახდა მიღებულია</b><span class="faint small">01 ივლ</span></div>
-            <p class="muted small" style="margin:4px 0 0">კურსის „შფოთვის მართვა" გადახდა დადასტურდა. მადლობა!</p></div>
-        </div>
+    <div class="ptab on" id="pt3">
+      <div class="grid" style="grid-template-columns:330px 1fr;gap:20px;align-items:start" id="msgWrap">
+        <div class="card" style="overflow:hidden" id="msgList"></div>
+        <div class="card pad" id="msgDetail"></div>
       </div>
     </div>
 
@@ -642,7 +673,7 @@ document.getElementById('lang').addEventListener('click',function(e){const b=e.t
   this.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');applyLang(b.dataset.lang);});
 
 /* ===== router ===== */
-const views=['home','about','courses','course','packages','checkout','booking','contact','legal','profile'];
+const views=['home','about','courses','course','packages','pkgdetail','checkout','booking','contact','legal','profile'];
 function go(name){views.forEach(v=>document.getElementById('v-'+v).classList.toggle('on',v===name));
   document.querySelectorAll('.menu a,.mobile-menu a').forEach(a=>a.classList.toggle('on',a.dataset.go===name));
   document.getElementById('mmenu').classList.remove('on');window.scrollTo({top:0,behavior:'smooth'});
@@ -689,6 +720,14 @@ function pkgCardHTML(p,i,compact){
     '<div class="foot"><button class="btn '+(p[3]?'pri':'')+' block" data-pkg="'+i+'">არჩევა</button></div></div>';}
 document.getElementById('pkgGrid').innerHTML=PKGS.map((p,i)=>pkgCardHTML(p,i,false)).join('');
 document.getElementById('homePkgs').innerHTML=PKGS.map((p,i)=>pkgCardHTML(p,i,true)).join('');
+/* package -> details page first, then checkout */
+let pkgSel=0;
+function openPkgDetail(i){pkgSel=i;const p=PKGS[i];
+  document.getElementById('pdName').textContent=p[0];
+  document.getElementById('pdPrice').textContent=p[1];
+  document.getElementById('pdBenefits').innerHTML=p[4].map(x=>'<li>'+x+'</li>').join('');
+  go('pkgdetail');}
+document.getElementById('pdBuy').onclick=()=>{const p=PKGS[pkgSel];openCheckout('package',p[0],p[1].replace('₾','').trim(),true);};
 
 /* ===== checkout (course or package) ===== */
 let CO={kind:'course',title:'',price:0,recurring:false};
@@ -714,7 +753,7 @@ function costep(n){[1,2,3].forEach(i=>document.getElementById('co'+i).style.disp
   window.scrollTo({top:200,behavior:'smooth'});}
 document.addEventListener('click',e=>{
   const s=e.target.closest('[data-costep]');if(s)costep(+s.dataset.costep);
-  const p=e.target.closest('[data-pkg]');if(p){const k=+p.dataset.pkg;openCheckout('package',PKGS[k][0],PKGS[k][1].replace('₾','').trim(),true);}
+  const p=e.target.closest('[data-pkg]');if(p){openPkgDetail(+p.dataset.pkg);}
 });
 document.getElementById('buyCourseBtn').onclick=function(){openCheckout('course',this.dataset.ct||'კურსი',this.dataset.cp||49,false);};
 document.getElementById('coBack1').onclick=()=>go(CO.kind==='package'?'packages':'course');
@@ -756,6 +795,47 @@ document.getElementById('myCourses').innerHTML=[["შფოთვის მა�
   return '<div class="card pad"><div class="row between"><b>'+c[0]+'</b>'+(c[1]===100?'<span class="pill ok">დასრულებული</span>':'<span class="pill">'+c[1]+'%</span>')+'</div>'+
     '<div class="prog mt2"><i style="width:'+c[1]+'%"></i></div>'+
     '<button class="btn '+(c[1]===100?'':'pri ')+'block mt2" data-go="course">'+(c[1]===100?'🎓 სერტიფიკატის ნახვა':'გაგრძელება')+'</button></div>';}).join('');
+
+/* ===== messages (master-detail + reactions) ===== */
+const MSGS=[
+  {ic:'🗓',title:'ფსიქო ნავიგაცია — ონლაინ გასაუბრების ბმული',time:'ახლა',from:'კონსულტანტი',unread:true,rx:'',
+   body:'გამარჯობა! თქვენი ონლაინ გასაუბრება დაგეგმილია <b>09 ივლისს, 10:30 საათზე</b>.<br><br>ეს არის ვიდეო-შეხვედრა პროფესიონალთან, რომელიც მოგისმენთ და დაგეხმარებათ სწორი თერაპევტის/მიმართულების მოძიებაში. გთხოვთ, დანიშნულ დროს დააჭიროთ ქვემოთ მოცემულ ბმულს — შეხვედრა გაიხსნება ბრაუზერში, დამატებითი აპლიკაციის გარეშე.<br><br>თუ დრო აღარ გაწყობთ, გთხოვთ წინასწარ შეგვატყობინოთ, რომ სხვა ბენეფიციარს დავუთმოთ სლოტი. კარგ განწყობას გისურვებთ!',
+   link:'meet.psychocampus.ge/bk-10234'},
+  {ic:'🎓',title:'თქვენი სერტიფიკატი მზადაა',time:'2 დღის წინ',from:'PsychoCampus',unread:true,rx:'',
+   body:'გილოცავთ! 🎉 თქვენ წარმატებით დაასრულეთ კურსი <b>„შფოთვის მართვა"</b> და ჩააბარეთ დასკვნითი ქვიზი.<br><br>თქვენი სერტიფიკატი უკვე ხელმისაწვდომია კაბინეტში, განყოფილებაში „სერტიფიკატები". შეგიძლიათ ჩამოტვირთოთ PDF ფორმატში ან გააზიაროთ სოციალურ ქსელებში.',
+   cert:true},
+  {ic:'💳',title:'გადახდა მიღებულია',time:'01 ივლ',from:'PsychoCampus',unread:false,rx:'',
+   body:'კურსის <b>„შფოთვის მართვა"</b> გადახდა (₾ 49) წარმატებით დადასტურდა. მადლობა შენდობისთვის! კურსზე წვდომა უკვე გახსნილია.'},
+  {ic:'📚',title:'ახალი კურსი შესაძლოა დაგაინტერესოთ',time:'28 ივნ',from:'PsychoCampus',unread:false,rx:'',
+   body:'გამარჯობა! თქვენი ინტერესებიდან გამომდინარე, შესაძლოა მოგეწონოთ ახალი კურსი <b>„ემოციური ინტელექტი"</b>.<br><br>კურსი მოიცავს 6 თემატურ სექციას, პრაქტიკულ სავარჯიშოებსა და შუალედურ ქვიზებს. პაკეტის მფლობელებისთვის მოქმედებს ფასდაკლება, ხოლო მე-3 პაკეტით — უფასოა.'},
+];
+const RXNS=['👍','❤️','🙏','😊'];
+let msgSel=0;
+function renderMsgList(){
+  document.getElementById('msgList').innerHTML=MSGS.map((m,i)=>
+    '<div class="mitem'+(i===msgSel?' sel':'')+'" data-mi="'+i+'"><div class="av">'+m.ic+'</div>'+
+    '<div style="flex:1;min-width:0"><div class="row between"><b style="font-size:13.5px">'+m.title+'</b>'+(m.unread?'<span class="dot"></span>':'')+'</div>'+
+    '<div class="faint small" style="margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+m.body.replace(/<[^>]+>/g,'')+'</div>'+
+    '<div class="faint small" style="margin-top:2px">'+m.from+' · '+m.time+'</div></div></div>').join('');
+}
+function renderMsgDetail(){
+  const m=MSGS[msgSel];
+  let extra='';
+  if(m.link)extra='<div class="row wrapf mt2" style="gap:8px"><code style="background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:7px 11px;font-size:12.5px">'+m.link+'</code><button class="btn sm pri" data-toast="ვიდეო-შეხვედრას უერთდები...">📹 შეხვედრაზე შესვლა</button></div>';
+  if(m.cert)extra='<button class="btn sm pri mt2" data-ptab="2">🎓 სერტიფიკატის ნახვა</button>';
+  const rxHtml=RXNS.map(r=>'<button class="'+(m.rx===r?'on':'')+'" data-rx="'+r+'">'+r+'</button>').join('');
+  document.getElementById('msgDetail').innerHTML=
+    '<div class="row between wrapf"><div class="row" style="gap:10px"><div class="av" style="width:42px;height:42px;border-radius:999px;background:var(--primary-soft);color:var(--primary-d);display:flex;align-items:center;justify-content:center;font-size:18px">'+m.ic+'</div><div><h3 style="font-size:17px">'+m.title+'</h3><div class="faint small">'+m.from+' · '+m.time+'</div></div></div></div>'+
+    '<hr style="border:0;border-top:1px solid var(--line-2);margin:16px 0">'+
+    '<div style="line-height:1.7">'+m.body+'</div>'+extra+
+    '<div style="margin-top:20px"><div class="faint small mb1">რეაქცია:</div><div class="rxn">'+rxHtml+'</div></div>';
+}
+function openMsg(i){msgSel=i;MSGS[i].unread=false;renderMsgList();renderMsgDetail();updateMsgBadge();}
+function updateMsgBadge(){const n=MSGS.filter(m=>m.unread).length;const bd=document.getElementById('msgBadge');if(!bd)return;bd.textContent=n;bd.style.display=n?'inline-flex':'none';}
+document.getElementById('msgList').addEventListener('click',e=>{const it=e.target.closest('[data-mi]');if(it)openMsg(+it.dataset.mi);});
+document.getElementById('msgDetail').addEventListener('click',e=>{const r=e.target.closest('[data-rx]');if(!r)return;
+  const m=MSGS[msgSel];m.rx=(m.rx===r.dataset.rx?'':r.dataset.rx);renderMsgDetail();toast(m.rx?'რეაქცია: '+m.rx:'რეაქცია მოხსნილია');});
+renderMsgList();renderMsgDetail();updateMsgBadge();
 
 /* ===== tabs (profile, legal, auth) ===== */
 document.getElementById('profTabs').addEventListener('click',e=>{const b=e.target.closest('[data-ptab]');if(!b)return;
