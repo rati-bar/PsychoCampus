@@ -124,6 +124,15 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
 .rxn{display:inline-flex;gap:6px;flex-wrap:wrap}
 .rxn button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:15px;font-family:inherit;transition:.12s}
 .rxn button:hover{border-color:var(--primary)}.rxn button.on{background:var(--primary-soft);border-color:var(--primary)}
+.tt{display:grid;grid-template-columns:60px repeat(5,1fr);gap:6px;font-size:12.5px}
+.tt .hd{text-align:center;font-weight:700;color:var(--faint);padding:4px 0}
+.tt .tm{color:var(--faint);text-align:right;padding:8px 6px 0 0;font-size:11px}
+.tt .cell{border:1px solid var(--line-2);border-radius:9px;min-height:56px;background:var(--surface-2);padding:4px}
+.tt .les{background:var(--primary-soft);border:1px solid #bfe0db;border-radius:8px;padding:6px 7px;cursor:pointer;height:100%;display:flex;flex-direction:column;gap:2px}
+.tt .les:hover{border-color:var(--primary);transform:translateY(-1px)}
+.tt .les b{font-size:11.5px;line-height:1.2}.tt .les span{font-size:10px;color:var(--muted)}
+.att{display:inline-flex;min-width:24px;height:22px;padding:0 6px;border-radius:6px;align-items:center;justify-content:center;font-size:11.5px;font-weight:700}
+.att.ok{background:var(--ok-soft);color:var(--ok)}.att.no{background:var(--danger-soft);color:var(--danger)}.att.late{background:var(--warn-soft);color:var(--warn)}
 /* social */
 .soc{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:11px;padding:11px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
 .soc:hover{background:var(--surface-2)}.soc .g{color:#4285F4;font-weight:800}.soc .f{color:#1877F2;font-weight:800}
@@ -566,8 +575,9 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
     </div>
     <div class="tabs mb3" id="profTabs">
       <button class="on" data-ptab="3">შეტყობინებები <span class="pill pri" id="msgBadge" style="padding:0 7px">2</span></button>
-      <button data-ptab="0">ჯავშნები</button><button data-ptab="1">ჩემი კურსები</button><button data-ptab="2">სერტიფიკატები</button>
-      <button data-ptab="4">პაკეტი & გადახდები</button><button data-ptab="5">პირადი მონაცემები</button>
+      <button data-ptab="6">სასწავლო ცხრილი</button><button data-ptab="7">ელ. ჟურნალი</button>
+      <button data-ptab="1">ჩემი კურსები</button><button data-ptab="8">ბიბლიოთეკა</button><button data-ptab="2">სერტიფიკატები</button>
+      <button data-ptab="0">ჯავშნები</button><button data-ptab="4">პაკეტი & გადახდები</button><button data-ptab="5">პირადი მონაცემები</button>
     </div>
 
     <div class="ptab" id="pt0" style="display:none">
@@ -621,6 +631,38 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
         <button class="btn pri" data-toast="მონაცემები შენახულია ✓">შენახვა</button>
       </div>
     </div>
+
+    <!-- TIMETABLE (სასწავლო ცხრილი) -->
+    <div class="ptab" id="pt6" style="display:none">
+      <div class="card pad">
+        <div class="row between wrapf mb2"><b>ამ კვირის სასწავლო ცხრილი</b><div class="row" style="gap:8px"><span class="pill">13–17 ოქტ 2026</span><span class="faint small">დააჭირე გაკვეთილს დეტალებისთვის</span></div></div>
+        <div class="tt"><div></div><div class="hd">ორშ</div><div class="hd">სამ</div><div class="hd">ოთხ</div><div class="hd">ხუთ</div><div class="hd">პარ</div></div>
+        <div class="tt mt1" id="ttGrid"></div>
+      </div>
+    </div>
+
+    <!-- E-JOURNAL (ელექტრონული ჟურნალი — attendance) -->
+    <div class="ptab" id="pt7" style="display:none">
+      <div class="card pad mb2">
+        <div class="row between wrapf"><b>დასწრების აღრიცხვა</b><div class="row" style="gap:8px"><span class="pill ok">დასწრება 86%</span><span class="pill">7 მოდული</span></div></div>
+        <div class="row wrapf mt2 faint" style="font-size:12px;gap:14px"><span><span class="att ok">✓</span> დაესწრო</span><span><span class="att no">✕</span> არ დაესწრო</span><span><span class="att late">L</span> დააგვიანა</span></div>
+      </div>
+      <div id="journalBox"></div>
+    </div>
+
+    <!-- LIBRARY (ბიბლიოთეკა — external) -->
+    <div class="ptab" id="pt8" style="display:none">
+      <div class="card pad" style="max-width:640px">
+        <div class="row" style="gap:14px;align-items:flex-start">
+          <div style="font-size:34px">📚</div>
+          <div>
+            <h3>ბიბლიოთეკა</h3>
+            <p class="muted mt1">ფიზიკური წიგნები ხელმისაწვდომია ჩვენს არსებულ ბიბლიოთეკის პლატფორმაზე — გადადი ბმულზე და მოძებნე სასურველი წიგნი. ცალკე დამატება აქ საჭირო არ არის.</p>
+            <button class="btn pri mt2" data-toast="გადამისამართება ბიბლიოთეკის პლატფორმაზე ↗">ბიბლიოთეკის პლატფორმაზე გადასვლა ↗</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -658,6 +700,20 @@ footer h4{color:#fff;font-size:14px;margin-bottom:10px}
     <div class="field"><label class="f">პაროლი</label><input class="inp" type="password" value="••••••••"></div>
     <button class="btn pri block mt1" id="authSubmit">შესვლა</button>
     <p class="faint center mt1 small">დაცული და კონფიდენციალური</p>
+  </div>
+</div></div>
+
+<!-- LESSON DETAIL MODAL (timetable) -->
+<div class="overlay" id="lessonModal"><div class="modal"><div class="head"><b id="lsTitle">გაკვეთილი</b><button class="btn ghost sm" data-close>✕</button></div>
+  <div class="body">
+    <span class="pill acc mb2" id="lsModule">მოდული</span>
+    <div class="row between mt1"><span class="muted">📅 თარიღი</span><b id="lsDate">—</b></div>
+    <div class="row between mt1"><span class="muted">⏰ საათი</span><b id="lsTime">—</b></div>
+    <div class="row between mt1"><span class="muted">👤 ლექტორი</span><b id="lsLecturer">—</b></div>
+    <div class="row between mt1"><span class="muted">🚪 აუდიტორია</span><b id="lsRoom">—</b></div>
+    <div class="row between mt1"><span class="muted">დასწრება</span><span id="lsAtt">—</span></div>
+    <p class="faint small mt2" id="lsNote">ლექციაზე დასწრება აღირიცხება ელექტრონულ ჟურნალში.</p>
+    <button class="btn block mt2" data-close>დახურვა</button>
   </div>
 </div></div>
 
@@ -837,14 +893,53 @@ document.getElementById('msgDetail').addEventListener('click',e=>{const r=e.targ
   const m=MSGS[msgSel];m.rx=(m.rx===r.dataset.rx?'':r.dataset.rx);renderMsgDetail();toast(m.rx?'რეაქცია: '+m.rx:'რეაქცია მოხსნილია');});
 renderMsgList();renderMsgDetail();updateMsgBadge();
 
+/* ===== timetable (სასწავლო ცხრილი) ===== */
+const TT_TIMES=["10:00","11:30","14:00"];
+const LESSONS=[
+  {d:0,s:0,title:"ზოგადი ფსიქოლოგია",module:"მოდული 1",lecturer:"ნ. ბერიძე",room:"აუდიტორია 204",date:"13 ოქტ, ორშ",time:"10:00 – 11:20",att:"ok"},
+  {d:0,s:1,title:"განვითარების ფსიქოლოგია",module:"მოდული 2",lecturer:"გ. ხარაძე",room:"აუდიტორია 110",date:"13 ოქტ, ორშ",time:"11:30 – 12:50",att:"late"},
+  {d:1,s:0,title:"კვლევის მეთოდები",module:"მოდული 3",lecturer:"ს. კაპანაძე",room:"აუდიტორია 305",date:"14 ოქტ, სამ",time:"10:00 – 11:20",att:"ok"},
+  {d:2,s:2,title:"კლინიკური ფსიქოლოგია",module:"მოდული 4",lecturer:"ნ. ბერიძე",room:"აუდიტორია 204",date:"15 ოქტ, ოთხ",time:"14:00 – 15:20",att:"no"},
+  {d:3,s:1,title:"ნეიროფსიქოლოგია",module:"მოდული 5",lecturer:"დ. ლომიძე",room:"ლაბორატორია 2",date:"16 ოქტ, ხუთ",time:"11:30 – 12:50",att:"ok"},
+  {d:4,s:0,title:"ფსიქოთერაპიის საფუძვლები",module:"მოდული 6",lecturer:"გ. ხარაძე",room:"აუდიტორია 110",date:"17 ოქტ, პარ",time:"10:00 – 11:20",att:null},
+];
+const ATT_LABEL={ok:'<span class="att ok">✓</span> დაესწრო',no:'<span class="att no">✕</span> არ დაესწრო',late:'<span class="att late">L</span> დააგვიანა'};
+(function(){
+  let h='';
+  TT_TIMES.forEach((tm,s)=>{h+='<div class="tm">'+tm+'</div>';
+    for(let d=0;d<5;d++){const idx=LESSONS.findIndex(l=>l.d===d&&l.s===s);
+      h+='<div class="cell">'+(idx>=0?'<div class="les" data-les="'+idx+'"><b>'+LESSONS[idx].title+'</b><span>'+LESSONS[idx].time+'</span><span>'+LESSONS[idx].room+'</span></div>':'')+'</div>';}
+  });
+  document.getElementById('ttGrid').innerHTML=h;
+})();
+document.getElementById('ttGrid').addEventListener('click',e=>{const l=e.target.closest('[data-les]');if(!l)return;const s=LESSONS[+l.dataset.les];
+  document.getElementById('lsTitle').textContent=s.title;document.getElementById('lsModule').textContent=s.module;
+  document.getElementById('lsDate').textContent=s.date;document.getElementById('lsTime').textContent=s.time;
+  document.getElementById('lsLecturer').textContent=s.lecturer;document.getElementById('lsRoom').textContent=s.room;
+  document.getElementById('lsAtt').innerHTML=s.att?ATT_LABEL[s.att]:'<span class="faint">ჯერ არ ჩატარებულა</span>';
+  document.getElementById('lessonModal').classList.add('on');});
+
+/* ===== e-journal (attendance per module / lecture) ===== */
+const JOURNAL=[
+  {module:"მოდული 1 · ზოგადი ფსიქოლოგია",pct:92,rows:[["1","შესავალი","09 სექტ","ok"],["2","აღქმა და ყურადღება","16 სექტ","ok"],["3","მეხსიერება","23 სექტ","late"],["4","აზროვნება","30 სექტ","ok"]]},
+  {module:"მოდული 2 · განვითარების ფსიქოლოგია",pct:75,rows:[["1","ბავშვობა","07 ოქტ","ok"],["2","მოზარდობა","14 ოქტ","no"],["3","ზრდასრულობა","21 ოქტ","ok"]]},
+  {module:"მოდული 4 · კლინიკური ფსიქოლოგია",pct:80,rows:[["1","შესავალი","08 ოქტ","ok"],["2","დიაგნოსტიკა","15 ოქტ","no"]]},
+];
+document.getElementById('journalBox').innerHTML=JOURNAL.map(m=>
+  '<div class="card pad mb2"><div class="row between wrapf mb1"><b>'+m.module+'</b><span class="pill '+(m.pct>=85?'ok':(m.pct>=70?'':'warn'))+'">დასწრება '+m.pct+'%</span></div>'+
+  '<table style="width:100%;border-collapse:collapse;font-size:13.5px"><thead><tr>'+
+  ['#','ლექციის თემა','თარიღი','დასწრება'].map(x=>'<th style="text-align:left;padding:8px 10px;color:var(--faint);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--line)">'+x+'</th>').join('')+'</tr></thead><tbody>'+
+  m.rows.map(r=>'<tr><td style="padding:10px">'+r[0]+'</td><td style="padding:10px">'+r[1]+'</td><td style="padding:10px">'+r[2]+'</td><td style="padding:10px">'+ATT_LABEL[r[3]]+'</td></tr>').join('')+
+  '</tbody></table></div>').join('');
+
 /* ===== tabs (profile, legal, auth) ===== */
 document.getElementById('profTabs').addEventListener('click',e=>{const b=e.target.closest('[data-ptab]');if(!b)return;
   document.querySelectorAll('#profTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-  [0,1,2,3,4,5].forEach(i=>document.getElementById('pt'+i).style.display=(''+i===b.dataset.ptab?'block':'none'));});
+  [0,1,2,3,4,5,6,7,8].forEach(i=>document.getElementById('pt'+i).style.display=(''+i===b.dataset.ptab?'block':'none'));});
 /* clicking data-ptab from anywhere (e.g. bookings row) opens profile tab */
 document.addEventListener('click',e=>{const b=e.target.closest('[data-ptab]');if(!b||b.closest('#profTabs'))return;
   go('profile');document.querySelectorAll('#profTabs button').forEach(x=>x.classList.toggle('on',x.dataset.ptab===b.dataset.ptab));
-  [0,1,2,3,4,5].forEach(i=>document.getElementById('pt'+i).style.display=(''+i===b.dataset.ptab?'block':'none'));});
+  [0,1,2,3,4,5,6,7,8].forEach(i=>document.getElementById('pt'+i).style.display=(''+i===b.dataset.ptab?'block':'none'));});
 const LEGAL=["წესები და პირობები","კონფიდენციალურობის პოლიტიკა","Cookie პოლიტიკა","დაბრუნების პოლიტიკა"];
 document.getElementById('legalTabs').addEventListener('click',e=>{const b=e.target.closest('[data-legal]');if(!b)return;
   document.querySelectorAll('#legalTabs button').forEach(x=>{x.classList.remove('pri');});b.classList.add('pri');document.getElementById('legalTitle').textContent=LEGAL[+b.dataset.legal];});
@@ -859,7 +954,7 @@ document.addEventListener('click',e=>{const a=e.target.closest('[data-auth]');if
     if(a.dataset.auth==='profile'){setLoggedIn();go('profile');return;}
     if(a.dataset.auth==='social'){modal.classList.remove('on');setLoggedIn();toast('ავტორიზაცია წარმატებულია ✓');go('profile');return;}
     modal.classList.add('on');switchAuth(a.dataset.auth==='register'?'register':'login');}
-  if(e.target.closest('[data-close]')||e.target===modal)modal.classList.remove('on');});
+  if(e.target.closest('[data-close]')||e.target.classList.contains('overlay')){document.querySelectorAll('.overlay').forEach(x=>x.classList.remove('on'));}});
 document.getElementById('authSubmit').onclick=()=>{modal.classList.remove('on');setLoggedIn();toast('წარმატებით შეხვედით ✓');go('profile');};
 function setLoggedIn(){document.getElementById('authArea').innerHTML='<button class="btn sm" data-go="profile">👤 გიორგი</button>';}
 function setPackage(name){document.getElementById('pkgBadge').textContent='პაკეტი: '+name;document.getElementById('pkgBadge').className='pill ok';

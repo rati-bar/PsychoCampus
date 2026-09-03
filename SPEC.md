@@ -67,6 +67,12 @@ Illustrative — adapt names to Laravel conventions. Bold = primary identifier /
 - **Booking (Navigation interview)** — `code` (#BK‑…), `slot_datetime`, `duration` (30 min) + `buffer` (15 min), `user_contact` (name?, phone, email?, region), `assigned_consultant_id`, `status` (planned/completed/cancelled), `payment_id`, `meeting_link`.
 - **ConsultantSchedule** — `consultant_id`, `month`, `availability` = map of `date → set of hours` (from a **24‑hour** grid), `status` (pending/approved/returned), `submitted_at`, `approved_by`, `approved_at`.
 - **Consultant** — `user`/profile, `specialization`, `active` (bool; force‑majeure toggle), working schedule (derived from approved ConsultantSchedule).
+- **Module** — a unit of the structured program (`title`, `order`); groups **program Lectures** (physical classes). *(Distinct from an online Course's Sections.)*
+- **Lecturer** — `name`, `specialization`, `contact`. Teaches lessons.
+- **Auditorium** — `name`, `capacity`, `location`.
+- **Lesson (timetable entry)** — `module_id`, `date`, `time`, `lecturer_id`, `auditorium_id`, `status` (planned/draft). Shown in the student timetable; the detail view exposes module, lecturer, time, auditorium.
+- **Attendance** — `student_id`, `module_id`, `lecture_id/lesson_id`, `status` (present/absent/late). Aggregated into the student's e‑journal (per‑module %).
+- **Library (external)** — *not an internal entity*; a single **external platform URL** in SiteSettings that the cabinet's Library tab links to. No book records stored locally.
 - **Message (cabinet notification)** — `user_id`, `type` (meeting_link / certificate / payment / recommendation / system), `title`, `body` (rich, can be long), `from` (consultant / PsychoCampus), `sent_at`, `read` (bool), `reaction` (one emoji, nullable), optional `meeting_link`, optional `related_certificate_id`.
 - **Order / Payment** — `user_id`, `type` (course / navigation / package), `amount`, `status` (paid/pending/refunded), `bank_transaction_id`, `invoice/payment_details_pdf`, `created_at`.
 - **Service (marketing entry)** — general list of offered services (name, short description, image, type) shown in admin "Content".
@@ -125,6 +131,15 @@ Admin flips a consultant to **inactive** (one action). The system reacts in prio
 - Free: course previews, marketing pages, browsing.
 - Gated on **purchase/subscription + positive payment**: full course videos, package benefits, confirmed navigation interview + meeting link (link released only after payment).
 
+### 5.9 Academic / LMS dimension (structured program with physical classes)
+Beyond the self‑paced online courses, PsychoCampus runs a **structured program** taught as **modules** made of **lectures** held **in person** (physical auditoriums). This drives three student features and their admin management:
+- **Timetable (სასწავლო ცხრილი):** a schedule of **lessons**; each lesson = { module/subject, date, time, **lecturer**, **auditorium** }. Students view it; **clicking a lesson opens its details** (module, lecturer, time, auditorium, attendance state).
+- **E‑journal / attendance (ელექტრონული ჟურნალი):** the student sees **attendance recorded for each lecture of each module** (present / absent / late) plus a per‑module attendance %. Attendance is entered by staff (admin, or a lecturer if a lecturer panel is later added) against a specific module‑lecture.
+- **Library (ბიბლიოთეკა):** **physical books already live on a separate existing platform**. The library tab **only links out** to that platform (search happens there). **No internal book catalogue / no separate book entry is built.** The external URL is a site setting.
+- **Lecturers** and **auditoriums** are managed entities; a lesson references one of each. Modules group lectures.
+
+> **Consultant vs lecturer.** The existing **consultant panel** is for ფსიქო ნავიგაცია interviews only. Teaching/attendance belongs to **lecturers**. For this stage, timetable + attendance are **managed in the admin panel** and there is **no separate lecturer login**; add a lecturer role/panel later if lecturers must mark their own attendance.
+
 ---
 
 ## 6. Public site — screens & logic
@@ -157,13 +172,17 @@ Shared flow: **Account → Payment → Confirmation**. Account step supports **r
 - **Register:** first name, last name, personal number, **email (unique identifier)**, phone, password. **Google & Facebook** social login in the auth modal and in checkout.
 - **Register‑during‑payment** as above. Bank positive transaction → profile auto‑activated.
 
-### 6.7 User cabinet (tab order matters)
+### 6.7 User cabinet ("student profile" — tab order matters)
+The beneficiary is also a **student**, so the cabinet carries academic tabs alongside the commerce ones.
 1. **Messages (first tab)** — **master–detail**: list on one side, full reading pane on the other; **long bodies supported**; message types include **meeting link (from consultant)**, certificate issued, payment received, course recommendation, system. **Emoji reactions** per message; unread badge/count. The meeting‑link message exposes a "join meeting" action.
-2. **Bookings** — status (planned/completed/cancelled); **reschedule**, **cancel**; **"გადახდის დეტალები" (payment details) PDF downloadable on ANY status** (planned or completed); meeting‑link shortcut.
-3. **My courses** — purchased courses with **progress**; continue / view certificate.
-4. **Certificates** — earned certificates; view / download PDF.
-5. **Package & payments** — current package (+cancel); payments table with **"გადახდის დეტალები" PDF** (this label replaces the word "invoice/ინვოისი" everywhere).
-6. **Personal data** — edit profile.
+2. **სასწავლო ცხრილი (Timetable)** — the student's class schedule (weekly grid of lessons). **Clicking a lesson shows its details: module/subject, lecturer, time, auditorium** (and attendance state). See §5.9.
+3. **ელ. ჟურნალი (E‑journal)** — **attendance record per lecture of each module**: modules → lectures with date + attendance status (present / absent / late) and per‑module attendance %.
+4. **My courses** — purchased online courses with **progress**; continue / view certificate.
+5. **ბიბლიოთეკა (Library)** — **physical books live on an existing external library platform**; this tab is just a link/redirect to that platform (**no internal book catalogue is built** — "ცალკე დამატება არ იქნება საჭირო"). The external URL is configured in admin settings.
+6. **Certificates** — earned certificates; view / download PDF.
+7. **Bookings** — status (planned/completed/cancelled); **reschedule**, **cancel**; **"გადახდის დეტალები" (payment details) PDF downloadable on ANY status** (planned or completed); meeting‑link shortcut.
+8. **Package & payments** — current package (+cancel); payments table with **"გადახდის დეტალები" PDF** (this label replaces the word "invoice/ინვოისი" everywhere).
+9. **Personal data** — edit profile.
 
 ### 6.8 Contact & Legal
 - **Contact:** feedback form, contact info, **map** (Google Maps).
@@ -196,8 +215,9 @@ Prototype: `wireframes/admin.html`. Login → panel. **Single admin role for now
   - *(Removed: "დროის მართვა" time‑management and "გენერაციის რეჟიმი" generation‑mode cards — consultants self‑schedule now.)*
 - **Content & SEO:** tabs for **Courses** (title, category, **price**, **Udemy curriculum**: sections/lectures/quizzes, **certificate toggle**, media, bilingual + per‑entity SEO), **Services**, **Info pages**, and **SEO** (sitemap auto‑gen, Open Graph, JSON‑LD, Meta Pixel, GA4, auto‑generate‑when‑blank, GA4/Pixel IDs). Full CRUD.
 - **Packages:** manage the 3 tiers (price, course/navigation discount % **or** full‑free flags), active‑subscriber counts, media/benefits.
+- **სასწავლო პროცესი (Academic):** tabs for **Timetable** (lessons — module, date/time, **lecturer**, **auditorium**, CRUD), **Journal / attendance** (pick module + lecture, mark each student present/absent/late → feeds the student e‑journal), **Lecturers** (CRUD), **Auditoriums** (CRUD). Lecturer/auditorium lists feed the lesson editor's dropdowns.
 - **Users:** searchable registered‑users table (personal + contact data, package, payments) + **user detail modal** (linked payments & bookings).
-- **Settings:** general (site name, languages, contact email), payment & pricing (bank integration status, navigation price, package prices, **cancellation window**, **refund policy**), region‑discount note.
+- **Settings:** general (site name, languages, contact email, **external library platform URL**), payment & pricing (bank integration status, navigation price, package prices, **cancellation window**, **refund policy**), region‑discount note.
 - *(Removed for this stage: "ჩატი / ოპერატორები" admin view and "Roles & permissions". The public online‑chat feature itself still exists; only its admin management screen was dropped for now.)*
 
 ---
@@ -227,9 +247,9 @@ Prototype: `wireframes/admin.html`. Login → panel. **Single admin role for now
 
 | Area | Screens | Prototype file |
 |---|---|---|
-| Public | Home, ფსიქო განათლება (catalog + course detail), ფსიქო ნავიგაცია booking, Packages + package detail, Checkout, Auth, Cabinet (Messages/Bookings/Courses/Certificates/Package&Payments/Personal), Contact, Legal, Chat | `wireframes/public.html` |
+| Public | Home, ფსიქო განათლება (catalog + course detail), ფსიქო ნავიგაცია booking, Packages + package detail, Checkout, Auth, Cabinet (Messages / **Timetable** / **E‑journal** / Courses / **Library** / Certificates / Bookings / Package&Payments / Personal), Contact, Legal, Chat | `wireframes/public.html` |
 | Consultant | Login, My bookings, Message‑user modal, My schedule (24h month composer), Availability, Profile | `wireframes/consultant.html` |
-| Admin | Login, Overview, Orders & payments, Bookings & consultants (force‑majeure + schedule approval), Content & SEO, Packages, Users, Settings | `wireframes/admin.html` |
+| Admin | Login, Overview, Orders & payments, Bookings & consultants (force‑majeure + schedule approval), Content & SEO, Packages, **Academic (timetable / attendance / lecturers / auditoriums)**, Users, Settings (incl. **library URL**) | `wireframes/admin.html` |
 | Entry | Landing linking the three | `index.html` (+ `wireframes/index.html`) |
 
 ---
