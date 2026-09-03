@@ -109,7 +109,6 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
     <a data-v="bookings">📅 ჯავშნები & კონსულტანტები</a>
     <a data-v="content">🎬 კონტენტი & SEO</a>
     <a data-v="packages">🎁 პაკეტები</a>
-    <a data-v="academic">🎓 სასწავლო პროცესი</a>
     <a data-v="users">👥 მომხმარებლები</a>
     <a data-v="settings">⚙ პარამეტრები</a>
     <div class="grp">სხვა</div>
@@ -277,59 +276,6 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
         </div>
       </section>
 
-      <!-- ACADEMIC (timetable, attendance/e-journal, lecturers, auditoriums) -->
-      <section class="view" id="v-academic">
-        <div class="row between wrapf mb3"><div class="tabs" id="acTabs"><button class="on" data-ac="timetable">ცხრილი</button><button data-ac="journal">ჟურნალი (დასწრება)</button><button data-ac="lecturers">ლექტორები</button><button data-ac="rooms">აუდიტორიები</button></div><span class="pill acc">📚 ბიბლიოთეკა = გარე პლატფორმა</span></div>
-
-        <div class="acp on" id="ac-timetable">
-          <div class="card"><div class="pad" style="padding-bottom:0"><div class="row between"><b>სასწავლო ცხრილი — გაკვეთილები</b><button class="btn sm pri" data-toast="ახალი გაკვეთილის ფორმა">+ გაკვეთილი</button></div></div>
-            <div class="pad"><table class="tb"><thead><tr><th>თარიღი / საათი</th><th>მოდული / საგანი</th><th>ლექტორი</th><th>აუდიტორია</th><th>სტატუსი</th><th></th></tr></thead><tbody>
-              <tr><td>13 ოქტ · 10:00–11:20</td><td>მოდული 1 · ზოგადი ფსიქოლოგია</td><td>ნ. ბერიძე</td><td>აუდ. 204</td><td><span class="pill ok">დაგეგმილი</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
-              <tr><td>13 ოქტ · 11:30–12:50</td><td>მოდული 2 · განვითარების ფსიქ.</td><td>გ. ხარაძე</td><td>აუდ. 110</td><td><span class="pill ok">დაგეგმილი</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
-              <tr><td>15 ოქტ · 14:00–15:20</td><td>მოდული 4 · კლინიკური ფსიქ.</td><td>ნ. ბერიძე</td><td>აუდ. 204</td><td><span class="pill">დრაფტი</span></td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger" data-toast="წაშლა?">🗑</button></td></tr>
-            </tbody></table>
-            <p class="faint" style="font-size:12.5px;margin-top:6px">გაკვეთილს ენიჭება მოდული, ლექტორი, საათი და აუდიტორია — სტუდენტი ამ დეტალებს ხედავს სასწავლო ცხრილში.</p></div></div>
-          <div class="split2" id="lessonEditor" style="display:none">
-            <div class="card pad"><h3 class="mb2">გაკვეთილის რედაქტირება</h3>
-              <div class="field"><label class="f">მოდული / საგანი</label><input class="inp" value="მოდული 1 · ზოგადი ფსიქოლოგია"></div>
-              <div class="grid g2"><div class="field"><label class="f">თარიღი</label><input class="inp" type="date"></div><div class="field"><label class="f">საათი</label><input class="inp" value="10:00–11:20"></div></div>
-              <div class="grid g2"><div class="field"><label class="f">ლექტორი</label><select class="inp"><option>ნ. ბერიძე</option><option>გ. ხარაძე</option><option>ს. კაპანაძე</option><option>დ. ლომიძე</option></select></div>
-                <div class="field"><label class="f">აუდიტორია</label><select class="inp"><option>აუდ. 204</option><option>აუდ. 110</option><option>აუდ. 305</option><option>ლაბ. 2</option></select></div></div>
-              <div class="row"><button class="btn" data-toast="დრაფტი">დრაფტი</button><button class="btn pri" data-toast="შენახულია ✓">შენახვა</button></div>
-            </div>
-            <div class="card pad card--flat"><b>ℹ დამოკიდებულებები</b><p class="muted" style="font-size:13px">ლექტორები და აუდიტორიები იმართება ცალკე ჩანართებში და ჩამოსაშლელებში ავტომატურად ჩნდება. გაკვეთილის დასწრება აღირიცხება „ჟურნალში".</p></div>
-          </div>
-        </div>
-
-        <div class="acp" id="ac-journal" style="display:none">
-          <div class="card pad mb2"><div class="row wrapf" style="gap:10px">
-            <select class="inp" style="width:260px"><option>მოდული 1 · ზოგადი ფსიქოლოგია</option><option>მოდული 2 · განვითარების ფსიქ.</option></select>
-            <select class="inp" style="width:220px"><option>ლექცია 3 · მეხსიერება (23 სექტ)</option><option>ლექცია 4 · აზროვნება (30 სექტ)</option></select>
-            <span class="spacer"></span><button class="btn sm pri" data-toast="დასწრება შენახულია ✓">შენახვა</button></div></div>
-          <div class="card"><div class="pad"><b>დასწრების მონიშვნა — ლექცია 3 · მეხსიერება</b>
-            <table class="tb mt2"><thead><tr><th>სტუდენტი</th><th>სტატუსი</th></tr></thead><tbody id="attBody"></tbody></table>
-            <p class="faint" style="font-size:12.5px;margin-top:6px">დასწრება აისახება სტუდენტის ელექტრონულ ჟურნალში (მოდულის/ლექციის ჭრილში).</p></div></div>
-        </div>
-
-        <div class="acp" id="ac-lecturers" style="display:none">
-          <div class="card"><div class="pad" style="padding-bottom:0"><div class="row between"><b>ლექტორები</b><button class="btn sm pri" data-toast="ახალი ლექტორის ფორმა">+ ლექტორი</button></div></div>
-            <div class="pad"><table class="tb"><thead><tr><th>სახელი</th><th>სპეციალიზაცია</th><th>საკონტაქტო</th><th>გაკვეთილები</th><th></th></tr></thead><tbody>
-              <tr><td>ნ. ბერიძე</td><td>ზოგადი / კლინიკური</td><td>n.b@…</td><td>12</td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger">🗑</button></td></tr>
-              <tr><td>გ. ხარაძე</td><td>განვითარების</td><td>g.kh@…</td><td>9</td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger">🗑</button></td></tr>
-              <tr><td>ს. კაპანაძე</td><td>კვლევის მეთოდები</td><td>s.k@…</td><td>6</td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger">🗑</button></td></tr>
-            </tbody></table></div></div>
-        </div>
-
-        <div class="acp" id="ac-rooms" style="display:none">
-          <div class="card"><div class="pad" style="padding-bottom:0"><div class="row between"><b>აუდიტორიები</b><button class="btn sm pri" data-toast="ახალი აუდიტორიის ფორმა">+ აუდიტორია</button></div></div>
-            <div class="pad"><table class="tb"><thead><tr><th>დასახელება</th><th>ტევადობა</th><th>მდებარეობა</th><th></th></tr></thead><tbody>
-              <tr><td>აუდიტორია 204</td><td>30</td><td>მე-2 სართული</td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger">🗑</button></td></tr>
-              <tr><td>აუდიტორია 110</td><td>45</td><td>1-ლი სართული</td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger">🗑</button></td></tr>
-              <tr><td>ლაბორატორია 2</td><td>18</td><td>მე-3 სართული</td><td class="row"><button class="btn sm" data-edit>✎</button><button class="btn sm danger">🗑</button></td></tr>
-            </tbody></table></div></div>
-        </div>
-      </section>
-
       <!-- USERS -->
       <section class="view" id="v-users">
         <div class="card pad mb3"><div class="row wrapf" style="gap:10px">
@@ -351,7 +297,6 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
             <div class="field"><label class="f">საიტის სახელი</label><input class="inp" value="PsychoCampus"></div>
             <div class="field"><label class="f">ენები</label><div class="row"><span class="pill acc">ქართული (ნაგულისხმევი)</span><span class="pill">English</span></div></div>
             <div class="field"><label class="f">საკონტაქტო ელფოსტა</label><input class="inp" value="info@psychocampus.ge"></div>
-            <div class="field"><label class="f">📚 ბიბლიოთეკის პლატფორმის ბმული <span class="faint" style="font-weight:400">— გარე პლატფორმა (ფიზიკური წიგნები)</span></label><input class="inp" value="https://library.psychocampus.ge"></div>
             <button class="btn pri" data-toast="შენახულია ✓">შენახვა</button>
           </div>
           <div class="card pad"><h3 class="mb2">გადახდა & ფასები</h3>
@@ -411,7 +356,7 @@ table.tb td{padding:12px}table.tb tbody tr{border-bottom:1px solid var(--line-2)
 <a class="proto" href="../index.html">◐ Prototype — მთავარ გვერდზე დაბრუნება</a>
 
 <script>
-const TITLES={dash:"მიმოხილვა",orders:"შეკვეთები & გადახდები",bookings:"ჯავშნები & კონსულტანტები",content:"კონტენტი & SEO",packages:"პაკეტები",academic:"სასწავლო პროცესი",users:"მომხმარებლები",settings:"პარამეტრები"};
+const TITLES={dash:"მიმოხილვა",orders:"შეკვეთები & გადახდები",bookings:"ჯავშნები & კონსულტანტები",content:"კონტენტი & SEO",packages:"პაკეტები",users:"მომხმარებლები",settings:"პარამეტრები"};
 function go(v){
   document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
   document.querySelectorAll('.side a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
@@ -450,21 +395,8 @@ document.getElementById('cTabs').addEventListener('click',e=>{const b=e.target.c
   document.querySelectorAll('#cTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
   ['videos','services','pages','seo'].forEach(k=>document.getElementById('cp-'+k).style.display=(k===b.dataset.ct?'block':'none'));});
 document.addEventListener('click',e=>{if(!e.target.closest('[data-edit]'))return;
-  let pe=document.getElementById('editor');
-  if(e.target.closest('#v-packages'))pe=document.getElementById('pkgEditor');
-  else if(e.target.closest('#v-academic'))pe=document.getElementById('lessonEditor');
+  const pe=e.target.closest('#v-packages')?document.getElementById('pkgEditor'):document.getElementById('editor');
   if(pe){pe.style.display='grid';pe.scrollIntoView({behavior:'smooth',block:'center'});}});
-
-/* academic tabs + attendance */
-document.getElementById('acTabs').addEventListener('click',e=>{const b=e.target.closest('[data-ac]');if(!b)return;
-  document.querySelectorAll('#acTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-  ['timetable','journal','lecturers','rooms'].forEach(k=>document.getElementById('ac-'+k).style.display=(k===b.dataset.ac?'block':'none'));});
-(function(){const STU=[["გ. მაისურაძე","ok"],["ნ. კვარაცხელია","ok"],["დ. ბერიძე","no"],["ს. ლომიძე","late"],["თ. ჩხეიძე","ok"]];
-  function render(){document.getElementById('attBody').innerHTML=STU.map((s,i)=>'<tr><td>'+s[0]+'</td><td><div class="row" style="gap:6px">'+
-    [['ok','დაესწრო'],['late','დააგვიანა'],['no','არ დაესწრო']].map(o=>'<button class="btn sm'+(s[1]===o[0]?' pri':'')+'" data-att="'+i+'-'+o[0]+'">'+o[1]+'</button>').join('')+'</div></td></tr>').join('');}
-  render();
-  document.getElementById('attBody').addEventListener('click',e=>{const b=e.target.closest('[data-att]');if(!b)return;const[i,v]=b.dataset.att.split('-');STU[+i][1]=v;render();});
-})();
 
 /* modals */
 document.addEventListener('click',e=>{
