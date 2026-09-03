@@ -1,5 +1,7 @@
 # PsychoCampus — Interactive Prototype
 
+> **Building the real app?** See **[`../SPEC.md`](../SPEC.md)** — a design-agnostic functional specification of all the logic, data model, flows and business rules behind these wireframes.
+
 Hi-fidelity, **clickable** prototype of the PsychoCampus platform (client: შპს ფინა2 / ი/მ ანნა ზედგინიძე), built as **3 self-contained HTML files** — one per interface. No build step, no internet, no dependencies: open any file directly in a browser.
 
 ```
